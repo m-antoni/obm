@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,15 +10,17 @@
 |
 */
 
+// Landing Page
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Users Routes 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
+// Administrator Routes 
 Route::prefix('admin')->group(function(){
 	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.form');
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
