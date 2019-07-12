@@ -28,8 +28,9 @@ class RedirectIfAuthenticated
             default:
                 // check if guard is user
                 if (Auth::guard($guard)->check()) {
-                    return redirect('/home');
+                    return redirect()->intended();
                 }
+
                 break;
         }
         // continue with the request
