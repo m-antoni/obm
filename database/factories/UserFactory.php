@@ -31,10 +31,9 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
-        'city' => $faker->randomElement(array('Metro Manila', 'Davao City', 'Albay','Cavite', 'Laguna')),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
-        'remember_token' => Str::random(10),
+        'remember_token' => Str::random(21),
     ];
 });

@@ -39,6 +39,7 @@ class Productscontroller extends Controller
 		    'price' => 'required|numeric',
 		]);
 
+        // save order data
     	$order = Order::create([
 			'reference' => $faker->ean13,
 			'user_id' => auth()->user()->id,
@@ -49,8 +50,9 @@ class Productscontroller extends Controller
 			'date' => now()
     	]);
 
+        // update data of users
         $user = DB::table('users')
-                    ->where('id', $order->id)
+                    ->where('id', auth()->user()->id)
                     ->update([
                         'address' => $request->address,
                         'phone' => $request->phone    
@@ -58,54 +60,17 @@ class Productscontroller extends Controller
    
 
         //$order = Order::where('reference', $reference)->first();
-    	return redirect()->route('summary', $order->id);
+    	return redirect()->route('summary', $order);
     }
 
     public function summary($id)
     {   
-       $order = Order::find($id)->first();
+
+       // return dd($id); 
+       $order = Order::find($id);
         
        return view('summary', compact('order')); 
     }
-
-    public function edit_summary($id)
-    {   
-        $order = Order::find($id)->first();
-
-        return view('edit_summary', compact('order'));
-    }
-
-    public function update_summary(Request $request, Order $order)
-    {   
-        // Validation data
-        $request->validate([
-            'address' => 'required|max:100',
-            'phone' => 'required|numeric|min:11',
-            'quantity' => 'required|numeric',
-        ]);
-
-        // $user = User::find($order->user_id);
-        // $user->address = $request->address;
-        // $user->phone = $request->phone;
-        // $user->save();
-
-        // $user = DB::table('users')
-        //             ->where('id', $order->id)
-        //             ->update([
-        //                 'address' => $request->address,
-        //                 'phone' => $request->phone    
-        //             ]);
-       
-        // $order = DB::table('orders')
-        //             ->where('id', $request->id)
-        //             ->update([
-        //                 'quantity' => $request->quantity    
-        //             ]);
-
-        return redirect()->route('summary', $request->id);
-    }
-   
-
 }
 
 

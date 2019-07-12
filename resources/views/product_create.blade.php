@@ -6,7 +6,7 @@
 		<div class="row justify-content-center">
 				<div class="col-md-6">
 							<div class="clearfix">
-							  <span class="float-left"><h3>Place your Order</h3></span>
+							  <span class="float-left"><h3>PLACE YOUR ORDER</h3></span>
 							  <span class="float-right"></span>
 							</div>
 
@@ -74,15 +74,39 @@
                   </div>
 									<hr>
 									<div class="clearfix">
-									  <span class="float-left"><a href="#" class="btn btn-outline-danger mb-2 rounded-0">cancel</a></span>
-									  <span class="float-right">	<input type="submit" class="btn btn-primary btn-lg rounded-0" value="Place your order"></span>
+									  	<span class="float-left"><a href="{{ route('product', $product->id) }}" class="btn btn-outline-danger mb-2 rounded-0">cancel</a></span>
+									  	<span class="float-right">	<a href="#" class="btn btn-primary btn-lg rounded-0" 
+									  	data-toggle="modal" data-target="#confirmModal">Place your order<a>
+									  	</span>
 									</div>
-								
+
+									<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel"></h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">
+										      		<h4 align="center">Are you sure to place this order?</h4>
+										      		<hr>
+															<span><input type="submit" class="btn btn-primary btn-block btn-lg rounded-0" value="confirm"></span>
+										      </div>
+										      <div class="modal-footer">
+										        	{{-- <p>DC GROUP OF COMPANIES</p> --}}
+										      </div>
+										    </div>
+										  </div>
+										</div>
+
 							</form>
 				</div>
 		</div>
 	</div>
-			
+	
+
 @endsection
 
 @section('script')

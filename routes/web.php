@@ -26,7 +26,7 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 Route::get('/home/product/{product}', 'ProductsController@index')->name('product');
 Route::get('/home/product/{create}/create', 'ProductsController@product_create')->name('product.create');
 Route::post('/home/product/{product}/post', 'ProductsController@product_post')->name('product.post');
-Route::get('/home/product/{id}', 'ProductsController@summary')->name('summary');
+Route::get('/home/product/show/{id}', 'ProductsController@summary')->name('summary');
 
 // Route::get('/home/product/show/{id}/edit', 'ProductsController@edit_summary')->name('edit.summary');
 // Route::patch('/home/product/show/{id}', 'ProductsController@update_summary')->name('update.summary');
@@ -38,6 +38,4 @@ Route::prefix('admin')->group(function(){
 		Route::get('/', 'AdminController@index')->name('admin.dashboard');
 		Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
 });
-
-
 

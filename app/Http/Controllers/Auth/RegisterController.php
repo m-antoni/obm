@@ -23,6 +23,12 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    // add this to RegistersUsers redirect to intended url 
+    
+    // return $this->registered($request, $user)
+    //         ?: redirect()->intended($this->redirectPath());
+
+
     /**
      * Where to redirect users after registration.
      *
@@ -68,9 +74,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'phone' => $data['phone'],
             'address' => $data['address'],
-            'city' => $data['city'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
 }
