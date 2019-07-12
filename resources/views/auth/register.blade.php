@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
- 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,12 +31,10 @@
 <!-- signup form  -->
 <!-- ============================================================== -->
 
-<body class="bg-secondary">
+<body >
     <!-- ============================================================== -->
     <!-- signup form  -->
     <!-- ============================================================== -->
-
-                      
     <form method="POST" action="{{ route('register') }}" class="splash-container">
         @csrf
         <div class="card">

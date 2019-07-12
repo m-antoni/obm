@@ -32,9 +32,9 @@
 
 				<tr>
 						<td>{{ $order->product->p_name}}</td>
-						<td>{{ $order->product->price}}</td>
+						<td>₱ {{ $order->product->price}}</td>
 						<td>{{ $order->quantity}}</td>
-						<td>{{ $order->price}}</td>
+						<td>₱ {{ $order->price}}</td>
 				</tr>
 
 				<tr>
@@ -59,11 +59,30 @@
 				</tr>
 		</table>
 		<hr>
-		<div class="card bg-primary text-white mb-5">
-				<div class="card-body">
-						<p>Note: please do remember your reference number for transaction purposes.</p>
+		<div class="card bg-primary text-white mb-5 rounded-0">
+				<div class="card-body" align="center">
+						<p>Note: please remember your reference number for transaction purposes.</p>
+						<p class="text-light">Please be advice that FREE SHIPPING is within Metro Manila only</p>
 				</div>
 		</div>
 </div>
 
+@endsection
+
+@section('script')
+	@if(session('success'))
+		<script type="text/javascript">
+				iziToast.success({
+					  title: 'Success',
+					  message: '{{session('success')}}',
+					 	icon: 'ico-success',
+					  // iconColor: 'rgb(0, 255, 184)',
+					  // theme: 'dark',
+					  // progressBarColor: 'rgb(0, 255, 184)',
+					  position: 'topCenter',
+					  transitionIn: 'fadeInLeft',
+					  transitionOut: 'fadeOutUp'
+				});
+		</script>
+	@endif
 @endsection

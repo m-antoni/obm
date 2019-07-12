@@ -58,11 +58,7 @@
 	                    <div class="row justify-content-center">
 		                      <div class="col-md-6 mb-2">
 		                          <label>Quantity</label>
-		                          <select name="quantity" class="form-control rounded-0" id="quantity" onchange="updateTotal()">
-		                                @for($i=1; $i < 100; $i++)
-		                                    <option>{!! $i !!}</option>
-		                                @endfor
-		                          </select>
+		                          <input class="form-control rounded-0" type="number" min="1" max="99" value="1" id="quantity" onchange="updateTotal()">
 		                          <input type="text" name="price" id="totalhidden" class="form-control form-control-lg" value="{{$product->price}}" hidden>
 		                      </div>
 		                          

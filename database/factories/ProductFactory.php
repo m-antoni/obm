@@ -1,5 +1,4 @@
 <?php
-
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Model;
@@ -7,12 +6,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Product::class, function (Faker $faker) {
     return [
-        'p_name' => 'Bluetooth Speaker',
-        'p_model' => 'CH-8989-45678',
-        'p_category' => 'Speaker',
-        'description' => 'Mini Bluetooth speaker',
-        'price' => 2500,
-        'quantity' => 8,
-        'image' => '',
+        'p_name' => 'Mini Bluetooth',
+        'p_model' => 'B-118-78',
+        'p_category' => 'Bluetooth Speaker',
+        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit Nostru quod consequuntur earum voluptatibus Ipsum eveniet asperiores debitis ipsam accusantium incidunt possimus autem delectus placeat quo laboriosam mollitia facere iste Dolores.',
+        'price' => 1299,
+        'quantity' => 12,
+        'image' => '2',
     ];
 });

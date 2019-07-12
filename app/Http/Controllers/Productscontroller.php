@@ -58,14 +58,11 @@ class Productscontroller extends Controller
                         'phone' => $request->phone    
                     ]);
    
-
-        //$order = Order::where('reference', $reference)->first();
-    	return redirect()->route('summary', $order);
+    	return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess, Thank you for buying');
     }
 
     public function summary($id)
     {   
-
        // return dd($id); 
        $order = Order::find($id);
         
