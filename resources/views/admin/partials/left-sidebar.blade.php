@@ -18,7 +18,7 @@
                         <div id="submenu-1" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1"></a>
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">USER</a>
                                     <div id="submenu-1-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
@@ -51,7 +51,7 @@
                                     <a class="nav-link" href="{{ route('admin.product.add') }}">Add New</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.product.list') }}">List</a>
+                                    <a class="nav-link" href="{{ route('admin.products') }}">List</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="pages/tabs.html">Tabs</a>

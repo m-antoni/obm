@@ -11,7 +11,7 @@
                     <div class="btn-group" role="group" aria-label="Basic example">
                           <a href="{{ route('myorders') }}" class="btn btn-warning rounded-0"><i class="fa fa-list"></i>MY ORDER</a>
                             <a href="{{ route('products') }}" class="btn btn-primary rounded-0"><i class="fa fa-shopping-cart"></i>  SHOP</a>
-                        </div>
+                    </div>
                   </div>
             </div>
 

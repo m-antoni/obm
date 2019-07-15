@@ -52,5 +52,17 @@ Route::prefix('admin')->group(function(){
 	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
 	Route::get('/', 'AdminController@index')->name('admin.dashboard');
 	Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
+
+	// Dashboard Routes
+	Route::get('products', 'AdminController@products')->name('admin.products');
+	Route::get('product/add', 'AdminController@product')->name('admin.product.add');
+
+	// Import And Export File
+	// Route::post('/admin/products/import', 'ImportExcelController@excel_import')->name('admin.product.import');
+
+	Route::post('products/import', 'ImportExportController@import')->name('admin.product.import');
+	Route::get('products/export', 'ImportExportController@export')->name('admin.product.export'); 
+
+
 });
 

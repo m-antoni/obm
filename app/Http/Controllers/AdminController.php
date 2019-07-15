@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+
 
 class AdminController extends Controller
 {
@@ -24,5 +26,14 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.admin');
+    }
+
+
+    public function products()
+    {
+        $products = Product::paginate(7);
+
+        return view('admin.products.products', compact('products'));
+                   
     }
 }

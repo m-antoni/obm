@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'One Beem'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+       
         /*
          * Package Service Providers...
          */
@@ -227,5 +228,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 ];
