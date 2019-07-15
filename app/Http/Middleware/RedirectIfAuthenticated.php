@@ -28,9 +28,14 @@ class RedirectIfAuthenticated
             default:
                 // check if guard is user
                 if (Auth::guard($guard)->check()) {
+                    
                     return redirect()->intended();
                 }
-
+                    
+                // if(session()->get("url.intended")){
+                //     session()->put("redirect_after_email_verification", session()->get("url.intended"));
+                // }
+            
                 break;
         }
         // continue with the request

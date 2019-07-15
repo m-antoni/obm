@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>One Beem</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -39,7 +39,7 @@
         @csrf
         <div class="card">
             <div class="card-header">
-                <h3 class="mb-1">Registrations Form</h3>
+                <h3 class="mb-1"><i class="fa fa-user-circle"></i> Registrations Form</h3>
                 <p class="text-dark">Please enter your user information.</p>
             </div>
             <div class="card-body">
@@ -52,6 +52,7 @@
                         </span>
                     @enderror
                 </div>
+
                 <div class="form-group">
                     <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address">
 
@@ -62,6 +63,7 @@
                     @enderror
 
                 </div>
+
                 <div class="form-group">
                     <input id="phone" type="phone" class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Phone">
 
@@ -71,6 +73,7 @@
                         </span>
                     @enderror
                 </div>
+
                 <div class="form-group">
                      <textarea name="address"  class="form-control form-control-lg @error('address') is-invalid @enderror" rows="2" placeholder="Address">{{ old('address') }}</textarea>
                     
@@ -80,7 +83,34 @@
                         </span>
                     @enderror
                 </div>
-                
+
+                <div class="form-group">
+                    <select name="city" class="form-control form-control-lg {{ $errors->has('city') ? ' is-invalid' : '' }}">
+                        <option>Metro Manila</option>
+                        <option>Bulacan</option>
+                        <option>Bacolod</option>
+                        <option>Cebu</option>
+                        <option>Cavite</option>
+                        <option>Pampanga</option>
+                        <option>Dumaguete</option>
+                        <option>Baguio</option>
+                        <option>Vigan</option>
+                        <option>Puerto Princesa</option>
+                        <option>Lucena</option>
+                        <option>Dipolog</option>
+                        <option>Batangas</option>
+                        <option>Tarlac</option>
+                        <option>Surigao</option>
+                        <option>Davao</option>
+                    </select>
+                    
+                    @error('city')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
 

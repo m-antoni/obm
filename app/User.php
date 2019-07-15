@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'password',
+        'name', 'email', 'phone', 'address', 'city','password',
     ];
 
     /**
@@ -26,7 +26,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    
     /**
      * The attributes that should be cast to native types.
      *
@@ -40,4 +40,5 @@ class User extends Authenticatable
     {
        return $this->hasMany('App\Order');
     }
+
 }

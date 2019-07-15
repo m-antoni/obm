@@ -9,44 +9,57 @@ use App\User;
 use App\Order;
 use App\Product;
 
-class Productscontroller extends Controller
+class ProductsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function index(Product $product)
+    
+    public function single_product(Product $product)
     {  
-        return view('product', compact('product'));
+        return view('users.single_product', compact('product'));
     }
 
-    public function product_create($id)
+    public function products()
+    {
+        // items gallery
+        return view('users.products');
+    }
+    
+    public function myorders()
+    {
+        // fetch the users orders
+        $orders = Order::where('user_id',auth()->user()->id)
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(4);
+
+        return view('users.myorders', compact('orders'));
+    }
+
+    public function order_cod($id)
     {   
         $product = Product::find($id);
 
-        return view('product_create', compact('product'));
+        return view('users.order_cod', compact('product'));
     }
 
-    public function product_post(Request $request, Faker $faker, $product)
+    public function product_cod(Request $request, Faker $faker, $product)
     {
         // return dd($request->all());
-
     	$request->validate([
             'phone' => 'required|numeric' , 
 		    'address' => 'required|max:100',
+            'city' => 'required',
             'quantity' => 'required|numeric',
 		    'price' => 'required|numeric',
 		]);
 
         // save order data
     	$order = Order::create([
-			'reference' => $faker->ean13,
+			'reference' => $faker->ean8,
 			'user_id' => auth()->user()->id,
 			'product_id' => $product,
 			'quantity' => $request->quantity,
 			'price' => $request->price,
-			'status' => 'pending',
+			'status' => 'bank',
+            'payment' => 'cod',
 			'date' => now()
     	]);
 
@@ -55,10 +68,53 @@ class Productscontroller extends Controller
                     ->where('id', auth()->user()->id)
                     ->update([
                         'address' => $request->address,
+                        'city' => $request->city,
                         'phone' => $request->phone    
                     ]);
    
-    	return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess, Thank you for buying');
+    	return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess.');
+    }
+
+    public function order_bank($id)
+    {
+        $product = Product::find($id);
+
+        return view('users.order_bank', compact('product'));
+    }
+
+    public function product_bank(Request $request, Faker $faker, $product)
+    {
+         // return dd($request->all());
+        $request->validate([
+            'phone' => 'required|numeric' , 
+            'address' => 'required|max:100',
+            'city' => 'required',
+            'quantity' => 'required|numeric',
+            'price' => 'required|numeric',
+        ]);
+
+        // save order data
+        $order = Order::create([
+            'reference' => $faker->ean8,
+            'user_id' => auth()->user()->id,
+            'product_id' => $product,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'status' => 'pending',
+            'payment' => 'bank',
+            'date' => now()
+        ]);
+
+        // update data of users
+        $user = DB::table('users')
+                    ->where('id', auth()->user()->id)
+                    ->update([
+                        'address' => $request->address,
+                        'city' => $request->city,
+                        'phone' => $request->phone    
+                    ]);
+   
+        return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess.');
     }
 
     public function summary($id)
@@ -66,7 +122,13 @@ class Productscontroller extends Controller
        // return dd($id); 
        $order = Order::find($id);
         
-       return view('summary', compact('order')); 
+       return view('users.summary', compact('order')); 
+    }
+
+
+    public function payonbank()
+    {
+        return view('users.payonbank');
     }
 }
 

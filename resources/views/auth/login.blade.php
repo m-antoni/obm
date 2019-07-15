@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
- 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -39,6 +38,11 @@
                 <a href="#"><h1 class="align-text-bottom">ONE BEEM</h1>
                 </a><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
+                @if(Session::has('message'))
+                    <div class="alert alert-success">
+                         {{ Session::get('message') }}   
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
@@ -80,7 +84,6 @@
                     </div>
                 </div> --}}
                 </form>
-
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
@@ -99,5 +102,4 @@
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
- 
 </html>
