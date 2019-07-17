@@ -1,6 +1,7 @@
 <!-- ============================================================== -->
 <!-- left sidebar -->
 <!-- ============================================================== -->
+@auth('admin')
 <div class="nav-left-sidebar sidebar-dark">
     <div class="menu-list">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -18,7 +19,7 @@
                         <div id="submenu-1" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">USER</a>
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Home</a>
                                     <div id="submenu-1-1" class="collapse submenu" style="">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
@@ -48,10 +49,10 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.product.add') }}">Add New</a>
+                                    <a class="nav-link" href="{{ route('admin.products') }}">All Product</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.products') }}">List</a>
+                                    <a class="nav-link" href="{{ route('admin.products.create') }}">Create New</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="pages/tabs.html">Tabs</a>
@@ -259,6 +260,8 @@
         </nav>
     </div>
 </div>
+
+@endauth
 <!-- ============================================================== -->
 <!-- end left sidebar -->
 <!-- ============================================================== -->

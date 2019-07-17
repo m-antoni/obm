@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-
+use App\User;
+use App\Order;
 
 class AdminController extends Controller
 {
@@ -24,16 +25,15 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('admin.admin');
+    {   
+
+        $products = Product::count();
+        $users = User::count();
+        $orders = Order::count();
+        $cod = Order::where('payment', 'cod')->get();
+        $bank = Order::where('payment', 'bank')->get();
+        
+        return view('admin.admin', compact('products', 'users', 'orders', 'cod', 'bank'));
     }
-
-
-    public function products()
-    {
-        $products = Product::paginate(7);
-
-        return view('admin.products.products', compact('products'));
-                   
-    }
+    
 }

@@ -48,21 +48,22 @@ Route::get('/home/payonbank/', 'ProductsController@payonbank')->name('payonbank'
 
 // Administrator Routes 
 Route::prefix('admin')->group(function(){
-	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.form');
-	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
-	Route::get('/', 'AdminController@index')->name('admin.dashboard');
-	Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
+		Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.form');
+		Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
+		Route::get('/', 'AdminController@index')->name('admin.dashboard');
+		Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
 
-	// Dashboard Routes
-	Route::get('products', 'AdminController@products')->name('admin.products');
-	Route::get('product/add', 'AdminController@product')->name('admin.product.add');
-
-	// Import And Export File
-	// Route::post('/admin/products/import', 'ImportExcelController@excel_import')->name('admin.product.import');
-
-	Route::post('products/import', 'ImportExportController@import')->name('admin.product.import');
-	Route::get('products/export', 'ImportExportController@export')->name('admin.product.export'); 
-
-
+		// Dashboard Routes
+		Route::get('products', 'AdProductsController@products')->name('admin.products')->middleware('auth:admin');
+		Route::get('products/create', 'AdProductsController@create')->name('admin.products.create')->middleware('auth:admin');
+		Route::post('products', 'AdProductsController@store')->name('admin.products.store')->middleware('auth:admin');
+		Route::get('products/{product}', 'AdProductsController@show')->name('admin.products.show')->middleware('auth:admin');
+		Route::get('products/{product}/edit', 'AdProductsController@edit')->name('admin.products.edit')->middleware('auth:admin');
+		Route::put('products/{product}', 'AdProductsController@update')->name('admin.products.update')->middleware('auth:admin');
+		Route::delete('products/{product}', 'AdProductsController@destroy')->name('admin.products.delete')->middleware('auth:admin');
+	
+		// Products Import and Export
+		Route::post('products/import', 'ImportExportController@import')->name('admin.products.import')->middleware('auth:admin');
+		Route::get('product/export', 'ImportExportController@export')->name('admin.products.export')->middleware('auth:admin'); 
 });
 

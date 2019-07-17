@@ -14,10 +14,10 @@
                   </div>
             </div>
 
-            <div class="card">
+            <div class="card small">
                 <div class="card-header bg-dark text-white">
                      {{-- <a class="pt-2 d-inline-block" href="index.html">Order Summary</a> --}}
-                    <h4 class="pt-2"><b>MY ORDERS</b></h4>
+                    <h5><b>MY ORDERS</b></h5>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">

@@ -9,8 +9,8 @@
                 <div class="float-left"></div>
                   <div class="float-right">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="{{ route('myorders') }}" class="btn btn-warning rounded-0"><i class="fa fa-list"></i>MY ORDER</a>
-                            <a href="{{ route('products') }}" class="btn btn-primary rounded-0"><i class="fa fa-shopping-cart"></i>  SHOP</a>
+                          <a href="{{ route('myorders') }}" class="btn btn-warning rounded-0"><i class="fa fa-clipboard-check"></i> ORDERS</a>
+                            <a href="{{ route('products') }}" class="btn btn-primary rounded-0"><i class="fa fa-shopping-cart"></i></a>
                     </div>
                   </div>
             </div>
@@ -19,11 +19,11 @@
                 <div class="card-header p-4">
                      {{-- <a class="pt-2 d-inline-block" href="index.html">Order Summary</a> --}}
                     <div class="float-left"> 
-                        <h4>Order Summary</h4>
+                        <h5>Order Summary</h5>
                         Payment: {{ strtoupper($order->payment)}}
                     </div>   
                     <div class="float-right"> 
-                        <h5 class="mb-0">Ref No. #{{$order->reference}}</h5>
+                        <h5 >Ref No: {{$order->reference}}</h5>
                         Date: {{ $order->date->format('m-j-Y') }}
                     </div>
                 </div>
@@ -39,11 +39,11 @@
                         </div>
                     </div>
                     <div class="table-responsive-sm">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Item</th>
-                                    <th>Description</th>
+                                {{--     <th>Description</th> --}}
                                     <th class="right">Unit Cost</th>
                                     <th class="center">Qty</th>
                                     <th class="right">Total</th>
@@ -52,57 +52,33 @@
                             <tbody>
                                 <tr>
                                     <td class="left strong">{{ $order->product->p_name}}</td>
-                                    <td class="left">{{ $order->product->p_category}}</td>
+                                    {{-- <td class="left">{{ $order->product->p_category}}</td> --}}
                                     <td class="right">₱ {{$order->product->price}}</td>
                                     <td class="center">{{ $order->quantity }}</td>
                                     <td class="right">₱ {{ $order->price }}</td>
                                 </tr>
+                                <tr>
+                                    <td><td>
+                                
+                                    <td><b>Subtotal</b></td>
+                                    <td>₱ {{ $order->price }}</td>
+                                </tr>
+                                 <tr>
+                                    <td><td>
+                                
+                                    <td><b>Shipping</b></td>
+                                    <td>FREE</td>
+                                </tr>
+                                <tr>
+                                    <td><td>
+                                    <td><b>Total</b></td>
+                                    <td>₱ {{ $order->price }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5">
-                        </div>
-                        <div class="col-lg-4 col-sm-5 ml-auto">
-                            <table class="table table-clear">
-                                <tbody>
-                                    <tr>
-                                        <td class="left">
-                                            <strong class="text-dark">Subtotal</strong>
-                                        </td>
-                                        <td class="right">₱ {{ $order->price }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left">
-                                            <strong class="text-dark">Shipping</strong>
-                                        </td>
-                                        <td class="right">FREE</td>
-                                    </tr>
-                                    {{-- <tr>
-                                        <td class="left">
-                                            <strong class="text-dark">Discount (20%)</strong>
-                                        </td>
-                                        <td class="right">0%</td>
-                                    </tr> --}}
-                              {{--       <tr>
-                                        <td class="left">
-                                            <strong class="text-dark">VAT (10%)</strong>
-                                        </td>
-                                        <td class="right">0%</td>
-                                    </tr> --}}
-                                    <tr>
-                                        <td class="left">
-                                            <strong class="text-dark">Total</strong>
-                                        </td>
-                                        <td class="right">
-                                            <strong class="text-dark">₱ {{ $order->price }}</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
+
                 <div class="card-footer bg-secondary">
                     <p class="text-justify text-white">
                         @if($order->payment == 'cod')

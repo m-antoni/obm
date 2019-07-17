@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <h5 class="text-muted">Total Users</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">12099</h1>
+                        <h1 class="mb-1"><i class="fa fa-users"></i> {{ $users}}</h1>
                     </div>
                     {{-- <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                         <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -44,7 +44,7 @@
                 <div class="card-body">
                     <h5 class="text-muted">Products</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">12099</h1>
+                        <h1 class="mb-1"><i class="fa fa-boxes"></i> {{ $products }}</h1>
                     </div>
                   {{--   <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                         <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
@@ -56,12 +56,12 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-muted">Refunds</h5>
+                    <h5 class="text-muted">Pending</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">0.00</h1>
+                        <h1 class="mb-1">00</h1>
                     </div>
                     <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
-                        <span>N/A</span>
+                        
                     </div>
                 </div>
                 <div id="sparkline-revenue3"></div>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     <h5 class="text-muted">Total Orders</h5>
                     <div class="metric-value d-inline-block">
-                        <h1 class="mb-1">28000</h1>
+                        <h1 class="mb-1"><i class="fa fa-dolly"></i> {{ $orders }}</h1>
                     </div>
                     {{-- <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
                         <span>-2.00%</span>

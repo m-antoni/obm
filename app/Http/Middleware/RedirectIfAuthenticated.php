@@ -21,8 +21,10 @@ class RedirectIfAuthenticated
             case 'admin':
                 // check if guard is an admin
                 if(Auth::guard($guard)->check()){
+                    
                     return redirect()->route('admin.dashboard');
                 }
+
                 break;
             
             default:
@@ -31,11 +33,6 @@ class RedirectIfAuthenticated
                     
                     return redirect()->intended();
                 }
-                    
-                // if(session()->get("url.intended")){
-                //     session()->put("redirect_after_email_verification", session()->get("url.intended"));
-                // }
-            
                 break;
         }
         // continue with the request

@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class ImportExportController extends Controller
 {
     public function export()
-    {
-    		return Excel::download(new ProductExport, 'products.xlsx');
+    {   
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 
     public function import()
@@ -20,7 +20,7 @@ class ImportExportController extends Controller
     	 		'file' => 'required|max:2000|mimes:xls,xlsx'
     	 ]);
 
-    	 Excel::import(new PRoductImport, request()->file('file'));
+    	 Excel::import(new ProductImport, request()->file('file'));
 
     	 return back()->with('success', 'Excel file imported successfully');
     }

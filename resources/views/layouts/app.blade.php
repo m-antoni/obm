@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'One Beem') }}</title>
 
     {{-- auth guard admin styles --}}
     @auth('admin')
@@ -18,11 +18,12 @@
         <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     @endauth
-
+    
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Custom fonts for this template -->
-    <link href="/vendor/fontawesome-free/css/all.min.css">
+    {{-- <link href="/vendor/fontawesome-free/css/all.min.css"> --}}
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
@@ -30,20 +31,20 @@
       
      <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-  
 </head>
 <body>
     <div id="app">
-
+      
       @include('partials.navbar')
 
-      <main class="py-4">
+        <main class="py-4">
 
-          @yield('content')
-          
-      </main>
-      
-      @auth('admin')
+            @yield('content')
+            
+            
+        </main>
+        
+      @if(auth('admin'))
           {{-- admin nav bar --}}        
           @include('admin.partials.admin-navbar')
           
@@ -57,13 +58,14 @@
                         {{--  admin content goes here --}}   
                         @yield('admin-content')
                         
+
                   </div>
               </div>
           </div>
-      @endauth  
+      @endif
 
     </div>
-      @auth('admin')
+      @if(auth('admin'))
           <!-- slimscroll js -->
           <script src="/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
           <!-- main js -->
@@ -80,12 +82,13 @@
           <script src="/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
           <script src="/assets/vendor/charts/c3charts/C3chartjs.js"></script>
           <script src="/assets/libs/js/dashboard-ecommerce.js"></script>
-      @endauth
+      @endif
 
       <!-- Custom scripts for this template -->
       <script src="/js/iziToast.min.js"></script>
       <!-- Adding Custom scripts  -->
       @yield('script')
       <!-- =====================  -->
+  
 </body>
 </html>

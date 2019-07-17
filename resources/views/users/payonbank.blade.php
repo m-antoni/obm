@@ -18,7 +18,6 @@
         height: 100%;
         background: #3CAEA3;
     }
-
     body {
         display: -ms-flexbox;
         display: flex;

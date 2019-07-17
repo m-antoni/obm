@@ -19,7 +19,7 @@
             </ul>
             
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto text-sm-center small">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -32,17 +32,17 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}">Products</a>
+                        <a class="nav-link" href="{{ route('products') }}"> PRODUCTS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">Contact</a>
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">CONTACT</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                                Logout
+                                SIGNOUT
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
