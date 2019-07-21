@@ -1,49 +1,6 @@
+@extends('layouts.main')
 
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>One Beem</title>
-    <!-- Bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css"> --}}
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/libs/css/style.css">
-    <link rel="stylesheet" href="/css/iziToast.min.css">
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    
-    <script src="/js/app.js"></script>
-    <link rel="stylesheet" href="/css/card-js.min.css">
-    <script src="/js/card-js.min.js"></script>
-
-    <style>
-    html,
-    body {
-        height: 50%;
-    }
-
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-
-
-    </style>
-</head>
-<!-- ============================================================== -->
-<!-- signup form  -->
-<!-- ============================================================== -->
-
-<body >
-    <!-- ============================================================== -->
-    <!-- signup form  -->
-    <!-- ============================================================== -->
+@section('content')
     <form method="POST" action="{{ route('store_beem') }}" class="splash-container">
         @csrf
 
@@ -106,59 +63,7 @@
         </div>
     </form>
 
-    <script src="/js/iziToast.min.js"></script>
-    
-     @if(session('success'))
-        <script type="text/javascript">
-            iziToast.success({
-                  title: 'Success',
-                  message: '{{session('success')}}',
-                    icon: 'ico-success',
-                  // iconColor: 'rgb(0, 255, 184)',
-                  // theme: 'dark',
-                  // progressBarColor: 'rgb(0, 255, 184)',
-                  position: 'topCenter',
-                  transitionIn: 'fadeInLeft',
-                  transitionOut: 'fadeOutUp'
-            });
-        </script>
-    @endif
-    
-
-    @if(session('Info'))
-        <script type="text/javascript">
-            iziToast.info({
-                  title: 'Note',
-                  message: '{{session('Info')}}',
-                  // iconColor: 'rgb(0, 255, 184)',
-                  // theme: 'dark',
-                  // progressBarColor: 'rgb(0, 255, 184)',
-                  position: 'topCenter',
-                  transitionIn: 'fadeInLeft',
-                  transitionOut: 'fadeOutUp'
-            });
-        </script>
-    @endif
-
-    @if(count($errors) > 0)
-        @foreach($errors->all() as $error)
-            <script type="text/javascript">
-                iziToast.error({
-                      title: 'Error',
-                      message: '{{$error}}',
-                        icon: 'ico-warning',
-                      // iconColor: 'rgb(0, 255, 184)',
-                      // theme: 'dark',
-                      // progressBarColor: 'rgb(0, 255, 184)',
-                      position: 'topCenter',
-                      transitionIn: 'fadeInLeft',
-                      transitionOut: 'fadeOutUp'
-                });
-            </script>
-        @endforeach
-    @endif
-</body>
-</html>
+ @endsection
 
 
 
