@@ -24,12 +24,6 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    // add this to RegistersUsers redirect to intended url 
-    
-    // return $this->registered($request, $user)
-    //         ?: redirect()->intended($this->redirectPath());
-
-
     /**
      * Where to redirect users after registration.
      *

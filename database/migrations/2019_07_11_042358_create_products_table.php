@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->string('price');
             $table->string('quantity');
-            $table->string('image')->nullable();
+            $table->string('image')->default('noimage.jpg');
             $table->timestamps();
         });
     }

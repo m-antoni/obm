@@ -3,27 +3,38 @@
 @section('content')
 
 <div class="container">
-   
-		<hr>
-		<div class="row no-gutters">
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/1"><img class="img-fluid" src="/img/products/1.jpg" alt="1"></a>
-				</div>	
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/2"><img class="img-fluid" src="/img/products/2.jpg" alt="2"></a>
-				</div>
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/3"><img class="img-fluid" src="/img/products/3.jpg" alt="3"></a>
-				</div>
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/1"><img class="img-fluid" src="/img/products/1.jpg" alt="1"></a>
-				</div>	
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/2"><img class="img-fluid" src="/img/products/2.jpg" alt="2"></a>
-				</div>
-				<div class="col-md-4 col-sm-4">
-						<a href="/home/product/3"><img class="img-fluid" src="/img/products/3.jpg" alt="3"></a>
-				</div>
+		<div class="row justify-content-center">
+			@if(count($products) > 0)
+				@foreach($products as $row)
+					<div class="col-md-3 col-sm-4 col-6 mb-4">
+						<div>
+							@if($row->image == 'noimage.jpg')
+								<img src="{{ asset('/img/noimage.jpg') }}" alt="img" class="img-thumbnail rounded-0" style="width: 400px;">
+							@else
+								<img src="{{ $row->image }}" alt="img" class="img-thumbnail rounded-0" style="width: 400px;">
+							@endif
+								
+						</div>
+						<div class="p-1">
+							<div id="productName">{{$row->p_name}}</div>
+							<div id="productPrice">₱ {{number_format($row->price)}} <small><s>₱ 2499</s></small></div>
+						
+			             <a href="{{ route('single.product', $row->id) }}">
+			              		<button class="bttn-fill bttn-sm bttn-primary">
+			                  <i class="fa fa-shopping-cart"></i> 
+			                   	<small>ORDER NOWs</small>
+			                  </button>
+			              </a>
+						</div>
+					</div>	
+				@endforeach
+			@endif
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 col-sm-4 col-6 mb-4">
+					{{ $products->links() }}
+			</div>	
 		</div>
 </div>
 

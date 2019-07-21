@@ -11,7 +11,11 @@ use App\Product;
 
 class ProductsController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function single_product(Product $product)
     {  
         return view('users.single_product', compact('product'));
@@ -19,8 +23,10 @@ class ProductsController extends Controller
 
     public function products()
     {
-        // items gallery
-        return view('users.products');
+
+        $products = Product::paginate(8);
+
+        return view('users.products', compact('products'));
     }
     
     public function myorders()

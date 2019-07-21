@@ -1,41 +1,48 @@
 @extends('layouts.app')
 
 @section('admin-content')
-	  <!-- ============================================================== -->
+      <!-- ============================================================== -->
     <!-- basic form -->
     <!-- ============================================================== -->
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-breadcrumb mb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.products') }}" class="breadcrumb-link">Products</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Create</li>
+                   {{--  <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.products.show', $product->id) }}" class="breadcrumb-link">Show</a></li> --}}
+                    <li class="breadcrumb-item active" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
 
         <div class="card">
-            <h4 class="card-header">Create Product</h4>
+            <div class="card-header">
+                <h4>Create Product</h4>
+
+            </div>
+            
             <div class="card-body">
                 <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
-                	@csrf
+                    @csrf
+
                     <div class="row">
                         <div class="form-group col-sm-2">
-                                <label>ID</label>
-                                <input type="text" name="id" class="form-control rounded-0 @error('id') is-invalid @enderror" value="{{ old('id') }}">
+                            <label>ID</label>
+                            <input type="text" name="id" class="form-control rounded-0 @error('id') is-invalid @enderror" value="{{ old('id')}}">
 
-                                @error('id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            @error('id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label>Product Name</label>
-                            <input type="text" name="p_name" class="form-control rounded-0 @error('p_name') is-invalid @enderror" value="{{ old('p_name') }}">
+                            <input type="text" name="p_name" class="form-control rounded-0 @error('p_name') is-invalid @enderror" value="{{ old('p_name')}}">
 
                             @error('p_name')
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +78,7 @@
                     <div class="row">
                         <div class="form-group col-sm-4">
                             <label>Description</label>
-                            <textarea name="description" class="form-control form-control-lg rounded-0 @error('description') is-invalid @enderror" name="address" rows="2">{{ old('description') }}</textarea>
+                            <textarea name="description" class="form-control form-control-lg rounded-0 @error('description') is-invalid @enderror" name="address" rows="2">{{ old('description')}}</textarea>
 
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -82,7 +89,7 @@
 
                         <div class="form-group col-sm-4">
                             <label>Quantity</label>
-                            <input class="form-control rounded-0 @error('quantity') is-invalid @enderror" value="{{ old('quantity') }}" type="text" name="quantity">
+                            <input class="form-control rounded-0 @error('quantity') is-invalid @enderror" value="{{ old('quantity')}}" type="text" name="quantity">
                          
                              @error('quantity')
                                 <span class="invalid-feedback" role="alert">
@@ -93,7 +100,7 @@
 
                         <div class="form-group col-sm-4">
                             <label for="inputEmail">Price</label>
-                            <input type="text" name="price"  class="form-control rounded-0 @error('price') is-invalid @enderror" value="{{ old('price') }}">
+                            <input type="text" name="price"  class="form-control rounded-0 @error('price') is-invalid @enderror" value="{{ old('price')}}">
 
                             @error('price')
                                 <span class="invalid-feedback" role="alert">
@@ -106,25 +113,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label>Upload Image</label>
-
                             <div class="input-group">
-                              {{-- <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                              </div> --}}
-                              <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input">
-                                <label class="custom-file-label">Choose file</label>
-                              </div>
+                                  {{-- <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                  </div> --}}
+                                  <div class="custom-file">
+                                    <input type="file" name="image" class="custom-file-input">
+                                    <label class="custom-file-label">Choose file</label>
+                                  </div>
                             </div> 
 
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror    
-                        </div>   
+                            @enderror     
+                        </div>
                     </div>
-              
+
+                    
                     <div class="form-group row mt-4">
                         <div class="col-sm-4">
                              <button type="submit" class="btn btn-block btn-primary rounded-0"><i class="fa fa-database"></i> Create Product</button>

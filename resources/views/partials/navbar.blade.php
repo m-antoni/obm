@@ -2,7 +2,7 @@
 <!-- navbar users -->
 <!-- ============================================================== -->
 @auth('web')
- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+ <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/home') }}">
            {{-- place your logo here --}}
@@ -17,7 +17,7 @@
             <ul class="navbar-nav mr-auto">
                 
             </ul>
-            
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto text-sm-center small">
                 <!-- Authentication Links -->
@@ -34,6 +34,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products') }}"> PRODUCTS</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('myorders') }}">ORDERS</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">CONTACT</a>
                     </li>

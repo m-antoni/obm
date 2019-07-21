@@ -26,6 +26,7 @@
                 <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
                     <div class="row">
                         <div class="form-group col-sm-2">
                             <label>ID</label>
@@ -118,7 +119,7 @@
                                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                   </div> --}}
                                   <div class="custom-file">
-                                    <input type="file" name="file" class="custom-file-input">
+                                    <input type="file" name="image" class="custom-file-input">
                                     <label class="custom-file-label">Choose file</label>
                                   </div>
                             </div> 

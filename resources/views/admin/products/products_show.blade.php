@@ -24,13 +24,12 @@
 			          </div>
 	       		</div>
         </div>
-
 		
 				<div class="card">
 						<div class="card-body">
 								<div class="row">
 											<div class="col-sm-6">
-											@if($product->image == null)
+											@if($product->image == 'noimage.jpg')
 													<img src="/img/noimage.jpg" alt="img" class="img-thumbnail">
 											@else
 													<img src="{{ asset('storage/' . $product->image) }}" alt="img" class="img-thumbnail" style="width: 400px;">

@@ -9,14 +9,23 @@
                 <div class="float-left"></div>
                   <div class="float-right">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="{{ route('myorders') }}" class="btn btn-warning rounded-0"><i class="fa fa-clipboard-check"></i> ORDERS</a>
-                            <a href="{{ route('products') }}" class="btn btn-primary rounded-0"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="{{ route('myorders') }}">
+                        <button class="bttn bttn-fill bttn-danger bttn-sm">
+                            <i class="fa fa-clipboard-check"></i> ORDERS
+                            </button>
+                        </a>
+                        
+                        <a href="{{ route('products') }}">
+                        <button class="bttn bttn-fill bttn-primary bttn-sm">
+                            <i class="fa fa-shopping-cart"></i> 
+                            </button>
+                        </a>
                     </div>
                   </div>
             </div>
 
             <div class="card">
-                <div class="card-header p-4">
+                <div class="card-header p-3">
                      {{-- <a class="pt-2 d-inline-block" href="index.html">Order Summary</a> --}}
                     <div class="float-left"> 
                         <h5>Order Summary</h5>
@@ -30,12 +39,7 @@
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-sm-6">
-{{--                             <h5>To:</h5> --}}
                             <h4 class="text-dark mb-1">{{ $order->user->name }}</h4>                   
-                            <div>{{ $order->user->address }}</div>
-                            <div>{{ $order->user->city }}</div>
-                            <div>{{$order->user->email}}</div>
-                            <div>{{$order->user->phone}}</div>
                         </div>
                     </div>
                     <div class="table-responsive-sm">
@@ -43,7 +47,6 @@
                             <thead>
                                 <tr>
                                     <th>Item</th>
-                                {{--     <th>Description</th> --}}
                                     <th class="right">Unit Cost</th>
                                     <th class="center">Qty</th>
                                     <th class="right">Total</th>
@@ -52,23 +55,20 @@
                             <tbody>
                                 <tr>
                                     <td class="left strong">{{ $order->product->p_name}}</td>
-                                    {{-- <td class="left">{{ $order->product->p_category}}</td> --}}
                                     <td class="right">₱ {{$order->product->price}}</td>
                                     <td class="center">{{ $order->quantity }}</td>
                                     <td class="right">₱ {{ $order->price }}</td>
                                 </tr>
                                 <tr>
                                     <td><td>
-                                
                                     <td><b>Subtotal</b></td>
                                     <td>₱ {{ $order->price }}</td>
                                 </tr>
-                                 <tr>
+              {{--                   <tr>
                                     <td><td>
-                                
                                     <td><b>Shipping</b></td>
-                                    <td>FREE</td>
-                                </tr>
+                                    <td>{{(auth()->user()->city == 'Metro Manila')? 'FREE' : ''}}</td>
+                                </tr> --}}
                                 <tr>
                                     <td><td>
                                     <td><b>Total</b></td>
@@ -82,7 +82,7 @@
                 <div class="card-footer bg-secondary">
                     <p class="text-justify text-white">
                         @if($order->payment == 'cod')
-                            Note: Please save your REFERENCE NO. your items will be deliver 3 to 5 days upon purchase.
+                            Note: FREE SHIPPING only around Metro Manila, your items will be delivered 3 to 5 days upon purchase.
                             for any assitance please call us. 1209-3084-3948
                         @else
                             Note: You may deposit your payment to our exclusive <a href="#" class="text-warning" data-toggle="modal" data-target="#bankaccount">bank accounts</a>, please dont forget to include your REFERENCE NO.

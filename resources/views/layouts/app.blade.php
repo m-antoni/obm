@@ -18,19 +18,26 @@
         <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     @endauth
-    
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Roboto:700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="{{ asset('/css/bttn.min.css') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <!-- Custom fonts for this template -->
-    {{-- <link href="/vendor/fontawesome-free/css/all.min.css"> --}}
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-      
+
      <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <style>
+      h4, h2, #productName{
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -40,8 +47,7 @@
         <main class="py-4">
 
             @yield('content')
-            
-            
+             
         </main>
         
       @if(auth('admin'))
@@ -58,12 +64,11 @@
                         {{--  admin content goes here --}}   
                         @yield('admin-content')
                         
-
                   </div>
               </div>
           </div>
       @endif
-
+    
     </div>
       @if(auth('admin'))
           <!-- slimscroll js -->

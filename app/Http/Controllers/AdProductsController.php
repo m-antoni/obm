@@ -21,7 +21,6 @@ class AdProductsController extends Controller
 
    	public function store(Request $request)
    	{   
-
         // Validation data
    			$request->validate([
    					'id' => 'required|unique:products,id',
@@ -31,7 +30,7 @@ class AdProductsController extends Controller
    					'description' => 'required|string|max:150',
    					'price' => 'required|numeric',
    					'quantity' => 'required|numeric',
-            'image' => 'sometimes|file|image|max:5000',
+            'image' => 'sometimes|file|image|max:1999',
    			]);
 
    			$product = Product::create([
@@ -65,12 +64,13 @@ class AdProductsController extends Controller
             'description' => 'required|string|max:150',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
-            'image' => 'sometimes|file|image|max:5000',
+            'image' => 'sometimes|file|image|max:1999',
         ]);
 
+        // update data in database
         $product->update($validate);
 
-        // store image
+        // update image
         $this->storeImage($product);
 
    			return redirect()->route('admin.products.show', $product->id)->with('success', 'Product details updated successfully');

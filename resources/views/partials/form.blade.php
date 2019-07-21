@@ -8,7 +8,7 @@
 	<label>Phone</label>
 	<input type="text" class="form-control rounded-0 @error('phone') is-invalid @enderror" name="phone" value="{{ auth()->user()->phone}}">
  
- 	@error('phone')
+ 	  @error('phone')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -19,7 +19,7 @@
 	<label>Delivery Address</label>
 	<textarea name="address" class="form-control rounded-0 @error('address') is-invalid @enderror" name="address" rows="2">{{ auth()->user()->address}}</textarea>
 	
-	@error('address')
+	  @error('address')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -84,7 +84,7 @@
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   	<div class="modal-dialog" role="document">
 	    <div class="modal-content">
-		      <div class="modal-header bg-primary">
+		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>

@@ -60,7 +60,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
+           {{--          <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
@@ -84,25 +84,25 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forms</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fa fa-users"></i>Users</a>
                         <div id="submenu-4" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/form-elements.html">Form Elements</a>
+                                    <a class="nav-link" href="{{ route('admin.users') }}">List Of Users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/form-validation.html">Parsely Validations</a>
+                                    <a class="nav-link" href="pages/form-validation.html">Pending</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/multiselect.html">Multiselect</a>
+                                    <a class="nav-link" href="pages/multiselect.html">Cash On Delivery</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/datepicker.html">Date Picker</a>
+                                    <a class="nav-link" href="pages/datepicker.html">Pay On Bank</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/bootstrap-select.html">Bootstrap Select</a>
+                                    <a class="nav-link" href="pages/bootstrap-select.html">Lorem</a>
                                 </li>
                             </ul>
                         </div>
@@ -124,7 +124,7 @@
                         Features
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Lorem </a>
                         <div id="submenu-6" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
@@ -173,7 +173,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Apps <span class="badge badge-secondary">New</span></a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Lorem <span class="badge badge-secondary">New</span></a>
                         <div id="submenu-7" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
@@ -192,7 +192,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Icons</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Lorem</a>
                         <div id="submenu-8" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
@@ -217,7 +217,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-map-marker-alt"></i>Maps</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-map-marker-alt"></i>Lorem</a>
                         <div id="submenu-9" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
