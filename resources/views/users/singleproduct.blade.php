@@ -22,7 +22,7 @@
                              <div class="my-auto text-center text-lg-left mt-4">
                                 <h5><b>{{ $product->p_name }}</b></h5>
                                 
-                                <p class="mb-0">Php <span id='price'>{{ $product->price }}</span> </p> 
+                                <p class="mb-0">Php <span id='price'>{{ number_format($product->price) }}</span> </p> 
                                   <small class="text-secondary"><strike>Php 500.00 </strike></small>
                                
                                 <p class="p-1 text-center text-lg-left">
@@ -37,9 +37,9 @@
                                     </a>  
 
                                     <a href="{{ route('order.bank', $product->id) }}">
-                                    <button class="bttn bttn-jelly bttn-warning bttn-sm m-1">
-                                        <i class="fa fa-university"></i> 
-                                        <small> PAY ON BANK</small>
+                                    <button class="bttn bttn-jelly bttn-danger bttn-sm m-1">
+                                        <i class="fa fa-database"></i> 
+                                        <small> BEEM BUCKS</small>
                                         </button>
                                     </a>
                                 </div>

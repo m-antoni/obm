@@ -31,6 +31,10 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 Route::get('/home/products/', 'ProductsController@products')->name('products');
 Route::get('/home/product/{product}', 'ProductsController@single_product')->name('single.product');
 
+// Beem Bucks Routes
+Route::get('/home/create_beem/','BeemBucksController@create')->name('create_beem');
+Route::post('/home/create_beem/','BeemBucksController@store')->name('store_beem');
+
 // Cash On Delivery
 Route::get('/home/products/{product}/cod', 'ProductsController@order_cod')->name('order.cod');
 Route::post('/home/products/{product}/cod', 'ProductsController@product_cod')->name('product.cod');

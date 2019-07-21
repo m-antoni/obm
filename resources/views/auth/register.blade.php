@@ -44,9 +44,19 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Fullname">
+                    <input id="first" type="text" class="form-control form-control-lg @error('first') is-invalid @enderror" name="first" value="{{ old('first') }}" required autocomplete="first" autofocus placeholder="First Name">
 
-                    @error('name')
+                    @error('first')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <input id="last" type="text" class="form-control form-control-lg @error('last') is-invalid @enderror" name="last" value="{{ old('last') }}" required autocomplete="last" autofocus placeholder="Last Name">
+
+                    @error('last')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -78,33 +88,6 @@
                      <textarea name="address"  class="form-control form-control-lg @error('address') is-invalid @enderror" rows="2" placeholder="Address">{{ old('address') }}</textarea>
                     
                     @error('address')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <select name="city" class="form-control form-control-lg {{ $errors->has('city') ? ' is-invalid' : '' }}">
-                        <option>Metro Manila</option>
-                        <option>Bulacan</option>
-                        <option>Bacolod</option>
-                        <option>Cebu</option>
-                        <option>Cavite</option>
-                        <option>Pampanga</option>
-                        <option>Dumaguete</option>
-                        <option>Baguio</option>
-                        <option>Vigan</option>
-                        <option>Puerto Princesa</option>
-                        <option>Lucena</option>
-                        <option>Dipolog</option>
-                        <option>Batangas</option>
-                        <option>Tarlac</option>
-                        <option>Surigao</option>
-                        <option>Davao</option>
-                    </select>
-                    
-                    @error('city')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

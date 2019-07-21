@@ -14,11 +14,13 @@ class ProductsController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+
+        $this->middleware(['beembucks'])->except('products');
     }
 
     public function single_product(Product $product)
     {  
-        return view('users.single_product', compact('product'));
+        return view('users.singleproduct', compact('product'));
     }
 
     public function products()
@@ -52,7 +54,6 @@ class ProductsController extends Controller
     	$request->validate([
             'phone' => 'required|numeric' , 
 		    'address' => 'required|max:100',
-            'city' => 'required',
             'quantity' => 'required|numeric',
 		    'price' => 'required|numeric',
 		]);
@@ -94,7 +95,6 @@ class ProductsController extends Controller
         $request->validate([
             'phone' => 'required|numeric' , 
             'address' => 'required|max:100',
-            'city' => 'required',
             'quantity' => 'required|numeric',
             'price' => 'required|numeric',
         ]);
@@ -116,7 +116,6 @@ class ProductsController extends Controller
                     ->where('id', auth()->user()->id)
                     ->update([
                         'address' => $request->address,
-                        'city' => $request->city,
                         'phone' => $request->phone    
                     ]);
    
@@ -137,6 +136,3 @@ class ProductsController extends Controller
         return view('users.payonbank');
     }
 }
-
-
-

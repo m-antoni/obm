@@ -15,8 +15,18 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'city','password',
+        'first', 'last','email', 'phone', 'address','password',
     ];
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first} {$this->last}";
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -39,6 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
        return $this->hasMany('App\Order');
+    }
+
+    public function cards()
+    {
+        return $this->hasMany('App\Card');
     }
 
 }

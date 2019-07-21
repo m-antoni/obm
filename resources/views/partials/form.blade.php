@@ -1,7 +1,7 @@
 <img src="/img/logo.jpeg" class="img-fluid" alt="logo">
 <div class="form-group">
 	<label>Name</label>
-	<input type="text" class="form-control rounded-0" name="name" value="{{ auth()->user()->name }}" disabled>
+	<input type="text" class="form-control rounded-0" name="name" value="{{ auth()->user()->getFullNameAttribute() }}" disabled>
 </div>
 
 <div class="form-group">
@@ -26,34 +26,6 @@
     @enderror	
 </div>
 
-<div class="form-group">
-	<label>City</label>
-	<select name="city" class="form-control {{ $errors->has('city') ? ' is-invalid' : '' }}">
-	    <option>Metro Manila</option>
-        <option>Bulacan</option>
-        <option>Bacolod</option>
-        <option>Cebu</option>
-        <option>Cavite</option>
-        <option>Pampanga</option>
-        <option>Dumaguete</option>
-        <option>Baguio</option>
-        <option>Vigan</option>
-        <option>Puerto Princesa</option>
-        <option>Lucena</option>
-        <option>Dipolog</option>
-        <option>Batangas</option>
-        <option>Tarlac</option>
-        <option>Surigao</option>
-        <option>Davao</option>
-        <option>Others</option>
-	</select>
-	
-	@error('address')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror	
-</div>
 
 <div class="form-group">
     <div class="row justify-content-center">

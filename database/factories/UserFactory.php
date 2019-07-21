@@ -28,10 +28,11 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'first' => $faker->firstName,
+        'last' => $faker->lastName,
         'phone' => '09231245789',
         'address' => $faker->address,
-        'city' => $faker->city,
+        'beem_activation' => false,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
