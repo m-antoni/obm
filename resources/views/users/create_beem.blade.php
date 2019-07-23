@@ -32,7 +32,7 @@
             </div>
 
             <div class="card-footer bg-white">
-                 <div class="accordion p-0" id="accordionCards">
+                <div class="accordion p-0" id="accordionCards">
                       <div class="card">
                             <div class="card-header" id="headingOne">
                               <h2 class="mb-0" align="center">

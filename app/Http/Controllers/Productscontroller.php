@@ -15,7 +15,7 @@ class ProductsController extends Controller
     {
         $this->middleware(['auth', 'verified']);
 
-        $this->middleware(['beembucks'])->except('products');
+        $this->middleware(['beembucks'])->except(['single_product', 'products']);
     }
 
     public function single_product(Product $product)
@@ -50,10 +50,10 @@ class ProductsController extends Controller
 
     public function product_cod(Request $request, Faker $faker, $product)
     {
-        // return dd($request->all());
+
     	$request->validate([
             'phone' => 'required|numeric' , 
-		    'address' => 'required|max:100',
+		    'address' => 'required|max:255',
             'quantity' => 'required|numeric',
 		    'price' => 'required|numeric',
 		]);
@@ -75,7 +75,6 @@ class ProductsController extends Controller
                     ->where('id', auth()->user()->id)
                     ->update([
                         'address' => $request->address,
-                        'city' => $request->city,
                         'phone' => $request->phone    
                     ]);
    

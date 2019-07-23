@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container customHeight">
     <div class="row">
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="clearfix pb-2">
@@ -10,14 +10,15 @@
                   <div class="float-right">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="{{ route('myorders') }}">
-                        <button class="bttn bttn-fill bttn-danger bttn-sm">
+                        <button class="btn btn--l btn--gray-border">
                             <i class="fa fa-clipboard-check"></i> ORDERS
                             </button>
                         </a>
-                        
+                           &nbsp; 
                         <a href="{{ route('products') }}">
-                        <button class="bttn bttn-fill bttn-primary bttn-sm">
+                        <button class="btn btn--m btn--gray-dark ">
                             <i class="fa fa-shopping-cart"></i> 
+                            SHOP
                             </button>
                         </a>
                     </div>
@@ -43,7 +44,7 @@
                         </div>
                     </div>
                     <div class="table-responsive-sm">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Item</th>
@@ -64,11 +65,6 @@
                                     <td><b>Subtotal</b></td>
                                     <td>₱ {{ $order->price }}</td>
                                 </tr>
-              {{--                   <tr>
-                                    <td><td>
-                                    <td><b>Shipping</b></td>
-                                    <td>{{(auth()->user()->city == 'Metro Manila')? 'FREE' : ''}}</td>
-                                </tr> --}}
                                 <tr>
                                     <td><td>
                                     <td><b>Total</b></td>
@@ -79,13 +75,13 @@
                     </div>
                 </div>
 
-                <div class="card-footer bg-secondary">
-                    <p class="text-justify text-white">
+                <div class="card-footer">
+                    <p class="text-justify">
                         @if($order->payment == 'cod')
                             Note: FREE SHIPPING only around Metro Manila, your items will be delivered 3 to 5 days upon purchase.
-                            for any assitance please call us. 1209-3084-3948
+                            for any assitance please call us. <span class="text-primary">1209-3084-3948</span>
                         @else
-                            Note: You may deposit your payment to our exclusive <a href="#" class="text-warning" data-toggle="modal" data-target="#bankaccount">bank accounts</a>, please dont forget to include your REFERENCE NO.
+                            Note: You may deposit your payment to our exclusive <a href="#" class="text-primary" data-toggle="modal" data-target="#bankaccount">bank accounts</a>, please dont forget to include your REFERENCE NO.
                             or your transaction may void. for any assitance please call us. 1209-3084-3948
                         @endif
                     </p>
@@ -96,22 +92,19 @@
 </div>
 
 
-
 <div class="modal fade" id="bankaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
+          <div class="modal-header">
             <h5 class="modal-title">Exclusive Bank Accounts</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-                
-            <h4 align="center">BDO: 123-456-7890</h4>
-            <h4 align="center">SECURITY BANK: 123-456-7890</h4>
-            <h4 align="center">BPI: 123-456-7890</h4>
-                
+            <div align="center">BDO: 123-456-7890</div>
+            <div align="center">SECURITY BANK: 123-456-7890</div>
+            <div align="center">BPI: 123-456-7890</div>
           </div>
       {{--     <div class="modal-footer text-center">
                 

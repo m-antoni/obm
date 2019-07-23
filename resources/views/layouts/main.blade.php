@@ -18,12 +18,13 @@
 	
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link href="/assets/libs/css/style.css" rel="stylesheet" >
+    <link href="/css/bttn.min.css" rel="stylesheet" >
     <link href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css" rel="stylesheet">
-	<link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >		
+		<link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >		
 	
 	<!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}"></script>
-	<script src="/js/iziToast.min.js"></script>
+		<script src="/js/iziToast.min.js"></script>
     <script src="/js/card-js.min.js"></script>
 	
 	<style>
@@ -55,5 +56,7 @@
       <!-- Adding Custom scripts  -->
       @include('partials.messages')
       <!-- =====================  -->
+
+      @yield('script')
 </body>
 </html>

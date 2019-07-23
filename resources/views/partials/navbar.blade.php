@@ -1,14 +1,15 @@
 <!-- ============================================================== -->
 <!-- navbar users -->
 <!-- ============================================================== -->
-@auth('web')
- <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+
+ <nav class="navbar navbar-expand-md navbar-light bg-light shadow-md fixed-top p-3 shadow-lg mb-5 bg-white rounded">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">
-           {{-- place your logo here --}}
-            <b class="text-success">ONE BEEM </b>
+        <a class="navbar-brand" href="#">
+           <img src="{{ asset('/img/logofinal.png') }}" alt="logo"  class="img-fluid" style="width: 150px;">
+            {{-- <b class="text-success">ONE BEEM </b> --}}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            Menu
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -19,35 +20,35 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto text-sm-center small">
+            <ul class="navbar-nav ml-auto text-center">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}"> PRODUCTS</a>
+                        <a class="nav-link" href="{{ route('products') }}"> Products</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('myorders') }}">ORDERS</a>
+                        <a class="nav-link" href="{{ route('myorders') }}">Orders</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">CONTACT</a>
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">Contact</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
+                        <a class="nav-link btn btn--m btn--gray-dark text-white" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                                SIGNOUT
+                                <i class="fa fa-signout"></i> Signout
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -63,25 +64,22 @@
 <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
+              <div class="modal-header">
                 <h5 class="modal-title">Contact Us</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body text-center">
-                    <img src="/img/logo.jpeg" class="img-fluid mb-3" alt="logo">
-                    <h5>Landline: 1234-567</h5>
-                    <h5>Phone: 09876543210</h5>
-                    <h5>Email: onebeem@dcgroup.ph</h5>
+                    {{-- <img src="/img/logo.jpeg" class="img-fluid mb-3" alt="logo"> --}}
+                    <div>Landline: 1234-567</div>
+                    <div>Phone: 09876543210</div>
+                    <div>Email: onebeem@dcgroup.ph</div>
               </div>
         </div>
     </div>
 </div>
 
-
-
-@endauth
 <!-- ============================================================== -->
 <!-- end navbar users-->
 <!-- ============================================================== -->

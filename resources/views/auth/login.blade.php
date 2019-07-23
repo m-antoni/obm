@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('content')
@@ -6,9 +5,11 @@
     <div class="splash-container">
         <div class="card ">
             <div class="card-header text-center">
-                <img src="img/logo.png" class="img-fluid" alt="">
-                {{-- <a href="#"><h1 class="align-text-bottom">ONE BEEM</h1> --}}
-                </a><span class="splash-description">Please enter your user information.</span></div>
+                {{-- <img src="img/logo.png" class="img-fluid" alt=""> --}}
+                  <h3 class="mb-1"><i class="fa fa-user-circle"></i> Login Form</h3>
+                {{-- <p class="text-dark">Please enter your user information.</p> --}}
+                {{-- <span class="splash-description">Please enter your user information.</span> --}}
+            </div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="alert alert-success">
@@ -42,6 +43,7 @@
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
+                    
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
                   {{--    <div class="form-group row">

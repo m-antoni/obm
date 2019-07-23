@@ -1,17 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="container">
-		<div>
-				<img class="img-fluid" src="/img/logo.jpeg" alt="">
-		</div>
-   
-		<hr>
-		<div class="row">
-				
-		</div>
-</div>
+  
+  <!-- Footer -->
+  <footer class="bg-black small text-center text-white-50">
+    <div class="container">
+      <h5>Copyright &copy; ONE BEEM 2019</h5>
+    </div>
+  </footer>
 
 @endsection
 

@@ -2,15 +2,15 @@
 
 @section('content')
 		
-<div class="container">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div class="container customHeight">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-12">
         
             <div class="card mb-3">
-                <div class="card-header bg-primary">
-                     {{-- <a class="pt-2 d-inline-block" href="index.html">Order Summary</a> --}}
+{{--                 <div class="card-header">
+                     <a class="pt-2 d-inline-block" href="index.html">Order Summary</a>
                     
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-sm-6">
@@ -53,7 +53,7 @@
                         </table>
                         {{ $orders->links()}}	
 	                 	@else
-							<h1>You do not have orders...</h1>
+							<h4>You do not have orders...</h4>
 	                 	@endif
                     </div>
                     <div class="row">
@@ -64,9 +64,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-primary">
+                {{-- <div class="card-footer">
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
