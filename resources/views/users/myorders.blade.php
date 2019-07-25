@@ -4,49 +4,54 @@
 		
 <div class="container customHeight">
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-12 col-12">
-        
-            <div class="card mb-3">
-{{--                 <div class="card-header">
-                     <a class="pt-2 d-inline-block" href="index.html">Order Summary</a>
-                    
-                </div> --}}
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+               <div class="clearfix pb-2">
+                        <div class="float-left">
+                            
+                        </div>
+                    <div class="float-right">
+                        <a href="{{ route('products') }}">
+                            <button class="btn btn--m btn--gray-dark ">
+                                <i class="fa fa-shopping-cart"></i> 
+                                    SHOP
+                            </button>
+                        </a>
+                    </div>
+                </div>    
+
+            <div class="card mb-3" id="myorders">
                 <div class="card-body">
                     <div class="row mb-4">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                            {{--  <h5 class="mb-3">To:</h5> --}}
-                            <h4 class="text-dark mb-1"> {{ auth()->user()->name }}</h4>                   
+                            <div class="text-dark mb-1"><b>{{ auth()->user()->getFullNameAttribute() }}</b> </div>                   
                             <div> </div>
                             <div>Address: {{ auth()->user()->address }}</div>
                             <div>Email: {{ auth()->user()->email}}</div>
                             <div>Phone: {{ auth()->user()->phone }}</div>
                         </div>
                     </div>
-                    <div class="table-responsive-md">
+                    <div class="table-responsive-sm">
                     	@if(count($orders) > 0)
-                        <table class="table table-hover">
-                            <thead>
+                        <table class="table table-hover table-sm">
+                            <thead class="bg-info text-white">
                                 <tr>
                                     <th>Item</th>
                                     <th>Ref No.</th>
-                                    <th>Qty</th>
                                     <th>Total</th>
                                     <th>Date</th>
-                                    {{-- <th>Status</th> --}}
-                                    {{-- <th>Payment</th> --}}
+                                    <th>Status</th>
                                 </tr>
                             </thead>
-
+                            
                             @foreach($orders as $order)
 	                            <tbody>
 	                                <tr>
 	                                    <td>{{ $order->product->p_name}}</td>
 	                                    <td>{{ $order->reference }}</td>
-	                                    <td>{{ $order->quantity}}</td>
 	                                    <td>{{ number_format($order->price) }}</td>
 	                                    <td>{{ $order->date->format('m-j-Y') }}</td>
-	                                    {{-- <td class="text-secondary">{{ $order->status }}</td> --}}
-                                        {{-- <td>{{ $order->payment }}</td> --}}
+                                        <td class="{{ $order->status == 'pending' ? 'text-secondary' : 'text-success' }}">{{ $order->status }}</td>
 	                                </tr>
 	                            </tbody>
                             @endforeach
@@ -64,9 +69,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="card-footer">
-
-                </div> --}}
             </div>
         </div>
     </div>

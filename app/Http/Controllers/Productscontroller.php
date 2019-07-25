@@ -15,7 +15,7 @@ class ProductsController extends Controller
     {
         $this->middleware(['auth', 'verified']);
 
-        $this->middleware(['beembucks'])->except(['single_product', 'products']);
+        // $this->middleware(['beembucks'])->except(['single_product', 'products']);
     }
 
     public function single_product(Product $product)
@@ -25,7 +25,6 @@ class ProductsController extends Controller
 
     public function products()
     {
-
         $products = Product::paginate(8);
 
         return view('users.products', compact('products'));
@@ -65,7 +64,7 @@ class ProductsController extends Controller
 			'product_id' => $product,
 			'quantity' => $request->quantity,
 			'price' => $request->price,
-			'status' => 'bank',
+			'status' => 'pending',
             'payment' => 'cod',
 			'date' => now()
     	]);
@@ -95,9 +94,9 @@ class ProductsController extends Controller
             'phone' => 'required|numeric' , 
             'address' => 'required|max:100',
             'quantity' => 'required|numeric',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric'
         ]);
-
+        
         // save order data
         $order = Order::create([
             'reference' => $faker->ean8,

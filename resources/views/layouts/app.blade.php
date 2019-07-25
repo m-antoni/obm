@@ -22,33 +22,15 @@
     {{-- <link rel="stylesheet" href="/assets/libs/css/style.css"> --}}
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
-
     <!-- Custom fonts for this template -->
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/grayscale.min.css') }}" >
+    <!-- Custom CSS STYLES -->
+    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
 
-     <!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}"></script>
-
-    <style>
-      h4, h2, #productName{
-        font-family: 'Roboto', sans-serif;
-      }
-      #footer{
-        margin-bottom: 0px !important;
-      }
-
-      main{
-        margin-top: 72px;
-      }
-
-      .customHeight{
-        margin-top: 100px !important;
-      }
-
-    </style>
 </head>
   <body id="page-top">
       <div id="app">
@@ -60,8 +42,7 @@
         </main>
 
       </div>
-
-
+      
         <!-- Plugin JavaScript -->
         {{-- <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script> --}}
 

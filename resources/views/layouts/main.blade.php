@@ -50,13 +50,9 @@
 		@yield('content')
 
 	</div>
-           
-      <!-- Custom scripts for this template -->
-      
-      <!-- Adding Custom scripts  -->
-      @include('partials.messages')
-      <!-- =====================  -->
 
+			 {{-- @include('partials.messages') --}}
+      <!-- Adding Custom scripts  -->
       @yield('script')
 </body>
 </html>

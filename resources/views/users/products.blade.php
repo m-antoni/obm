@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container customHeight">
+<div class="container customHeight" id="products">
 		<div class="row justify-content-center">
 			@if(count($products) > 0)
 					@foreach($products as $row)
@@ -16,8 +16,8 @@
 								</div>
 								<div class="p-1">
 									<div id="productName">{{$row->p_name}}</div>
-									<div id="productPrice">₱ {{number_format($row->price)}} 
-										<small><s>₱ 2499</s></small>
+									<div><span id="productPrice">₱{{number_format($row->price)}}</span>
+										<small><s>₱{{$row->old_price}}</s></small>
 									</div>
 								
 				             <a href="{{ route('single.product', $row->id) }}">

@@ -24,8 +24,7 @@ class BeemBucksController extends Controller
 
     public function store(Request $request)
     {
-    	 // return dd($request->all());
-
+    	// return dd($request->all());
     	$request->validate([
     		'number' => 'required',
     		'expiry_month' => 'required',
@@ -55,10 +54,7 @@ class BeemBucksController extends Controller
 					'beem_activation' => true
 				]);
     	}
-    
 
-    	return redirect()->back()->with('success', 'Credit Card Added Successfully.');
-    	
+    	return redirect()->back()->with('success', 'Credit Card Added Successfully.');   
     }
-
 }

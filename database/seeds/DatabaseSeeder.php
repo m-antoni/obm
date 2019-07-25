@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         	AdminsTableSeeder::class,
             UsersTableSeeder::class,
             // ProductsTableSeeder::class,
-        	OrdersTableSeeder::class,
+        	//OrdersTableSeeder::class,
         ]);
     }
 }

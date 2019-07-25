@@ -1,0 +1,126 @@
+#homepage h1{
+   font-family: 'Roboto', sans-serif;
+}
+
+.contact{
+   font-family: 'Roboto', sans-serif;
+   font-size: 1rem;
+}
+
+h4, h2, #productName{
+    font-family: 'Roboto', sans-serif;
+  }
+  #singleProduct #p_name{
+     font-family: 'Roboto', sans-serif;
+     color: #ff8080;
+     font-size: 20px;
+  }
+
+  #singleProduct #price{
+     font-family: 'Roboto', sans-serif;
+     color: #00818a;
+  }
+  
+  /*products styles*/
+  #products #productName{
+    font-family: 'Roboto', sans-serif;
+     /*color: #ff8080;*/
+  }
+  #products #productPrice{
+    font-family: 'Roboto', sans-serif;
+     color: #00818a;
+  }
+
+  #footer{
+    margin-bottom: 0px !important;
+  }
+
+  main{
+    margin-top: 72px;
+  }
+
+  .customHeight{
+    margin-top: 100px !important;
+  }
+  
+  
+
+@media only screen and (max-width: 480px) {
+    #summary table{
+      font-size: 12px;
+    }
+
+    #summary .card-footer{
+      font-size: 12px;
+    }
+    
+    #myorders table{
+    font-size: 15px;
+    } 
+} 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  #summary table{
+      font-size: 10px;
+  }
+
+  #myorders table{
+    font-size: 15px;
+  } 
+
+  #singleProduct #p_name{
+    font-size: 25px;
+  }
+
+  #singleProduct #price{
+    font-size: 20px;
+  }
+
+  #singleProduct .imgproduct{
+    width: 300px;
+  }
+} 
+
+@media only screen and (min-width: 600px) {
+   #singleProduct #price{
+    font-size: 20px;
+  }
+} 
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   #summary table{
+      font-size: 16px;
+    }  
+
+    #singleProduct #p_name{
+      font-size: 20px;
+    }
+
+    #singleProduct #price{
+       font-size: 20px;
+    }
+
+    #products #productName{
+      font-size: 15px;
+    }
+  
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  #singleProduct #p_name{
+    font-size: 25px;
+  }
+
+  #singleProduct #price{
+     font-size: 26px;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

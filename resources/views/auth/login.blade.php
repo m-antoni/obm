@@ -5,7 +5,8 @@
     <div class="splash-container">
         <div class="card ">
             <div class="card-header text-center">
-                {{-- <img src="img/logo.png" class="img-fluid" alt=""> --}}
+                <img src="img/logo.png" class="img-fluid" alt="">
+                <hr>
                   <h3 class="mb-1"><i class="fa fa-user-circle"></i> Login Form</h3>
                 {{-- <p class="text-dark">Please enter your user information.</p> --}}
                 {{-- <span class="splash-description">Please enter your user information.</span> --}}
@@ -38,33 +39,22 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
+              {{--       <div class="form-group">
                         <label class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
                         </label>
-                    </div>
+                    </div> --}}
                     
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
-                  {{--    <div class="form-group row">
-                    <div class="col-md-6 offset-md-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
-                </div> --}}
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
                     <a href="{{ route('register') }}" class="footer-link">Create An Account</a></div>
-                <div class="card-footer-item card-footer-item-bordered">
+              {{--   <div class="card-footer-item card-footer-item-bordered">
                     <a href="#" class="footer-link">Forgot Password</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

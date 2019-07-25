@@ -9,6 +9,6 @@ $factory->define(App\Admin::class, function (Faker $faker) {
     return [
         'name' => 'admin',
         'email' => 'admin@dcgroup.ph',
-        'password' => bcrypt('12345678')
+        'password' => bcrypt('onebeemAdmin2019!')
     ];
 });

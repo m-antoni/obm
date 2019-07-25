@@ -54,12 +54,10 @@
                 </button>
               </div>
               <div class="modal-body">
-                {{-- <img src="/img/logo.jpeg" class="img-fluid" alt="logo"> --}}
                 <h4  align="center"> Are you sure?</h4>
                 <h4 align="center">
                   <button type="submit" class="btn btn-outline-dark py-2"><i class="fa fa-check"></i> Confirm</button>
                 </h4>
-                
               </div>
               <div class="modal-footer">
                   {{-- <p>DC GROUP OF COMPANIES</p> --}}

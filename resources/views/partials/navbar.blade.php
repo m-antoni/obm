@@ -33,22 +33,29 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}"> Products</a>
+                        <a class="nav-link" href="{{ route('home') }}"> Home</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('myorders') }}">Orders</a>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Shop
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{ route('products') }}">Products</a>
+                          <a class="dropdown-item" href="{{ route('myorders') }}">My Orders</a>
+                          {{-- <a class="dropdown-item" href="{{ route('create_beem') }}">Beem Bucks</a> --}}
+                          {{-- <a class="dropdown-item" href="#">Purchase Points</a> --}}
+                        </div>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">Contact</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link btn btn--m btn--gray-dark text-white" href="{{ route('logout') }}"
+                        <a class="nav-link btn btn--s btn--gray py-2" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-                                <i class="fa fa-signout"></i> Signout
+                                <i class="fa fa-signout"></i> signout
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -72,9 +79,8 @@
               </div>
               <div class="modal-body text-center">
                     {{-- <img src="/img/logo.jpeg" class="img-fluid mb-3" alt="logo"> --}}
-                    <div>Landline: 1234-567</div>
-                    <div>Phone: 09876543210</div>
-                    <div>Email: onebeem@dcgroup.ph</div>
+                    <div class="contact">Landline: (02) 692-3693</div>
+                    <div class="contact">Email: order@onebeem.com</div>
               </div>
         </div>
     </div>

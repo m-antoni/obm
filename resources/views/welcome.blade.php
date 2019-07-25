@@ -94,37 +94,37 @@
 
       <div class="row">
 
-        <div class="col-md-4 mb-3 mb-md-0">
+{{--         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-home text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Address</h4>
               <hr class="my-4">
-              <div class="small text-black-50"><h4>4923 Market Street, Orlando FL</h4></div>
+              <div class="small text-black-50"><h4>Lorem ipsum dolor sit amet.</h4></div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
-        <div class="col-md-4 mb-3 mb-md-0">
+        <div class="col-md-6 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-envelope text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Email</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a href="#"><h4>onebeem@dcgroup.ph</h4></a>
+                <a href="#"><h3>order@onebeem.com</h3></a>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4 mb-3 mb-md-0">
+        <div class="col-md-6 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-mobile-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Phone</h4>
               <hr class="my-4">
-              <div class="small text-black-50"><h4>(02) 902-8832</h4></div>
+              <div class="small text-black-50"><h3>(02) 692-3693</h3></div>
             </div>
           </div>
         </div>
