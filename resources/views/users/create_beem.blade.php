@@ -5,9 +5,9 @@
         @csrf
 
         <div class="card">
-            <div class="card-header">
-                <h3 class="mb-1"><i class="fa fa-database"></i> Welcome to Beem Bucks</h3>
-                <p class="text-dark">Please enter your Card Details.</p>
+            <div class="card-header p-0">
+                <img src="{{ asset('/img/ewallet/01.jpg') }}" class="img-fluid" alt="card-img">
+            
             </div>
             <div class="card-body">
                 <div class="form-group">

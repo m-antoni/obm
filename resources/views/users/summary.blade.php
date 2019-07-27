@@ -10,13 +10,13 @@
                   <div class="float-right">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="{{ route('myorders') }}">
-                            <button class="btn btn--l btn--gray-border">
+                            <button class="btn btn-outline-primary">
                                 <i class="fa fa-clipboard-check"></i> ORDERS
                             </button>
                         </a>
                            &nbsp; 
                         <a href="{{ route('products') }}">
-                        <button class="btn btn--m btn--gray-dark ">
+                        <button class="btn btn-info text-white">
                             <i class="fa fa-shopping-cart"></i> 
                                 SHOP
                             </button>
@@ -26,13 +26,13 @@
             </div>
 
             <div class="card rounded-0" id="summary">
-                <div class="card-header p-3">
+                <div class="card-header bg-info text-white p-3">
                      {{-- <a class="pt-2 d-inline-block" href="index.html">Order Summary</a> --}}
                     <div class="float-md-left float-sm-none"> 
                         
                     </div>   
                     <div class="float-md-right float-sm-none"> 
-                        <div class="text-dark"><b>Ref No: {{$order->reference}}</b></div>
+                        <div><b>Ref No: {{$order->reference}}</b></div>
                         <div>{{ $order->date->format('m-j-Y') }}</div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             Note: FREE SHIPPING only around Metro Manila, your items will be delivered 3 to 5 days upon purchase.
                             for any assitance please call us. <span class="text-primary"> <b>(02) 692-3693</b> </span>
                         @else
-                            Note: You may deposit your payment to our exclusive <a href="#" class="text-info" data-toggle="modal" data-target="#bankaccount">BANK ACCOUNTS</a>, don't forget to include your REFERENCE NO.
+                            Note: You may deposit your payment to our exclusive <a href="#" class="text-info" data-toggle="modal" data-target="#bankaccount">BANK ACCOUNT</a>, don't forget to include your REFERENCE NO.
                             or your transaction may void. for any assitance please call us.<b>(02) 692-3693</b> 
                         @endif
                     </p>
@@ -91,12 +91,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
-                <div class="modal-title">Exclusive Bank Accounts</div>
+                <div class="modal-title">Exclusive Bank Account</div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
           </div>
-          <div class="modal-body contact bg-secondary text-white">
+          <div class="modal-body contact text-secondary">
             <div align="center"><b>Metrobank</b></div>
             <div align="center"><b>DC Multinational Megacorp Inc.</b></div>
             <div align="center"><b>2657265514410</b></div>

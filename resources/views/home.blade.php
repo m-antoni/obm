@@ -27,14 +27,14 @@
 		  </div>
 		</div>
 
-		<h1 align="center" class="mt-5"><i class="fa fa-database"></i> BEEM BUCKS</h1>
-		<h4 align="center" class="text-secondary">Php 45.00 Pesos for 1 BBS</h4>
+		<h1 align="center" class="mt-5"><i class="fa fa-coins"></i> BEEM BUCKS</h1>
+		<h4 align="center" class="text-secondary">Php 45.00 for 1 BBS</h4>
     <div class="row mt-5">
       <!-- Free Tier -->
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h1 class="card-title text-muted text-uppercase text-center">200 <i class="fa fa-database"></i></h1>
+            <h1 class="card-title text-muted text-uppercase text-center">200 <i class="fa fa-coins"></i></h1>
             <h4 class="card-price text-center"><span class="period"> BEEM BUCKS</span></h4>
             <hr>
        {{--      <ul class="fa-ul">
@@ -48,7 +48,7 @@
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
             </ul> --}}
             <a href="#">
-	            <button class="btn btn--m btn--black btn-lg p-3 btn-block">
+	            <button class="btn btn--m btn-outline-primary btn-lg p-3 btn-block">
 	               PURCHASE
 	            </button>
             </a> 
@@ -59,7 +59,7 @@
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h1 class="card-title text-muted text-uppercase text-center">500 <i class="fa fa-database"></i></h1>
+            <h1 class="card-title text-muted text-uppercase text-center">500 <i class="fa fa-coins"></i></h1>
             <h4 class="card-price text-center"><span class="period"> BEEM BUCKS</span></h4>
             <hr>
        {{--      <ul class="fa-ul">
@@ -73,7 +73,7 @@
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
             </ul> --}}
 	            <a href="#">
-		            <button class="btn btn--m btn--black btn-lg p-3 btn-block">
+		            <button class="btn btn--m btn-outline-primary btn-lg p-3 btn-block">
 		               PURCHASE
 		            </button>
 	            </a> 
@@ -84,7 +84,7 @@
       <div class="col-lg-4">
         <div class="card">
           <div class="card-body">
-            <h1 class="card-title text-muted text-uppercase text-center">1000 <i class="fa fa-database"></i></h1>
+            <h1 class="card-title text-muted text-uppercase text-center">1000 <i class="fa fa-coins"></i></h1>
             <h4 class="card-price text-center"><span class="period"> BEEM BUCKS</span></h4>
             <hr>
  {{--            <ul class="fa-ul">
@@ -98,7 +98,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>Monthly Status Reports</li>
             </ul> --}}
              	<a href="#">
-		            <button class="btn btn--m btn--black btn-lg p-3 btn-block">
+		            <button class="btn btn--m btn-outline-primary btn-lg p-3 btn-block">
 		               PURCHASE
 		            </button>
 	            </a> 

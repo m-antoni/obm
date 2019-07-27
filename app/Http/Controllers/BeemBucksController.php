@@ -26,10 +26,10 @@ class BeemBucksController extends Controller
     {
     	// return dd($request->all());
     	$request->validate([
-    		'number' => 'required',
-    		'expiry_month' => 'required',
-    		'expiry_year' => 'required',
-    		'cvc' => 'required'
+    		'number' => 'required|min:12',
+    		'expiry_month' => 'required|integer|between:1,12',
+    		'expiry_year' => 'required|integer|min:'.date('y'),
+    		'cvc' => 'required|integer'
     	]);
 
     	// store card data
@@ -55,6 +55,25 @@ class BeemBucksController extends Controller
 				]);
     	}
 
-    	return redirect()->back()->with('success', 'Credit Card Added Successfully.');   
+        session()->flash('success', 'Card Added successfully');
+
+    	return response()->json(['success' => true]);
+    }
+
+    public function ewallet()
+    {   
+       
+        $cards = DB::table('cards')
+                    ->where('user_id', auth()->user()->id )
+                    ->get();
+
+        return view('users.ewallet', compact('cards'));
+    }
+
+    public function card_destroy(Card $card)
+    {   
+        $card->delete();
+
+        return back()->with('success', 'Card deleted successfully');
     }
 }

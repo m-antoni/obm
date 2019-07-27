@@ -33,8 +33,12 @@
                     @endif
                 @else
                     <li class="nav-item">
+                        <input type="text" name="search" id="search" placeholder="search..." class="form-control">    
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}"> Home</a>
                     </li>
+
             
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,8 +47,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{{ route('products') }}">Products</a>
                           <a class="dropdown-item" href="{{ route('myorders') }}">My Orders</a>
-                          {{-- <a class="dropdown-item" href="{{ route('create_beem') }}">Beem Bucks</a> --}}
-                          {{-- <a class="dropdown-item" href="#">Purchase Points</a> --}}
+                          <a class="dropdown-item" href="{{ route('ewallet') }}">E-Wallet</a>
+                          <a class="dropdown-item" href="{{ route('create_beem') }}">My Cards</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -52,10 +56,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link btn btn--s btn--gray py-2" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                                <i class="fa fa-signout"></i> signout
+                        <a class="nav-link btn btn-outline-primary py-2" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                            Signout
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

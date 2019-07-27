@@ -24,6 +24,8 @@ Route::get('/home/product/{product}', 'ProductsController@single_product')->name
 // Beem Bucks Routes
 Route::get('/home/create_beem/','BeemBucksController@create')->name('create_beem');
 Route::post('/home/create_beem/','BeemBucksController@store')->name('store_beem');
+Route::get('/home/ewallet/','BeemBucksController@ewallet')->name('ewallet');
+Route::delete('/home/ewallet/{card}', 'BeemBucksController@card_destroy')->name('card.destroy');
 
 // Cash On Delivery
 Route::get('/home/products/{product}/cod', 'ProductsController@order_cod')->name('order.cod');
@@ -32,6 +34,10 @@ Route::post('/home/products/{product}/cod', 'ProductsController@product_cod')->n
 // Pay On Bank
 Route::get('/home/product/{create}/bank', 'ProductsController@order_bank')->name('order.bank');
 Route::post('/home/product/{product}/bank', 'ProductsController@product_bank')->name('order.bank');
+
+
+
+
 
 // Paypal Routes
 Route::get('/home/products/paypal/{product}', 'PaypalController@index')->name('paypal');

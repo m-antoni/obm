@@ -18,7 +18,7 @@
 	
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link href="/assets/libs/css/style.css" rel="stylesheet" >
-    <link href="/css/bttn.min.css" rel="stylesheet" >
+    <link href="/css/bttn.min.css" rel="stylesheet">
     <link href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css" rel="stylesheet">
 		<link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >		
 	

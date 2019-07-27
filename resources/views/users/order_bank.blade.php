@@ -4,7 +4,7 @@
 
 <div class="splash-container">
     <div class="card ">
-      	<div class="card-header text-center bg-primary">
+      	<div class="card-header text-center">
             <img src="img/logo.png" class="img-fluid" alt="">
             {{-- <a href="#"><h1 class="align-text-bottom">ONE BEEM</h1> --}}
             </a><span class="splash-description">PAY ON BANK</span>

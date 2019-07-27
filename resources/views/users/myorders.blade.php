@@ -6,12 +6,12 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                <div class="clearfix pb-2">
-                        <div class="float-left">
-                            
-                        </div>
+                    <div class="float-left">
+                        
+                    </div>
                     <div class="float-right">
                         <a href="{{ route('products') }}">
-                            <button class="btn btn--m btn--gray-dark ">
+                            <button class="btn btn-outline-primary">
                                 <i class="fa fa-shopping-cart"></i> 
                                     SHOP
                             </button>

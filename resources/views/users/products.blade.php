@@ -4,6 +4,7 @@
 
 <div class="container customHeight" id="products">
 		<div class="row justify-content-center">
+				
 			@if(count($products) > 0)
 					@foreach($products as $row)
 						<div class="col-md-3 col-sm-4 col-6 mb-4">
@@ -17,15 +18,15 @@
 								<div class="p-1">
 									<div id="productName">{{$row->p_name}}</div>
 									<div><span id="productPrice">₱{{number_format($row->price)}}</span>
-										<small><s>₱{{$row->old_price}}</s></small>
+										<small><s><b>₱{{$row->old_price}}</b></s></small>
 									</div>
-								
-				             <a href="{{ route('single.product', $row->id) }}">
-				              		<button class="btn btn--l btn--gray-dark btn--full">
-				                  <i class="fa fa-shopping-cart"></i> 
-				                   	<small>ORDER NOW</small>
-				                  </button>
-				              </a>
+									
+		             	<a href="{{ route('single.product', $row->id) }}">
+		              		<button class="btn btn-outline-primary btn-block mt-2">
+		                  <i class="fa fa-shopping-cart"></i> 
+		                   	<small>ORDER NOW</small>
+		                  </button>
+		              </a>
 								</div>
 						</div>	
 					@endforeach
@@ -41,4 +42,17 @@
 
 @endsection
 
+
+@section('script')
+		<script>
+				$(document).ready(function(){
+					  $("#search").on("keyup", function() {
+					    var value = $(this).val().toLowerCase();
+					    $("#ordersTable tr").filter(function() {
+					      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+					    });
+					  });
+				});
+		</script>
+@endsection
 

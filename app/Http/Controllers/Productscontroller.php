@@ -15,7 +15,7 @@ class ProductsController extends Controller
     {
         $this->middleware(['auth', 'verified']);
 
-        // $this->middleware(['beembucks'])->except(['single_product', 'products']);
+        // $this->middleware(['beembucks'])->except(['single_product', 'products', 'order_cod', 'order_bank']);
     }
 
     public function single_product(Product $product)

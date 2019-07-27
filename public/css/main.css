@@ -1,4 +1,4 @@
-#homepage h1{
+#homepage h1, #ewallet h1{
    font-family: 'Roboto', sans-serif;
 }
 
@@ -12,13 +12,11 @@ h4, h2, #productName{
   }
   #singleProduct #p_name{
      font-family: 'Roboto', sans-serif;
-     color: #ff8080;
      font-size: 20px;
   }
 
   #singleProduct #price{
      font-family: 'Roboto', sans-serif;
-     color: #00818a;
   }
   
   /*products styles*/
@@ -70,7 +68,7 @@ h4, h2, #productName{
   } 
 
   #singleProduct #p_name{
-    font-size: 25px;
+    font-size: 20px;
   }
 
   #singleProduct #price{
@@ -84,7 +82,7 @@ h4, h2, #productName{
 
 @media only screen and (min-width: 600px) {
    #singleProduct #price{
-    font-size: 20px;
+    font-size: 18px;
   }
 } 
 

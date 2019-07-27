@@ -45,4 +45,10 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function credentials(Request $request){
+        $credentials = $request->only($this->username(),'password');
+        return array_add($credentials, 'isBan', 0);
+    }
+
 }
