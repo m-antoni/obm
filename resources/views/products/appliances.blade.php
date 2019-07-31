@@ -17,7 +17,7 @@
 								<div class="p-1">
 									<div id="productName">{{Str::limit($row->p_name, 21)}}</div>
 									<div><span id="productPrice">₱{{number_format($row->price)}}</span>
-										<small><s><b>₱{{$row->old_price}}</b></s></small>
+										<small><s><b>SRP:₱{{$row->old_price}}</b></s></small>
 									</div>
 									
 		             {{-- 	<a href="{{ route('single.product', $row->id) }}">

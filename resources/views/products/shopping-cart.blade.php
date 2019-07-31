@@ -28,7 +28,7 @@
 																	<div class="float-right">
 																			<div><b>Total: ₱{{ number_format( $totalPrice)}}</b>	</div><hr>
 																			<a href="#" class="btn btn-info text-white" data-toggle="modal" data-target="#confirmModal">
-																				<i class="fa fa--cart"></i> Checkout
+																				<i class="fa fa-shopping-cart"></i> Checkout
 																			</a>
 																	</div>
 															</div>
@@ -38,7 +38,7 @@
 								
 								{{-- confirmmodal --}}
 						    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						        <div class="modal-dialog modal-sm" role="document">
+						        <div class="modal-dialog" role="document">
 						          <div class="modal-content">
 						              <div class="modal-header">
 						              	<div> <b>Payment Method</b></div>
@@ -46,9 +46,27 @@
 						                  <span aria-hidden="true">&times;</span>
 						                </button>
 						              </div>
-						              <div class="modal-body">
+						              <div class="modal-body p-0">
 						              	<div align="center">
-						              			<div>
+						              			<div class="row no-gutters">
+						              					<div class="col-md-6 col-6">
+						              							<div class="imghome">
+														                <a href="{{ route('checkout.cod') }}"><img src="{{ asset('/img/modal/cod.jpg') }}" alt="cod" class="image img-fluid"></a>
+														                <div class="middle bg-warning p-2">
+														                    <h5 class="text-dark"><b>COD</b></h5>
+														                </div>
+													            	</div>
+								              			</div>
+								              			<div class="col-md-6 col-6">
+										              			<div class="imghome">
+														                <a href="{{ route('checkout.payonbank') }}"><img src="{{ asset('/img/modal/payonbank.jpg') }}" alt="cod" class="image img-fluid"></a>
+														                <div class="middle bg-info p-2">
+														                    <h5 class="text-white"><b>PAY ON BANK</b></h5>
+														                </div>
+													            	</div>
+								              			</div>
+						              			</div>
+						              			{{-- <div>
 						              					<a href="{{ route('checkout.cod') }}" class="mb-3">
 																				<button class="btn btn-warning btn-lg"><i class="fa fa-truck"></i> COD</button>
 																		</a>	
@@ -58,12 +76,12 @@
 																		<a href="{{ route('checkout.payonbank') }}">
 																				<button class="btn btn-info btn-lg text-white"><i class="fa fa-credit-card"></i> PAY ON BANK</button>
 																		</a>	
-																</div>
+																</div> --}}
 						              	</div>
 						              </div>
-						              <div class="modal-footer">
-						                  {{-- <p>DC GROUP OF COMPANIES</p> --}}
-						              </div>
+						             {{--  <div class="modal-footer">
+						                  <p>DC GROUP OF COMPANIES</p>
+						              </div> --}}
 						          </div>
 						        </div>
 						    </div>

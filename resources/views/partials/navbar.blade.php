@@ -32,9 +32,7 @@
                         </li>
                     @endif
                 @else
-                    {{-- <li class="nav-item">
-                        <input type="text" name="search" id="search" placeholder="search..." class="form-control">    
-                    </li> --}}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}"> <i class="fa fa-home"></i> Shop</a>
                     </li>
@@ -43,19 +41,18 @@
                         <a class="nav-link" href="{{ route('ewallet') }}"> <i class="fa fa-coins"></i> E-Wallet</a>
                     </li>
 
-    
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shopping.cart') }}">
-                            <span class="badge badge-pill badge-info p-2 text-white">
-                                 <i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
+                            <span class="badge badge-pill badge-info p-2 text-white cartQty">
+                                 Cart <i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
                             </span> 
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-clipboard-list"></i>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                        role="button" data-toggle="dropdown">
+                          <i class="fa fa-user-circle"></i>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -68,23 +65,13 @@
                                document.getElementById('logout-form').submit();">
                                 Sign-out
                             </a>
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
                     </li>
 
-                 {{--    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-primary py-2" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                            Signout
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li> --}}
                 @endguest
             </ul>
         </div>

@@ -17,7 +17,7 @@
 								<div class="p-1">
 									<div id="productName">{{Str::limit($row->p_name, 21)}}</div>
 									<div><span id="productPrice">₱{{number_format($row->price)}}</span>
-										<small><s><b>₱{{$row->old_price}}</b></s></small>
+										<small><s><b>SRP:₱{{$row->old_price}}</b></s></small>
 									</div>
 									
 		             	{{-- <a href="{{ route('single.product', $row->id) }}">
@@ -27,7 +27,7 @@
 		                  </button>
 		              </a> --}}
 		              <a href="{{ route('add.cart', $row->id) }}">
-		              		<button class="btn btn-outline-primary btn-block mt-2">
+		              		<button class="btn btn-outline-primary btn-block mt-2 addToCart">
 		                  <i class="fa fa-shopping-cart"></i> 
 		                   	<small>ADD TO CART</small>
 		                  </button>

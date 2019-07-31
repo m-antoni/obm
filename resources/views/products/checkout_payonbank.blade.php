@@ -3,22 +3,24 @@
 @section('content')
 
 <div class="splash-container">
-    <div class="card ">
-      	<div class="card-header text-center">
-            <img src="img/logo.png" class="img-fluid" alt="">
-            {{-- <a href="#"><h1 class="align-text-bottom">ONE BEEM</h1> --}}
-            </a><span class="splash-description"><i class="fa fa-shopping-cart"></i> CHECK OUT</span>
-            <h4>Total Amount: ₱{{ number_format($total) }}</h4>
+    <div class="card">
+      	<div class="card-header text-center bg-primary">
+            <span class="splash-description"><i class="fa fa-shopping-cart"></i> CHECK OUT</span>
+            <h4 class="text-white">Total Amount: ₱{{ number_format($total) }}</h4>
         </div>
         <div class="card-body">
-            <label><i class="fa fa-clipboard-list"></i> Billing Details</label>
-            <form action="{{ route('payonbank.store') }}" method="POST">
+            <label><i class="fa fa-clipboard-list"></i> Billing Details (PAY ON BANK)</label>
+            <form action="{{ route('payonbank.store') }}" method="POST" class="mb-3">
 	              @csrf
 
 	              @include('partials.form')
             </form>
 
-            <a href="#" data-toggle="modal" data-target="#bankAccounts"><i class="fa fa-link"></i> Deposit To This Account.</a>
+            <div align="center">
+                <a href="#" class="text-primary" data-toggle="modal" data-target="#bankAccounts">
+                  <i class="fa fa-credit-card"></i> Deposit To This Account.
+                </a>
+            </div>
         </div>
         
         <div class="card-footer bg-white p-0">
@@ -28,7 +30,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="bankAccounts" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -50,3 +51,5 @@
       </div>
     </div>
 </div>
+
+@endsection

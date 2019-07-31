@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="splash-container pt-5">
-        <div class="card">
+        <div class="card rounded-0">
             <div class="card-header text-center">
                 <img src="img/logo.png" class="img-fluid" alt="">
                 {{-- <p class="text-dark">Please enter your user information.</p> --}}
