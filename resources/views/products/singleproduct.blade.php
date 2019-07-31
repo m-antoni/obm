@@ -45,25 +45,25 @@
                                     
                                     <div class="btn-group-vertical">
                                         <a href="{{ route('order.cod', $product->id) }}">
-                                        <button class="btn btn-outline-warning text-dark py-2 btn-full">
+                                        <button class="btn btn-outline-warning text-dark py-2 btn-block">
                                             <i class="fa fa-truck"></i> 
-                                            <small> CASH ON DELIVERY</small>
+                                            <small> COD</small>
                                             </button>
                                         </a>  
 
                                         <a href="{{ route('order.bank', $product->id) }}">
-                                        <button class="btn btn-outline-primary py-2 btn-full">
+                                        <button class="btn btn-outline-primary py-2 btn-block">
                                             <i class="fa fa-credit-card"></i> 
                                             <small> PAY ON BANK</small>
                                             </button>
                                         </a>
 
-                                        <a href="#">
+                                     {{--    <a href="#">
                                         <button class="btn btn-outline-dark py-2 btn-full">
                                             <i class="fa fa-coins"></i> 
                                             <small> BEEM BUCKS</small>
                                             </button>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </div>

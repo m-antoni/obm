@@ -15,7 +15,7 @@
                             </button>
                         </a>
                            &nbsp; 
-                        <a href="{{ route('products') }}">
+                        <a href="{{ route('home') }}">
                         <button class="btn btn-info text-white">
                             <i class="fa fa-shopping-cart"></i> 
                                 SHOP

@@ -24,7 +24,7 @@
 
         <div class="card-footer bg-white p-0">
          		<div class="card-footer-item card-footer-item-bordered">
-              <a href="{{ route('products') }}" class="footer-link"><i class="fa fa-arrow-left"></i> GO BACK</a>
+              <a href="{{ route('home') }}" class="footer-link"><i class="fa fa-arrow-left"></i> GO BACK</a>
             </div>
 
         </div>

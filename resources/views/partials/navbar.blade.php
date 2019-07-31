@@ -32,30 +32,51 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <input type="text" name="search" id="search" placeholder="search..." class="form-control">    
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}"> Home</a>
+                        <a class="nav-link" href="{{ route('home') }}"> <i class="fa fa-home"></i> Shop</a>
                     </li>
 
-            
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ewallet') }}"> <i class="fa fa-coins"></i> E-Wallet</a>
+                    </li>
+
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <i class="fa fa-shopping-cart"></i>
+                            <span class="badge badge-primary">5</span> 
+                        Cart</a>
+                    </li>
+
+             {{--        <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact"><i class="fa fa-phone"></i>  Contact</a>
+                    </li>
+                     --}}
                     <li class="nav-item dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Shop
+                          <i class="fa fa-cog"></i> Setting
                         </a>
+
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ route('products') }}">Products</a>
-                          <a class="dropdown-item" href="{{ route('myorders') }}">My Orders</a>
-                          <a class="dropdown-item" href="{{ route('ewallet') }}">E-Wallet</a>
-                          <a class="dropdown-item" href="{{ route('create_beem') }}">My Cards</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#contact">Contact</a>
+
+                            <a class="dropdown-item" href="{{ route('myorders') }}">Orders</a>    
+
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                                Sign-out
+                            </a>
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">Contact</a>
-                    </li>
 
-                    <li class="nav-item">
+                 {{--    <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary py-2" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
@@ -65,7 +86,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </li>
+                    </li> --}}
                 @endguest
             </ul>
         </div>

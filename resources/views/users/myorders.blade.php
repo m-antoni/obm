@@ -10,7 +10,7 @@
                         
                     </div>
                     <div class="float-right">
-                        <a href="{{ route('products') }}">
+                        <a href="{{ route('home') }}">
                             <button class="btn btn-outline-primary">
                                 <i class="fa fa-shopping-cart"></i> 
                                     SHOP

@@ -2,12 +2,10 @@
 
 @section('content')
 
-    <div class="splash-container">
-        <div class="card ">
+    <div class="splash-container pt-5">
+        <div class="card">
             <div class="card-header text-center">
                 <img src="img/logo.png" class="img-fluid" alt="">
-                <hr>
-                  <h3 class="mb-1"><i class="fa fa-user-circle"></i> Login Form</h3>
                 {{-- <p class="text-dark">Please enter your user information.</p> --}}
                 {{-- <span class="splash-description">Please enter your user information.</span> --}}
             </div>
@@ -49,12 +47,12 @@
 
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  ">
-                <div class="card-footer-item card-footer-item-bordered">
-                    <a href="{{ route('register') }}" class="footer-link">Create An Account</a></div>
-              {{--   <div class="card-footer-item card-footer-item-bordered">
-                    <a href="#" class="footer-link">Forgot Password</a>
-                </div> --}}
+            <div class="card-footer bg-white p-3">
+                <div class="clearfix container">
+                    <a href="/" class="float-left">Go Back</a>
+            
+                    <a href="{{ route('register') }}" class="float-right">Create An Account</a></div>
+                </div>
             </div>
         </div>
     </div>

@@ -30,6 +30,8 @@
 	<style>
 	    html,
 	    body #app{
+	    		background: url('../img/login.jpg') no-repeat;
+	    		background-size: cover;
 	        height: 100%;
 	    }
 

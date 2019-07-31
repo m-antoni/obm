@@ -20,16 +20,23 @@ class ProductsController extends Controller
 
     public function single_product(Product $product)
     {  
-        return view('users.singleproduct', compact('product'));
+        return view('products.singleproduct', compact('product'));
     }
 
-    public function products()
-    {
-        $products = Product::paginate(8);
+    public function appliances()
+    {   
+        $appliances = Product::where('category', 'appliances')->paginate(8);
 
-        return view('users.products', compact('products'));
+        return view('products.appliances', compact('appliances'));
     }
     
+    public function kitchenware()
+    {   
+        $kitchenware = Product::where('category', 'kitchenware')->paginate(8);
+
+        return view('products.kitchenware', compact('kitchenware'));
+    }
+
     public function myorders()
     {
         // fetch the users orders

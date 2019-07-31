@@ -1,9 +1,5 @@
 
   <div class="form-group">
-      <input  type="text" class="form-control form-control-lg" name="email" value="{{  auth()->user()->getFullNameAttribute() }}" disabled>
-  </div>
-
-  <div class="form-group">
 
       <input type="text" class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone"  value="{{ auth()->user()->phone }}">
 

@@ -15,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first', 'last','email', 'phone', 'address','password',
+        'first','middle', 'last','email', 'phone', 'address','password',
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getFullNameAttribute()
     {
-        return "{$this->first} {$this->last}";
+        ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
     }
 
     /**
@@ -56,4 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Card');
     }
 
+    public function beem()
+    {
+        return $this->hasOne('App\Beem');
+    }
 }

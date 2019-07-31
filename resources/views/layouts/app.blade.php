@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/assets/vendor/fonts/circular-std/style.css">
     {{-- <link rel="stylesheet" href="/assets/libs/css/style.css"> --}}
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-
+    
     <!-- Custom fonts for this template -->
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -29,20 +29,24 @@
     <link rel="stylesheet" href="{{ asset('/css/grayscale.min.css') }}" >
     <link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >     
     
+    <!-- Modal CSS STYLES -->
+    <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
     <!-- Custom CSS STYLES -->
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
 
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/card-js.min.js') }}"></script>
+    <script src="{{ asset('/js/animatedModal.min.js') }}"></script>
 </head>
   <body id="page-top">
       <div id="app">
         
-        @include('partials.navbar')
-        
-        <main>
-           @yield('content')
-        </main>
+            @include('partials.navbar')
+            
+            <main>
+               @yield('content')
+            </main>
 
       </div>
       

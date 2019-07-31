@@ -45,7 +45,7 @@
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCards">
                               <div class="card-body">
                                 <ul>
-                                    @if(count($cards) > 0)
+                                    @if(count($cards) < 0)
                                         @foreach($cards as $card)
                                             <ol>{{$card->number}}</ol>
                                         @endforeach
@@ -58,7 +58,7 @@
                       </div>
                 </div>
 
-                <p class="text-dark"><a href="{{ route('products') }}" class="text-secondary"> <i class="fa fa-arrow-left"></i> GO BACK</a></p>
+                <p class="text-dark"><a href="{{ route('home') }}" class="text-secondary"> <i class="fa fa-arrow-left"></i> GO BACK</a></p>
             </div>
         </div>
     </form>

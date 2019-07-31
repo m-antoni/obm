@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreateBeemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('beems', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('p_name');
-            $table->longText('description');
-            $table->string('price');
-            $table->string('old_price');
-            $table->string('category');
-            $table->string('image')->default('noimage.jpg');
+            $table->bigInteger('user_id');
+            $table->bigInteger('points');
+            $table->string('used_card');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -32,6 +30,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('beems');
     }
 }

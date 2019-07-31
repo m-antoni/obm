@@ -29,6 +29,7 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'first' => $faker->firstName,
+        'middle' => $faker->lastName,
         'last' => $faker->lastName,
         'phone' => '09231245789',
         'address' => $faker->address,

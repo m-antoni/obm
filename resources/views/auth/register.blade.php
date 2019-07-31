@@ -21,7 +21,17 @@
                         </span>
                     @enderror
                 </div>
+                
+                <div class="form-group">
+                    <input id="middle" type="text" class="form-control form-control-lg @error('middle') is-invalid @enderror" name="middle" value="{{ old('middle') }}" required autocomplete="middle" autofocus placeholder="Middle Name">
 
+                    @error('middle')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>    
+    
                 <div class="form-group">
                     <input id="last" type="text" class="form-control form-control-lg @error('last') is-invalid @enderror" name="last" value="{{ old('last') }}" required autocomplete="last" autofocus placeholder="Last Name">
 
