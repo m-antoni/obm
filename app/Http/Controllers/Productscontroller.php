@@ -8,7 +8,8 @@ use Faker\Generator as Faker;
 use App\User;
 use App\Order;
 use App\Product;
-
+use App\Cart;
+use Session;
 class ProductsController extends Controller
 {
     public function __construct()
@@ -16,11 +17,6 @@ class ProductsController extends Controller
         $this->middleware(['auth', 'verified']);
 
         // $this->middleware(['beembucks'])->except(['single_product', 'products', 'order_cod', 'order_bank']);
-    }
-
-    public function single_product(Product $product)
-    {  
-        return view('products.singleproduct', compact('product'));
     }
 
     public function appliances()
@@ -37,107 +33,152 @@ class ProductsController extends Controller
         return view('products.kitchenware', compact('kitchenware'));
     }
 
-    public function myorders()
+    public function list_orders()
     {
-        // fetch the users orders
-        $orders = Order::where('user_id',auth()->user()->id)
-                        ->orderBy('created_at', 'DESC')
-                        ->paginate(4);
+        $orders = auth()->user()->orders; // dd($orders);
+        $orders->transform(function($order, $key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
 
-        return view('users.myorders', compact('orders'));
+        return view('products.list_orders', ['orders' => $orders]);
     }
 
-    public function order_cod($id)
+    /*
+        Adding to Cart Implementation starts here
+    */
+
+    public function shopping_cart()
+    {
+        if(!Session::has('cart')){
+            return view('products.shopping-cart', ['products' => null]);
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return view('products.shopping-cart', [
+                'products' => $cart->items, 
+                'totalPrice' => $cart->totalPrice
+            ]);
+    }    
+
+    public function add_to_cart(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+
+        // dd($request->session()->get('cart'));
+        return redirect()->back();
+
+    }
+
+    public function delete_item($id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+
+        Session::put('cart', $cart);
+
+        return redirect()->back();
+    }
+
+    public function checkout_cod()
+    {
+        if(!Session::has('cart')){
+            return view('products.shopping-cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+
+        return view('products.checkout_cod', ['total' => $total]);
+    }
+
+    public function cod_store(Request $request, Faker $faker)
     {   
-        $product = Product::find($id);
-
-        return view('users.order_cod', compact('product'));
-    }
-
-    public function product_cod(Request $request, Faker $faker, $product)
-    {
-
-    	$request->validate([
-            'phone' => 'required|numeric' , 
-		    'address' => 'required|max:255',
-            'quantity' => 'required|numeric',
-		    'price' => 'required|numeric',
-		]);
-
-        // save order data
-    	$order = Order::create([
-			'reference' => $faker->ean8,
-			'user_id' => auth()->user()->id,
-			'product_id' => $product,
-			'quantity' => $request->quantity,
-			'price' => $request->price,
-			'status' => 'pending',
-            'payment' => 'cod',
-			'date' => now()
-    	]);
-
-        // update data of users
-        $user = DB::table('users')
-                    ->where('id', auth()->user()->id)
-                    ->update([
-                        'address' => $request->address,
-                        'phone' => $request->phone    
-                    ]);
-   
-    	return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess.');
-    }
-
-    public function order_bank($id)
-    {
-        $product = Product::find($id);
-
-        return view('users.order_bank', compact('product'));
-    }
-
-    public function product_bank(Request $request, Faker $faker, $product)
-    {
-         // return dd($request->all());
         $request->validate([
-            'phone' => 'required|numeric' , 
-            'address' => 'required|max:100',
-            'quantity' => 'required|numeric',
-            'price' => 'required|numeric'
+            'name' => 'required|max: 100',
+            'phone' => 'required|numeric',
+            'address' => 'required|max:150',
         ]);
-        
-        // save order data
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        $reference = 'OBM-' . $faker->isbn10;
+        $payment = 'COD';
+        $cart = serialize($cart); // this will convert the data to string
+
+        // Store data in database
         $order = Order::create([
-            'reference' => $faker->ean8,
             'user_id' => auth()->user()->id,
-            'product_id' => $product,
-            'quantity' => $request->quantity,
-            'price' => $request->price,
-            'status' => 'pending',
-            'payment' => 'bank',
+            'reference_id' => $reference,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'cart' => $cart,
+            'status' => 'PENDING',
+            'payment' => 'COD',
             'date' => now()
         ]);
 
-        // update data of users
-        $user = DB::table('users')
-                    ->where('id', auth()->user()->id)
-                    ->update([
-                        'address' => $request->address,
-                        'phone' => $request->phone    
-                    ]);
-   
-        return redirect()->route('summary', $order)->with('success', 'Your transaction has been proccess.');
+        // remove the session 
+        Session::forget('cart');
+        return redirect()->route('home')->with('success', 'Successfully Purchased the product(s)');
     }
 
-    public function summary($id)
-    {   
-       // return dd($id); 
-       $order = Order::find($id);
-        
-       return view('users.summary', compact('order')); 
-    }
-
-
-    public function payonbank()
+    // Pay On Bank
+    public function checkout_payonbank()
     {
-        return view('users.payonbank');
+        if(!Session::has('cart')){
+            return view('products.shopping-cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+
+        return view('products.checkout_payonbank', ['total' => $total]);
+    }
+
+    public function payonbank_store(Request $request, Faker $faker)
+    {   
+        $request->validate([
+            'name' => 'required|max: 100',
+            'phone' => 'required|numeric',
+            'address' => 'required|max:150',
+        ]);
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        $reference = 'OBM-' . $faker->isbn10;
+        $payment = 'COD';
+        $cart = serialize($cart); // this will convert the data to string
+
+        // Store data in database
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'reference_id' => $reference,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'cart' => $cart,
+            'status' => 'PENDING',
+            'payment' => 'PAY ON BANK',
+            'date' => now()
+        ]);
+
+        // remove the session 
+        Session::forget('cart');
+        return redirect()->route('home')->with('success', 'Successfully Purchased the product(s)');
     }
 }

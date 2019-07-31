@@ -18,9 +18,19 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 
 // ProductsConstroller
+Route::get('/home/product/{product}', 'ProductsController@single_product')->name('single.product'); // tanggal to
+
 Route::get('/home/products/appliances/', 'ProductsController@appliances')->name('appliances');
 Route::get('/home/products/kitchenware/', 'ProductsController@kitchenware')->name('kitchenware');
-Route::get('/home/product/{product}', 'ProductsController@single_product')->name('single.product');
+// Add to Cart Routes
+Route::get('/home/products/list-orders', 'ProductsController@list_orders')->name('list.orders');
+Route::get('/home/products/shopping-cart/', 'ProductsController@shopping_cart')->name('shopping.cart');
+Route::get('/home/products/remove/{id}', 'ProductsController@delete_item')->name('delete.cart');
+Route::get('/home/products/add-to-cart/{id}', 'ProductsController@add_to_cart')->name('add.cart');
+Route::get('/home/products/checkout-cod', 'ProductsController@checkout_cod')->name('checkout.cod');
+Route::post('/home/products/checkout-cod', 'ProductsController@cod_store')->name('cod.store');
+Route::get('/home/products/checkout-payonbank', 'ProductsController@checkout_payonbank')->name('checkout.payonbank');
+Route::post('/home/products/checkout-payonbank', 'ProductsController@payonbank_store')->name('payonbank.store');
 
 // Beem Bucks Routes
 Route::get('/home/create_beem/','BeemBucksController@create')->name('create_beem');
@@ -44,7 +54,6 @@ Route::post('/home/products/paypal/checkout', 'PaypalController@createPayment')-
 Route::get('/home/products/paypal/confirm', 'PaypalController@confirmPayment')->name('confirm-paypal');
 
 Route::get('/home/product/show/{id}', 'ProductsController@summary')->name('summary');
-Route::get('/home/products/show/orders', 'ProductsController@myorders')->name('myorders');
 
 // Pay On Bank
 Route::get('/home/payonbank/', 'ProductsController@payonbank')->name('payonbank');

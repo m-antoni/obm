@@ -20,10 +20,16 @@
 										<small><s><b>₱{{$row->old_price}}</b></s></small>
 									</div>
 									
-		             	<a href="{{ route('single.product', $row->id) }}">
+		             {{-- 	<a href="{{ route('single.product', $row->id) }}">
 		              		<button class="btn btn-outline-primary btn-block mt-2">
 		                  <i class="fa fa-shopping-cart"></i> 
 		                   	<small>ORDER NOW</small>
+		                  </button>
+		              </a> --}}
+		              <a href="{{ route('add.cart', $row->id) }}">
+		              		<button class="btn btn-outline-primary btn-block mt-2">
+		                  <i class="fa fa-shopping-cart"></i> 
+		                   	<small>ADD TO CART</small>
 		                  </button>
 		              </a>
 								</div>

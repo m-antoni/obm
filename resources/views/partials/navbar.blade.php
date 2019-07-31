@@ -45,25 +45,23 @@
 
     
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> <i class="fa fa-shopping-cart"></i>
-                            <span class="badge badge-primary">5</span> 
-                        Cart</a>
+                        <a class="nav-link" href="{{ route('shopping.cart') }}">
+                            <span class="badge badge-pill badge-info p-2 text-white">
+                                 <i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
+                            </span> 
+                        </a>
                     </li>
 
-             {{--        <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#contact"><i class="fa fa-phone"></i>  Contact</a>
-                    </li>
-                     --}}
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-cog"></i> Setting
+                          <i class="fa fa-clipboard-list"></i>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('list.orders') }}">Orders</a>    
+                            
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#contact">Contact</a>
-
-                            <a class="dropdown-item" href="{{ route('myorders') }}">Orders</a>    
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
