@@ -54,36 +54,38 @@
 	</div>
 
 
-	 {{-- Upload Receipts Modal --}}
-    <div class="modal fade" id="uploadReceipt" tabindex="-1" role="dialog">
+ {{-- Upload Receipts Modal --}}
+   <div class="modal fade" id="uploadReceipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title"><i class="fa fa-image"></i> Upload Receipt</h4>
-                 <button type="button" class="close" aria-label="Close">
+                <div class="modal-title"><i class="fa fa-upload"></i> Upload File</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                  <form id="submitForm" action="{{route('upload.receipt')}}" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group">
-                          <label>Order Number:</label>
-                   				<input type="text" name="order_number" class="form-control" id="order_number">
-                      </div>
+								   <form id="uploadReceiptForm" action="{{route('upload.receipt')}}" method="POST" enctype="multipart/form-data">
+								      @csrf
+								      <div class="form-group">
+								          <label>Order Number:</label>
+								   				<input type="text" name="order_number" class="form-control" id="order_number">
+								      </div>
 
-                      <div class="form-group">
-                          <label>Upload Receipt:</label><br>
-                   				<input type="file" name="image" id="image">
-                      </div>
-                      <hr>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-dark btn-block btn-sm py-2 border-dark">
-                          <i class="fa fa-check"></i> Submit
-                        </button>
-                     </div>
-                  </form>
+								      <div class="form-group">
+								          <label>Upload Receipt:</label><br> 
+								   				<input type="file" name="image" id="image">
+								   				<small class="text-secondary">2MB Maximum Size</small>
+								      </div>
+								      <hr>
+								      <div class="form-group">
+								        <button type="submit" class="btn btn-dark btn-block btn-sm py-2 border-dark">
+								          <i class="fa fa-check"></i> Submit
+								        </button>
+								     </div>
+								  </form>	
               </div>
+
               <div class="modal-footer">
               </div>
           </div>
@@ -95,60 +97,76 @@
 
 @section('script')
 
-<script>
-$(document).ready(function(){
-		(function(){
-	    document.querySelector('#submitForm').addEventListener('submit', function(e){
-	        e.preventDefault();
+	<script>
+		$(document).ready(function(){
+				(function(){
+			    document.querySelector('#uploadReceiptForm').addEventListener('submit', function(e){
+			        e.preventDefault();
 
-	        axios.post(this.action, {
-	         	Content-Type: 'multipart/form-data',     
-	          _token : document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-	          order_number : document.querySelector('#order_number').value,
-	          image : document.querySelector('#image').value,
-	        })
-	        .then((response) => {
-	        		console.log(response)
-	            // hide the modal
-	            document.querySelector('#order_number').value = '';
-	            $('#uploadReceipt').modal('hide'); 
-	            location.reload();
-	        })
-	        .catch((error) => {
-	            // console.log(error.response);
-	            let errors = error.response.data.errors;
-	            let firstItem = Object.keys(errors)[0];
-	            let firstItemDOM = document.getElementById(firstItem);
-	            let firstErrorMessage = errors[firstItem][0];
+			        axios.post(this.action,{
+			        	content-type: 'multipart/form-data',
+			         	_token : document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+			          order_number : document.querySelector('#order_number').value,
+			          image : document.querySelector('#image').value,
+			        })
+			        .then((response) => {
+			        		// console.log(response)
+			            // hide the modal
+			            document.querySelector('#order_number').value = '';
+			            $('#uploadReceipt').modal('hide'); 
+			            window.location.reload(true);
+			        })
+			        .catch((error) => {
+			            // console.log(error.response);
+			            let errors = error.response.data.errors;
+			            let firstItem = Object.keys(errors)[0];
+			            let firstItemDOM = document.getElementById(firstItem);
+			            let firstErrorMessage = errors[firstItem][0];
 
-	            // remove all the error message
-	            let errorMessages = document.querySelectorAll('.text-danger');
-	            errorMessages.forEach((element) => element.textContent = '');
+			            // remove all the error message
+			            let errorMessages = document.querySelectorAll('.text-danger');
+			            errorMessages.forEach((element) => element.textContent = '');
 
-	            // show error message;
-	            firstItemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${firstErrorMessage}</div>`);
-	        });
-	    });
-	  })();
-		  
-});
+			            // show error message;
+			            firstItemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${firstErrorMessage}</div>`);
+			        });
+			    });
+			  })();
+		});
 
-
-@if(session('success'))
-    iziToast.success({
-      title: 'Success',
-      message: '{{session('success')}}',
-        icon: 'ico-success',
-      // iconColor: 'rgb(0, 255, 184)',
-      // theme: 'dark',
-      // progressBarColor: 'rgb(0, 255, 184)',
-      position: 'topCenter',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutUp'
-    });
-@endif
-</script>
+	</script>
 
 
+	@if(session('success'))
+		<script>
+				iziToast.success({
+		      title: 'Success',
+		      message: '{{session('success')}}',
+		        icon: 'ico-success',
+		      // iconColor: 'rgb(0, 255, 184)',
+		      // theme: 'dark',
+		      // progressBarColor: 'rgb(0, 255, 184)',
+		      position: 'topCenter',
+		      transitionIn: 'fadeInLeft',
+		      transitionOut: 'fadeOutUp'
+		    });
+		</script>
+	@endif 
+
+	@if(session('error'))
+		<script>
+				iziToast.error({
+		      title: 'Error',
+		      message: '{{session('error')}}',
+		      // icon: 'ico-warning',
+		      // iconColor: 'rgb(0, 255, 184)',
+		      // theme: 'dark',
+		      // progressBarColor: 'rgb(0, 255, 184)',
+		      position: 'topCenter',
+		      transitionIn: 'fadeInLeft',
+		      transitionOut: 'fadeOutUp'
+		    });
+		</script>
+	@endif 
 
 @endsection

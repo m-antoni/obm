@@ -47,7 +47,9 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'verified']],function
 		Route::post('products/checkout-payonbank/add-details', 'DetailsController@add_details_bank')->name('add.details.bank');
 		Route::post('products/checkout-payonbank/update-details', 'DetailsController@update_details_bank')->name('update.details.bank');
 		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
+		// Upload Receipts
 		Route::post('products/confirm-order', 'UploadReceiptsController@upload_receipt')->name('upload.receipt');
+		Route::post('products/list-orders/upload', 'UploadReceiptsController@client_receipt')->name('upload.receipt.clientarea');
 
 		// Client Area
 		Route::get('client/', 'ClientsAreaController@index')->name('client');

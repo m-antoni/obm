@@ -10,16 +10,18 @@ class UploadReceiptsController extends Controller
 {
     public function upload_receipt()
     {   
-    	
+    	// return dd(request()->all());
 			$validate = request()->validate([
 				'order_number' => 'required|numeric',
 				'image' => 'required|image|max:1999'
 			]);
 
-	    if(UploadReceipt::where('order_number', $order_number->request())){
-	        return response()->json(['error' => 'Order number is not valid']);
-	    }
+			$compare = UploadReceipt::where('order_number', request()->order_number)->first();
 
+	    if($compare){
+	    		return redirect()->back()->with('error','Order Number is invalid!');
+	    }
+	    
 			// save to database
 			$upload = UploadReceipt::create([
 				'user_id' => auth()->user()->id,
@@ -28,6 +30,7 @@ class UploadReceiptsController extends Controller
 				'date' => now()
 			]);
 			
-			return redirect()->route('confirm.order')->with('success','Please wait till we validate your receipt uploaded');
+			return redirect()->back()->with('success','Please wait till we validate your receipt uploaded');
     }
+
 }
