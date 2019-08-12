@@ -9,13 +9,13 @@
     <title>{{ config('app.name', 'One Beem') }}</title>
    
     {{-- <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css"> --}}
-     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-     <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
-     
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
+ 
      <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-	
+
     <link href="/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link href="/assets/libs/css/style.css" rel="stylesheet" >
     <link href="/css/bttn.min.css" rel="stylesheet">
@@ -24,16 +24,15 @@
 	
 	<!-- Scripts -->
     <script src="{{ asset('/js/app.js') }}"></script>
-		<script src="/js/iziToast.min.js"></script>
     <script src="/js/card-js.min.js"></script>
 	
 	<style>
 	    html,
-	    body #app{
-	    		background: url('../img/login.jpg') no-repeat;
-	    		background-size: cover;
-	        height: 100%;
-	    }
+        body #app{
+            background: url('/img/login.jpg') no-repeat;
+            background-size: cover;
+            height: 100%;
+        }     
 
 	    body #app {
 	        display: -ms-flexbox;
@@ -48,12 +47,13 @@
 <body>
 
 	<div id="app">
-	
-			@yield('content')
+
+		@yield('content')
 
 	</div>
-
-			 {{-- @include('partials.messages') --}}
+    
+    <script src="{{ asset('js/iziToast.min.js') }}"></script>
+	 {{-- @include('partials.messages') --}}
       <!-- Adding Custom scripts  -->
       @yield('script')
 </body>

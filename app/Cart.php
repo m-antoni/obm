@@ -40,16 +40,16 @@ class Cart
 
     public function reduceByOne($id)
     {
-		// dd($id);
-		$this->items[$id]['qty']--;
-		$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
-		$this->totalQty--;
-		$this->totalPrice -= $this->items[$id]['item']['price'];
+			// dd($id);
+			$this->items[$id]['qty']--;
+			$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+			$this->totalQty--;
+			$this->totalPrice -= $this->items[$id]['item']['price'];
 
-		// check if reduce by 0 and remove the item
-		if($this->items[$id]['qty'] <= 0){
-				unset($this->items[$id]);
-		}
+			// check if reduce by 0 and remove the item
+			if($this->items[$id]['qty'] <= 0){
+					unset($this->items[$id]);
+			}
     }
 
     // public function removeItem($id)

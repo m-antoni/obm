@@ -8,11 +8,9 @@
 					@foreach($kitchenware as $row)
 						<div class="col-md-3 col-sm-4 col-6 mb-4">
 								<div>
-										@if($row->image == 'noimage.jpg')
-											<img src="{{ asset('/img/noimage.jpg') }}" alt="img" class="img-fluid rounded-0" style="width: 400px;">
-										@else
-											<img src="{{ $row->image }}" alt="img" class="img-thumbnail rounded-0" style="width: 400px;">
-										@endif
+									<a href="{{route('single.product', $row->id)}}">
+											<img src="{{$row->image}}" alt="img" class="img-fluid rounded-0" style="width: 400px;">
+									</a>
 								</div>
 								<div class="p-1">
 									<div id="productName">{{Str::limit($row->p_name, 21)}}</div>

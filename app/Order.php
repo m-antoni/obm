@@ -12,6 +12,17 @@ class Order extends Model
 		'date', 
     ];
 
+    // unserialize the cart data
+    public function getCartAttribute($value)
+    {
+        return unserialize($value);
+    }
+
+   public function getFullNameAttribute()
+    {
+        return ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

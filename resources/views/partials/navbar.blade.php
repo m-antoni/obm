@@ -20,7 +20,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto text-center">
+            <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -32,31 +32,23 @@
                         </li>
                     @endif
                 @else
-
+                        
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}"> <i class="fa fa-home"></i> Shop</a>
+                        <a class="nav-link" href="{{ route('home') }}"> Home</a>
                     </li>
-
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ewallet') }}"> <i class="fa fa-coins"></i> E-Wallet</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shopping.cart') }}">
-                            <span class="badge badge-pill badge-info p-2 text-white cartQty">
-                                 Cart <i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
-                            </span> 
-                        </a>
+                        <a class="nav-link" href="{{ route('shop') }}"> SHOP</a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
                         role="button" data-toggle="dropdown">
-                          <i class="fa fa-user-circle"></i>
+                          <i class="fa fa-user-circle"></i> Profile
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('list.orders') }}">Orders</a>    
+                            <a class="dropdown-item" href="{{ route('client') }}">Client Area</a>    
                             
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#contact">Contact</a>
 
@@ -72,6 +64,15 @@
                         </div>
                     </li>
 
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shopping.cart') }}">
+                            <span class="badge badge-default badge-dark p-2 text-white cartQty">
+                                <i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
+                            </span> 
+                        </a>
+                    </li>
+    
                 @endguest
             </ul>
         </div>

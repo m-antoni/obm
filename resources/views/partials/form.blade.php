@@ -1,17 +1,41 @@
-  <div class="form-group">
-      <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" placeholder="Fullname">
+  {{-- <div class="form-group">
+      <input type="text" class="form-control form-control @error('first') is-invalid @enderror" name="first" placeholder="First Name">
 
-      @error('name')
+      @error('first')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
           </span>
       @enderror
-  </div>  
+  </div> 
+
+  <div class="form-group">
+      <input type="text" class="form-control form-control @error('middle') is-invalid @enderror" name="middle" placeholder="Middle Name">
+
+      @error('middle')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+  </div> 
+
+  <div class="form-group">
+      <input type="text" class="form-control form-control @error('last') is-invalid @enderror" name="last" placeholder="Last Name">
+
+      @error('last')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+  </div>  --}}
 
   <div class="form-group">
       
-      <input type="text" class="form-control form-control-lg @error('phone') is-invalid @enderror" name="phone" placeholder="Phone">
-
+      <label>Phone</label>
+      <span class="float-right">
+          <a href="#" class="text-danger" data-toggle="modal" data-target="#ediPhone">
+            Edit <i class="fa fa-edit"></i></a> 
+        </span>
+      <input type="text" class="form-control form-control @error('phone') is-invalid @enderror mb-3" name="phone" value="{{auth()->user()->phone}}" disabled> 
       @error('phone')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -20,9 +44,16 @@
   </div>
   
   <div class="form-group">
-      <textarea name="address" class="form-control form-control-lg @error('address') is-invalid @enderror"rows="2" placeholder="Billing Address"></textarea>
+      <label>Default Address</label> 
+        <span class="float-right">
+          <a href="#" class="text-danger" data-toggle="modal" data-target="#ediAddress">
+            Edit <i class="fa fa-edit"></i></a> 
+        </span>
+      <textarea name="address" class="form-control form-control @error('address') is-invalid @enderror"rows="4" disabled>
+        {{auth()->user()->address}}
+      </textarea>
 
-      @error('address')
+      @error('address') 
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
           </span>
@@ -31,51 +62,29 @@
 
   <hr>
 
-    <a href="#" class="btn btn-outline-dark btn-block" data-toggle="modal" data-target="#confirmModal">
-        <i class="fa fa-send"></i> 
-          Place your order  
-    </a>           
+  <a href="#" class="btn btn-outline-dark btn-block" data-toggle="modal" data-target="#confirmModal">
+      <i class="fa fa-send"></i> 
+        Place your order  
+  </a>           
 
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <h4  align="center"> Are you sure?</h4>
-                <h4 align="center">
-                  <button type="submit" class="btn btn-outline-dark py-2"><i class="fa fa-check"></i> Confirm</button>
-                </h4>
-              </div>
-              <div class="modal-footer">
-                  {{-- <p>DC GROUP OF COMPANIES</p> --}}
-              </div>
+{{-- Confirm Modal --}}
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
+          <div class="modal-body">
+            <h4  align="center"> Are you sure?</h4>
+            <h4 align="center">
+              <button type="submit" class="btn btn-outline-dark py-2"><i class="fa fa-check"></i> Confirm</button>
+            </h4>
+          </div>
+          <div class="modal-footer">
+             
+          </div>
+      </div>
     </div>
-
-{{-- @section('script')
-  <script>
-      function getTotal(){
-          document.getElementById('total').innerHTML = "{{ $product->price }}";  
-      }
-      
-      getTotal();
-
-      function updateTotal(){
-          let quantity = document.getElementById('quantity').value;
-          let price = parseInt({{$product->price}});
-
-          total = document.getElementById('totalhidden').value = quantity * parseFloat(price);  
-
-          if(total == '' & total == null){
-              document.getElementById('total').value = "{{ $product->price }}";
-          }else{
-              document.getElementById('total').innerHTML = quantity * parseFloat(price);
-          }   
-      }
-  </script>
-@endsection --}}
+</div>

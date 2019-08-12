@@ -33,8 +33,10 @@ $factory->define(User::class, function (Faker $faker) {
         'last' => $faker->lastName,
         'phone' => '09231245789',
         'address' => $faker->address,
-        'beem_activation' => false,
         'email' => $faker->unique()->safeEmail,
+        'isBan' => false,
+        'image' => '/img/noimage.jpg',
+        'referral_key' => str_random(12),
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
         'remember_token' => Str::random(21),

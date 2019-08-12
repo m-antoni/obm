@@ -25,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getFullNameAttribute()
     {
-        ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
+        return ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
     }
 
     /**
@@ -59,5 +59,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function beem()
     {
         return $this->hasOne('App\Beem');
+    }
+
+    public function details()
+    {
+        return $this->hasMany('App\Detail');
     }
 }

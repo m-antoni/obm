@@ -2,27 +2,32 @@
 
 @section('content')
 
-<div class="container customHeight">
-     @foreach($orders as $order)
+<div class="py-5 mb-3" style="background: #eaeaea">
+    <h2 align="center" class="text-dark"><i class="fa fa-dolly"></i> ORDER HISTORY</h2>
+</div>
+<div class="container">
+
     <div class="row justify-content-center mb-4">
-        <div class="col-lg-6 col-md-8 col-12">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    <b> {{ $order->reference_id}}</b>
-                </div>
-                <div class="card-body">
-                      @foreach($order->cart->items as $item)
-                        <ul class="list-group">
-                            <li class="list-group-item">{{ $item['item']['p_name'] }} / {{$item['qty']}} Qty  /  ₱{{ number_format($item['price'])}}</li>
-                        </ul>
-                          
-                      @endforeach   
-                      <div class="float-right pt-2"><b>Total Amount: ₱{{ number_format($order->cart->totalPrice)}}</b>     </div>
-                </div>
+         @if(count($orders) > 0)   
+            <div class="col-lg-6 mb-3">
+                <ul class="list-group">
+                  @foreach($orders as $item)
+                    <li class="list-group-item border-dark">
+                        <div class="clearfix float-sm-none">
+                            <div class="float-left text-secondary">
+                                <i class="fa fa-calendar"></i> {{$item->date->format('m-d-Y')}}
+                            </div>
+                            <div class="float-right"><a href="{{route('generate.invoice', $item->id)}}" class="text-info">
+                              <i class="fa fa-tag"></i> INVOICE</a></div>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
+        @else
+              <div><h2 align="center"><b>You don't have any orders yet..</b></h2></div>
+        @endif
     </div>
-    @endforeach
 </div>
 
 

@@ -38,6 +38,9 @@
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/card-js.min.js') }}"></script>
     <script src="{{ asset('/js/animatedModal.min.js') }}"></script>
+    
+    @yield('style')
+
 </head>
   <body id="page-top">
       <div id="app">
@@ -50,14 +53,8 @@
 
       </div>
       
-        <!-- Plugin JavaScript -->
-        {{-- <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script> --}}
-
-        <!-- Custom scripts for this template -->
-        <script src="js/grayscale.min.js"></script>
-
           <!-- Custom scripts for this template -->
-        <script src="/js/iziToast.min.js"></script>
+        <script src="{{ asset('/js/iziToast.min.js')}}"></script>
 
         <!-- Adding Custom scripts  -->
         @yield('script')

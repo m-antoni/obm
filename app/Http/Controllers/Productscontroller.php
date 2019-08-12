@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendInvoice;
 use App\User;
 use App\Order;
 use App\Product;
 use App\Cart;
+use App\Detail;
 use Session;
+
+
 class ProductsController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-        $this->middleware(['auth', 'verified']);
-
-        // $this->middleware(['beembucks'])->except(['single_product', 'products', 'order_cod', 'order_bank']);
+        return view('products.index');
     }
 
     public function appliances()
@@ -33,21 +36,17 @@ class ProductsController extends Controller
         return view('products.kitchenware', compact('kitchenware'));
     }
 
-    public function list_orders()
-    {
-        $orders = auth()->user()->orders; // dd($orders);
-        $orders->transform(function($order, $key){
-            $order->cart = unserialize($order->cart);
-            return $order;
-        });
 
-        return view('products.list_orders', ['orders' => $orders]);
+    public function single_product(Product $product)
+    {   
+        // dd($id);
+        // $single_product = DB::table('products')->where('id',)
+        return view('products.single_product', compact('product'));
     }
 
     /*
         Adding to Cart Implementation starts here
     */
-
     public function shopping_cart()
     {
         if(!Session::has('cart')){
@@ -61,6 +60,9 @@ class ProductsController extends Controller
                 'products' => $cart->items, 
                 'totalPrice' => $cart->totalPrice
             ]);
+
+        // return response()->json(['products' => $cart->items, 
+        //         'totalPrice' => $cart->totalPrice]);
     }    
 
     public function add_to_cart(Request $request, $id)
@@ -73,9 +75,7 @@ class ProductsController extends Controller
 
         $request->session()->put('cart', $cart);
 
-        // dd($request->session()->get('cart'));
         return redirect()->back();
-
     }
 
     public function delete_item($id)
@@ -90,38 +90,37 @@ class ProductsController extends Controller
     }
 
     public function checkout_cod()
-    {
+    {   
+
         if(!Session::has('cart')){
             return view('products.shopping-cart');
         }
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $total = $cart->totalPrice;
+        $products = $cart;
+        $details = Detail::where('user_id', auth()->user()->id)->get();
+        $isDefault = Detail::where('isDefault', true)
+                    ->where('user_id', auth()->user()->id)
+                    ->first();
 
-        return view('products.checkout_cod', ['total' => $total]);
+        return view('products.checkout_cod', ['products' => $products, 'details' => $details, 'isDefault' => $isDefault]);
     }
 
     public function cod_store(Request $request, Faker $faker)
-    {   
-        $request->validate([
-            'name' => 'required|max: 100',
-            'phone' => 'required|numeric',
-            'address' => 'required|max:150',
-        ]);
-
+    {      
+        // dd($request->all()); 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        $reference = 'OBM-' . $faker->isbn10;
+        $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
         $payment = 'COD';
         $cart = serialize($cart); // this will convert the data to string
 
         // Store data in database
         $order = Order::create([
             'user_id' => auth()->user()->id,
-            'reference_id' => $reference,
-            'name' => $request->name,
+            'order_number' => $order_number,
             'phone' => $request->phone,
             'address' => $request->address,
             'cart' => $cart,
@@ -130,9 +129,46 @@ class ProductsController extends Controller
             'date' => now()
         ]);
 
-        // remove the session 
+        // Send To User Email The Order No.
+        Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+
+        // Remove the session data
         Session::forget('cart');
-        return redirect()->route('home')->with('success', 'Successfully Purchased the product(s)');
+
+        return redirect()->route('confirm.order');
+    }
+
+    public function confirm_order()
+    {   
+        $order = auth()->user()->orders->last();
+
+        $ordernumber = $order->order_number;
+        $payment = $order->payment;
+        $totalprice = $order->cart->totalPrice;
+
+        // dd($payment);
+        return view('products.confirm_order', compact('ordernumber', 'payment', 'totalprice'));
+    }
+
+    // View List of Orders
+    public function list_orders()
+    {
+        $orders = Order::where('user_id', auth()->user()->id)
+                ->orderBy('date', 'desc')
+                ->get();
+
+        return view('products.list_orders', compact('orders'));
+    }
+
+    public function generate_invoice($id)
+    {
+        $order = Order::where('id', $id)->first();
+        $isDefault = Detail::where('isDefault', true)
+            ->where('user_id', auth()->user()->id)
+            ->first();
+        // dd($order->cart);
+
+        return view('products.generate_invoice', compact('order', 'isDefault'));
     }
 
     // Pay On Bank
@@ -144,31 +180,32 @@ class ProductsController extends Controller
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $total = $cart->totalPrice;
+        $products = $cart;
+        $details = Detail::where('user_id', auth()->user()->id)->get();
+        $isDefault = Detail::where('isDefault', true)
+                    ->where('user_id', auth()->user()->id)
+                    ->first();
 
-        return view('products.checkout_payonbank', ['total' => $total]);
+        return view('products.checkout_payonbank',[
+            'products' => $products, 
+            'details' => $details, 
+            'isDefault' => $isDefault
+        ]);
     }
 
     public function payonbank_store(Request $request, Faker $faker)
     {   
-        $request->validate([
-            'name' => 'required|max: 100',
-            'phone' => 'required|numeric',
-            'address' => 'required|max:150',
-        ]);
-
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        $reference = 'OBM-' . $faker->isbn10;
-        $payment = 'COD';
+        $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
+        $payment = 'PAY ON BANK';
         $cart = serialize($cart); // this will convert the data to string
 
         // Store data in database
         $order = Order::create([
             'user_id' => auth()->user()->id,
-            'reference_id' => $reference,
-            'name' => $request->name,
+            'order_number' => $order_number,
             'phone' => $request->phone,
             'address' => $request->address,
             'cart' => $cart,
@@ -177,8 +214,12 @@ class ProductsController extends Controller
             'date' => now()
         ]);
 
+        // Send To User Email The Order No.
+        Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+
         // remove the session 
         Session::forget('cart');
-        return redirect()->route('home')->with('success', 'Successfully Purchased the product(s)');
+
+        return redirect()->route('confirm.order');
     }
 }

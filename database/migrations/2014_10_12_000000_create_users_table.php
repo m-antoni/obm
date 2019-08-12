@@ -13,18 +13,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('first');
             $table->string('middle');
             $table->string('last');
             $table->string('phone');
-            $table->string('address');
-            $table->boolean('beem_activation')->default(false);
+            $table->longText('address');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isBan')->default(false);
+            $table->longText('image')->nullable();
+            $table->longText('referral_key');
             $table->rememberToken();
             $table->timestamps();
         });

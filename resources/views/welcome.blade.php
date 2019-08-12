@@ -2,7 +2,7 @@
 
 @section('content')
   
-    <!-- Header -->
+  <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
@@ -15,13 +15,14 @@
       </div>
     </div>
   </header>
-
+  
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
       <h5>Copyright &copy; ONE BEEM 2019</h5>
     </div>
   </footer>
+
 
 @endsection
 
