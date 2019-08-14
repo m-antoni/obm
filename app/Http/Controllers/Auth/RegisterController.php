@@ -68,6 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         return User::create([
             'first' => $data['first'],
             'middle' => $data['middle'],
@@ -76,6 +77,8 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
+            'referral_key' => bcrypt($data['first'] . $data['middle'] . $data['last'])
         ]);
+
     }
 }

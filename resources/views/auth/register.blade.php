@@ -86,6 +86,8 @@
                 <div class="form-group">
                     <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm">
                 </div>
+                
+                <input type="hidden" name="referral_key">    
 
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>

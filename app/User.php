@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
+use App\SmsGateway;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
+// class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     /**
@@ -15,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first','middle', 'last','email', 'phone', 'address','password',
+        'first','middle', 'last','email', 'phone', 'address','password', 'referral_key'
     ];
 
     /**
@@ -46,9 +49,37 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * This will get the cache OTP on the cache driver
+    */
+    // public function cacheTheOTP()
+    // {
+    //     $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
+
+    //     Cache::put(['OTP' => $OTP], now()->addSeconds(20));
+
+    //     return $OTP;
+    // }
+
+    // public function sendOTP()
+    // {   
+    //     // SMS Gateway Credentials Needed
+    //     $token = env('SMS_TOKEN');
+    //     $devide_id = env('SMS_DEVICE_ID');
+    //     $options = [];
+
+    //     $smsGateway = new SmsGateway($token);
+    //     $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
+    // }
+
     public function orders()
     {
        return $this->hasMany('App\Order');
+    } 
+
+    public function baskets()
+    {
+       return $this->hasMany('App\Basket');
     }
 
     public function cards()

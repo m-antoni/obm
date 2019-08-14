@@ -12,4 +12,9 @@ class Product extends Model
  	  {
  	  		return $this->hasMany('App\Order');
  	  }
+
+ 	  public function baskets()
+ 	  {
+ 	  		return $this->hasMany('App\Basket');
+ 	  }
 }

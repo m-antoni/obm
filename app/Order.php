@@ -13,10 +13,10 @@ class Order extends Model
     ];
 
     // unserialize the cart data
-    public function getCartAttribute($value)
-    {
-        return unserialize($value);
-    }
+    // public function getCartAttribute($value)
+    // {
+    //     return unserialize($value);
+    // }
 
    public function getFullNameAttribute()
     {
@@ -31,5 +31,10 @@ class Order extends Model
     public function product()
     {
     	return $this->belongsTo('App\Product');
+    } 
+
+    public function baskets()
+    {
+        return $this->hasMany('App\Basket');
     } 
 }

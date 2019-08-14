@@ -33,7 +33,7 @@
 							</ul>
 						@else
 							<hr class="my-4">
-							<h4 class="text-secondary" align="center">Php {{number_format($totalprice)}}</h4>
+							<h4 class="text-secondary" align="center">Php {{number_format($cart['totalPrice'])}}</h4>
 							<div align="center">Please have this amount ready</div>
 						@endif
 					</div>

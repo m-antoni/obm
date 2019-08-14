@@ -13,8 +13,8 @@
 							<div class="col-md-4">
 								<div class="list-group mb-4">
 									<div class="list-group-item">
-										@if(auth()->user()->image == '/img/noimage.jpg')
-											<img src="{{ auth()->user()->image }}" alt="img1" class="img-fluid">
+										@if(auth()->user()->image == null)
+											<img src="{{ asset('/img/noimage.jpg') }}" alt="img1" class="img-fluid">
 										@else
 											<img src="{{ asset('storage/' . auth()->user()->image ) }}" alt="" class="img-fluid">
 										@endif
@@ -43,7 +43,8 @@
 										<p>Phone: {{auth()->user()->phone}}</p>
 										<p>Email Address: {{auth()->user()->email}}</p>
 										<p>Home Address: {{auth()->user()->address}}</p>
-										<p>Refferal Key: {{str_random(15)}} <br>
+										<p>Credits: Php {{auth()->user()->credits}}</p>
+										<p>Refferal Key: http://onebeem.com/register/{{ auth()->user()->referral_key}} <br>
 											<span>
 												<a href="#" class="text-danger" data-toggle="modal" data-target="#referralKey">
 													What is refferal key?

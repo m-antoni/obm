@@ -24,8 +24,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isBan')->default(false);
-            $table->longText('image')->nullable();
-            $table->longText('referral_key');
+            $table->boolean('isVerified')->default(false);
+            $table->longText('image')->nullable();;
+            $table->longText('referral_key')->nullable();
+            $table->integer('credits')->default(100);
             $table->rememberToken();
             $table->timestamps();
         });

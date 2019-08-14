@@ -5,18 +5,23 @@ use App\Product;
 // Landing Page
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
+
+// Verify SMS OPT
+Route::get('sms', 'VerifyOTPController@test'); // testing
+Route::get('smsverify', 'VerifyOTPController@show_verify')->name('verify.sms');
+Route::post('smsverify', 'VerifyOTPController@verifyOTP')->name('verify.otp');
 
 // Users Routes 
 Auth::routes();
-// set to send verify link must be after auth routes
-Auth::routes(['verify' => true]);
+//set to send verify link must be after auth routes
+Auth::routes(['isverified' => true]);
 
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 
-Route::group(['prefix' => 'home', 'middleware' => ['auth', 'verified']],function(){
+Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified']],function(){
 		// navigation
 		Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 		Route::get('/shop', 'ProductsController@index')->name('shop')->middleware('auth');
@@ -49,13 +54,11 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'verified']],function
 		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
 		// Upload Receipts
 		Route::post('products/confirm-order', 'UploadReceiptsController@upload_receipt')->name('upload.receipt');
-		Route::post('products/list-orders/upload', 'UploadReceiptsController@client_receipt')->name('upload.receipt.clientarea');
 
 		// Client Area
 		Route::get('client/', 'ClientsAreaController@index')->name('client');
 		Route::get('client/user-profile', 'ClientsAreaController@user_profile')->name('user.profile');
 		Route::post('client/user-profile/upload-image', 'ClientsAreaController@upload_image')->name('upload.image');
-
 
 		// Beem Bucks Routes
 		// Route::get('create_beem/','BeemBucksController@create')->name('create_beem');
@@ -65,6 +68,12 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'verified']],function
 		// Route::put('ewallet/{id}','BeemBucksController@ewallet_update')->name('ewallet.update');
 		// Route::delete('ewallet/{card}', 'BeemBucksController@card_destroy')->name('card.destroy');
 });
+
+	// Route::get('/testing/{link?}', function($link = null){
+	// 		return 'hello ' . $link;
+	// });
+
+
 
 
 // Send To Email Routes

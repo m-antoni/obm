@@ -35,7 +35,6 @@ $factory->define(User::class, function (Faker $faker) {
         'address' => $faker->address,
         'email' => $faker->unique()->safeEmail,
         'isBan' => false,
-        'image' => '/img/noimage.jpg',
         'referral_key' => str_random(12),
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password

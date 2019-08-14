@@ -32,7 +32,7 @@
                         </li>
                     @endif
                 @else
-                        
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}"> Home</a>
                     </li>
@@ -63,8 +63,7 @@
                             </form>
                         </div>
                     </li>
-
-                    
+     
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shopping.cart') }}">
                             <span class="badge badge-default badge-dark p-2 text-white cartQty">
@@ -72,7 +71,6 @@
                             </span> 
                         </a>
                     </li>
-    
                 @endguest
             </ul>
         </div>

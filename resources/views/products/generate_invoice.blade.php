@@ -64,7 +64,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                  		@foreach($order->cart->items as $item)
+                  		@foreach($cart['items'] as $item)
 	                      <tr>
 	                          <td class="text-left">
 	                          	<h3>{{$item['item']['p_name']}}</h3>
@@ -89,7 +89,7 @@
                       <tr>
                           <td></td>
                           <td>TOTAL</td>
-                          <td>Php {{number_format($order->cart->totalPrice)}}</td>
+                          <td>Php {{number_format($cart['totalPrice'])}}</td>
                       </tr>
                   </tfoot>
               </table>

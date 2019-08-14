@@ -115,7 +115,8 @@ class ProductsController extends Controller
 
         $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
         $payment = 'COD';
-        $cart = serialize($cart); // this will convert the data to string
+        // $cart = serialize($cart);
+        $cart = json_encode($cart);
 
         // Store data in database
         $order = Order::create([
@@ -130,7 +131,7 @@ class ProductsController extends Controller
         ]);
 
         // Send To User Email The Order No.
-        Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+        // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
 
         // Remove the session data
         Session::forget('cart');
@@ -144,10 +145,10 @@ class ProductsController extends Controller
 
         $ordernumber = $order->order_number;
         $payment = $order->payment;
-        $totalprice = $order->cart->totalPrice;
+        $cart = json_decode($order->cart, true);
 
         // dd($payment);
-        return view('products.confirm_order', compact('ordernumber', 'payment', 'totalprice'));
+        return view('products.confirm_order', compact('ordernumber', 'payment', 'cart'));
     }
 
     // View List of Orders
@@ -163,12 +164,13 @@ class ProductsController extends Controller
     public function generate_invoice($id)
     {
         $order = Order::where('id', $id)->first();
+        $cart = json_decode($order->cart, true);
         $isDefault = Detail::where('isDefault', true)
             ->where('user_id', auth()->user()->id)
             ->first();
         // dd($order->cart);
 
-        return view('products.generate_invoice', compact('order', 'isDefault'));
+        return view('products.generate_invoice', compact('order', 'isDefault', 'cart'));
     }
 
     // Pay On Bank
@@ -200,8 +202,8 @@ class ProductsController extends Controller
 
         $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
         $payment = 'PAY ON BANK';
-        $cart = serialize($cart); // this will convert the data to string
-
+        // $cart = serialize($cart);
+        $cart = json_encode($cart);
         // Store data in database
         $order = Order::create([
             'user_id' => auth()->user()->id,
@@ -215,7 +217,7 @@ class ProductsController extends Controller
         ]);
 
         // Send To User Email The Order No.
-        Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+        // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
 
         // remove the session 
         Session::forget('cart');
