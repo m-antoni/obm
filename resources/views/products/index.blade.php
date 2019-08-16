@@ -2,75 +2,64 @@
 
 @section('content')
 
-<div id="userHome">
-    <div class="row no-gutters">
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="#"><img src="/img/users/accesories.jpg" alt="accesories" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">ACCESORIES</div>
-                    <h4 class="text-dark"><b>COMING SOON</b></h4>
-                </div>
+<div class="container customHeight">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div align="center">
+                <a href="{{route('appliances')}}">
+                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
+                        <i class="fa fa-tv"></i> APPLIANCES
+                    </button>
+                </a>
             </div>
         </div>
         
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="#"><img src="/img/users/apparel.jpg" alt="apparel" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">APPAREL</div>
-                    <h4 class="text-dark"><b>COMING SOON</b></h4>
-                </div>
+        <div class="col-md-6">
+            <div align="center">
+                <a href="{{route('kitchenware')}}">
+                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
+                        <i class="fa fa-mug-hot"></i> KITCHENWARE
+                    </button>
+                </a>    
             </div>
         </div>
 
-         <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="#"><img src="/img/users/electronic.jpg" alt="electronic" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">ELECTRONIC</div>
-                    <h4 class="text-dark"><b>COMING SOON</b></h4>
-                </div>
+        <div class="col-md-6">
+            <div align="center">
+                <a href="#">
+                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
+                        <i class="fa fa-bolt"></i> ELECTRONIC
+                    </button>
+                </a>
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div align="center">
+                <a href="#">
+                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
+                        <i class="fa fa-mobile"></i> GADGETS
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
 
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="{{ route('appliances') }}"><img src="/img/users/appliances.jpg" alt="appliances" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">APPLIANCE</a></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="#"><img src="/img/users/gadgets.jpg" alt="gadgets" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">GADGETS</div>
-                    <h4 class="text-dark"><b>COMING SOON</b></h4>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-sm-6 col-12">
-            <div class="imghome">
-                <a href="{{ route('kitchenware') }}"><img src="/img/users/kitchen.jpg" alt="kitchen" class="image mg-fluid"></a>
-                <div class="middle">
-                    <div class="text">KITCHENWARE</div>
-                </div>
-            </div>
-        </div>
+    <div class="row justify-content-center mt-5">
+        <a href="#">
+            <button class="bttn bttn-lg bttn-primary bttn-fill py-2 bttn-primary m-1">
+                <i class="fa fa-coins"></i> TAP YOUR CREDITS
+            </button>
+        </a>
     </div>
 </div>
 
 <!-- Footer -->
-<section class="bg-black small text-center text-white-50 py-5">
+{{-- <section class="bg-black small text-center text-white-50 py-5">
   <div class="container">
     <h6>Copyright &copy; ONE BEEM 2019</h6>
   </div>
-</section>
+</section> --}}
 
 @endsection
 

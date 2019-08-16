@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first','middle', 'last','email', 'phone', 'address','password', 'referral_key'
+        'first','middle', 'last','email', 'phone','city','barangay',
+        'zipcode','street','password', 'referral_key','referBy'
     ];
 
     /**
@@ -52,25 +53,25 @@ class User extends Authenticatable
     /**
      * This will get the cache OTP on the cache driver
     */
-    // public function cacheTheOTP()
-    // {
-    //     $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
+    public function cacheTheOTP()
+    {
+        $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
+        
+        Cache::put(['OTP' => $OTP], now()->addSeconds(20));
 
-    //     Cache::put(['OTP' => $OTP], now()->addSeconds(20));
+        return $OTP;
+    }
 
-    //     return $OTP;
-    // }
+    public function sendOTP()
+    {   
+        // SMS Gateway Credentials Needed
+        $token = env('SMS_TOKEN');
+        $devide_id = env('SMS_DEVICE_ID');
+        $options = [];
 
-    // public function sendOTP()
-    // {   
-    //     // SMS Gateway Credentials Needed
-    //     $token = env('SMS_TOKEN');
-    //     $devide_id = env('SMS_DEVICE_ID');
-    //     $options = [];
-
-    //     $smsGateway = new SmsGateway($token);
-    //     $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
-    // }
+        $smsGateway = new SmsGateway($token);
+        $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
+    }
 
     public function orders()
     {

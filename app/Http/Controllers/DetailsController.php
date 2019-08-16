@@ -5,80 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Detail;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DetailsController extends Controller
 {
-    public function add_details(Request $request)
+
+	public function add_details(Request $request)
 	{
-			// dd($request->all());
-
-			$validate = $request->validate([
-				'phone' => 'required|min:11|numeric',
-				'address' => 'required'
-			]);
-
-	    // need to update all to false except the new default
-	    $details = Detail::create([
-				'user_id' => auth()->user()->id,
-				'phone' => $request->phone,
-				'address' => $request->address,
-				'isDefault' => $request->isDefault
-			]);	
-	    // if another default is added every data will be false except new default
-			$updateToFalse = Detail::where('id' ,'!=', $details->id)
-		     				->where('user_id', auth()->user()->id)
-								->update(['isDefault' => false]);
-
-			return redirect()->route('checkout.cod');
-	}    
-
-	public function update_details(Request $request)
-	{
-		$validation = $request->validate([
-			'id' => 'required|numeric'
-		]);
-
-		$UpdateTrue = DB::table('details')->where('id', $request->id)
-						->where('user_id', auth()->user()->id)
-						->update([
-							'isDefault' => true
-						]);
-
-		$UpdateFalse = DB::table('details')->where('id', '!=', $request->id)
-						->where('user_id', auth()->user()->id)
-						->update([
-							'isDefault' => false
-						]);
-						
-
-		return  redirect()->route('checkout.cod');				
-	}
-
-	public function add_details_bank(Request $request)
-	{
-		// return dd($request->all());
+		 // dd($request->all());
 		$validate = $request->validate([
-			'phone' => 'required|min:11|numeric',
-			'address' => 'required',
+				'phone' => 'required|min:11|numeric',
+				'city' => 'required',
+				'barangay' => 'required',
+				'zipcode' => 'required|numeric',
+				'street' => 'required',
 		]);
 
     // need to update all to all to false except the new default
     $details = Detail::create([
 				'user_id' => auth()->user()->id,
 				'phone' => $request->phone,
-				'address' => $request->address,
-				'isDefault' => $request->isDefault
+				'city' => $request->city,
+				'barangay' => $request->barangay,
+				'zipcode' => $request->zipcode,
+				'street' => $request->street,
+				'date' => Carbon::now(),
 		]);	
 
-		$updateFalse = Detail::where('id' ,'!=', $details->id)
-		     			->where('user_id', auth()->user()->id)
-							->update(['isDefault' => false]);
-
-		return  redirect()->route('checkout.payonbank');
+		return  redirect()->route('checkout');
 
 	}
 
-	public function update_details_bank(Request $request)
+	public function update_details(Request $request)
 	{
 
 		$validation = $request->validate([
@@ -97,6 +55,6 @@ class DetailsController extends Controller
 							'isDefault' => false
 						]);
 						
-		return redirect()->route('checkout.payonbank');				
-	}
+		 return redirect()->route('checkout');				
+	 }
 }

@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
    	protected $guarded = [];
-
-   	protected $cast = [
-   		'isDefault' => 'boolean'
-   	];
    	
+    protected $dates = [
+      'date', 
+    ];
+
    //  public function setIsDefaultAttribute($value)
   	// {
   	//     return $this->attributes['value'] = isset($value)?1:0;

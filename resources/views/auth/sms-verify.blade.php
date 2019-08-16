@@ -13,15 +13,19 @@
                 <div class="card-body text-secondary">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {{ __('A fresh verification code has been sent to your phone.') }}
                         </div>
                     @endif
-                    
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fa fa-times"></i> {{session('error')}}
+                        </div>
+                    @endif
                     <form action="{{ route('verify.otp') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Enter The Code:</label>
-                            <input type="text" name="opt" class="form-control">
+                            <input type="text" name="otp" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -29,7 +33,7 @@
                         </div>
                     </form>    
                                                               
-                    <a class="text-info" href="#">
+                    <a class="text-info" href="{{ route('resend') }}">
                         <b><i class="fa fa-hand-point-right"></i> {{ __('click here to resend another code') }}</b>
                     </a>
                 </div>

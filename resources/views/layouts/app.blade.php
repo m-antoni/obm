@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Roboto:700&display=swap" rel="stylesheet">
     <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/btns.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bttn.min.css') }}">
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
      {{-- Concept theme --}}

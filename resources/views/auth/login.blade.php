@@ -27,8 +27,9 @@
                             </span>
                         @enderror
                     </div>
+                    
                     <div class="form-group">
-                         <label>Password:</label>       
+                        <label>Password:</label>       
                         <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter your password">
 
                         @error('password')

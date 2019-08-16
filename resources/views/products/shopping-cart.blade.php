@@ -9,8 +9,8 @@
 			    font-size: 25px;
 			    font-weight: 700;
 			    line-height: 30px;
-			    padding: 0 2px
-			    ;min-width: 35px;
+			    padding: 0 2px;
+			    min-width: 35px;
 			    text-align: center;
 			}
 			.qty .plus {
@@ -110,7 +110,7 @@
 									<div class="clearfix">
 										<div class="float-right">
 											<div><h5><b>Total: ₱{{ number_format( $totalPrice)}}</b>	</h5></div><hr>
-											<a href="#" class="btn btn-outline-dark" data-toggle="modal" data-target="#confirmModal">
+											<a href="{{ route('checkout') }}" class="btn btn-outline-dark">
 												<i class="fa fa-shopping-cart"></i> Checkout
 											</a>
 										</div>
@@ -118,34 +118,6 @@
 								</li>			
 						</div>
 						
-					{{-- confirmmodal --}}
-				    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				        <div class="modal-dialog" role="document">
-				          <div class="modal-content">
-				              <div class="modal-header">
-				              	<div> <b>Payment Method</b></div>
-				                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                  <span aria-hidden="true">&times;</span>
-				                </button>
-				              </div>
-				              <div class="modal-body">
-				              	<div align="center">
-				              		<div>
-						            	<a href="{{ route('checkout.cod') }}" class="btn btn-outline-dark py-3">
-						                	<i class="fa fa-dolly"></i> CASH ON DELIVERY
-						            	</a>
-				              		</div>
-				              		<br>
-				              		<div>
-				              			<a href="{{ route('checkout.payonbank') }}" class="btn btn-outline-dark py-3">
-						                	<i class="fa fa-credit-card"></i> OVER THE COUNTER
-						            	</a>
-				              		</div>
-				              	</div>
-				              </div>
-				          </div>
-				        </div>
-				    </div>
 		@else
 			<div class="py-2 text-center">
 					<h1 align="center"><i class="fa fa-times-circle fa-3x text-danger"></i></h1>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="py-5 mb-4" style="background: #eaeaea">
-            <h2 align="center" class="text-info">EMAIL VERIFICATION</h2>
+        <h2 align="center" class="text-info">EMAIL VERIFICATION</h2>
     </div>
 
 <div class="container">
@@ -15,7 +15,7 @@
                     <h4>{{ __('Verify Your Email Address') }}</h4>
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {{ __('A fresh verification link has been sent to your phone.') }}
                         </div>
                     @endif
 
@@ -23,10 +23,6 @@
                         Before proceeding, please check your email for a verification link.
                         If you did not receive the email.
                     </p>
-                    
-                    <a class="text-info" href="{{ route('verification.resend') }}">
-                        <b><i class="fa fa-hand-point-right"></i> {{ __('click here to request another') }}</b>
-                    </a>
                 </div>
             </div>
         </div>

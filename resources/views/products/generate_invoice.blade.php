@@ -37,14 +37,8 @@
                       <div class="text-gray-light">INVOICE TO:</div>
                       <h2>{{$order->user->getFullNameAttribute()}}</h2>
                       <div>{{auth()->user()->email}}</div>
-                      @if($isDefault)
-                          <div>{{$isDefault->phone}}</div>
-                          <div>{{$isDefault->address}}</div>
-                      @else
-                          <div>{{auth()->user()->phone}}</div>
-                          <div>{{auth()->user()->address}}</div>
-                      @endif
-                      
+                      <div>{{$order->phone}}</div>
+                      <div>{{$order->street}}, {{$order->barangay}}</div>
                   </div>
                   <div class="col invoice-details">
                       <h1 class="invoice-id">INVOICE</h1>

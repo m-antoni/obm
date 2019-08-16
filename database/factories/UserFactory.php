@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Faker\Generator as Faker;
 
 /*
@@ -31,13 +32,17 @@ $factory->define(User::class, function (Faker $faker) {
         'first' => $faker->firstName,
         'middle' => $faker->lastName,
         'last' => $faker->lastName,
-        'phone' => '09231245789',
-        'address' => $faker->address,
+        'phone' => '0939' . rand(1000000, 9999999),
+        'city' => $faker->city,
+        'barangay' => $faker->state,
+        'zipcode' => $faker->postcode,                               
+        'street' => $faker->streetAddress,
         'email' => $faker->unique()->safeEmail,
         'isBan' => false,
         'referral_key' => str_random(12),
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
-        'remember_token' => Str::random(21),
+        'referral_key' => strtoupper(str_random(10)),
+        'remember_token' => str_random(30)
     ];
 });

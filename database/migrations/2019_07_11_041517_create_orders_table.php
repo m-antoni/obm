@@ -18,7 +18,10 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('order_number');
             $table->string('phone');
-            $table->longText('address');
+            $table->string('city');
+            $table->string('barangay');
+            $table->string('zipcode');
+            $table->longText('street');
             $table->longText('cart');
             $table->longText('status');
             $table->longText('payment');

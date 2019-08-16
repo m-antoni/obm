@@ -4,7 +4,6 @@
 
 <div class="container customHeight" id="products">
 		<div class="row justify-content-center">
-				
 			@if(count($products) > 0)
 					@foreach($products as $row)
 						<div class="col-md-3 col-sm-4 col-6 mb-4">

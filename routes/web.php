@@ -11,12 +11,15 @@ Route::get('/', function () {
 Route::get('sms', 'VerifyOTPController@test'); // testing
 Route::get('smsverify', 'VerifyOTPController@show_verify')->name('verify.sms');
 Route::post('smsverify', 'VerifyOTPController@verifyOTP')->name('verify.otp');
+Route::get('smsverify/resend', 'VerifyOTPController@resend')->name('resend');
 
 // Users Routes 
 Auth::routes();
+
 //set to send verify link must be after auth routes
 Auth::routes(['isverified' => true]);
 
+Route::post('/register/fetch', 'Auth\RegisterController@fetch')->name('dynamic.address.fetch');
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
@@ -34,24 +37,20 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified']],functi
 		// Products Gallery
 		Route::get('products/appliances/', 'ProductsController@appliances')->name('appliances');
 		Route::get('products/kitchenware/', 'ProductsController@kitchenware')->name('kitchenware');
+		Route::get('products/show-all/{category}', 'ProductsController@show_all')->name('show.all');
 
 		// Add To Cart Routes
 		Route::get('products/remove/{id}', 'ProductsController@delete_item')->name('delete.cart');
 		Route::get('products/add-to-cart/{id}', 'ProductsController@add_to_cart')->name('add.cart');
 		Route::get('products/shopping-cart/', 'ProductsController@shopping_cart')->name('shopping.cart');
 
-		// Cash On Delivery
-		Route::get('products/checkout-cod', 'ProductsController@checkout_cod')->name('checkout.cod');
-		Route::post('products/checkout-cod', 'ProductsController@cod_store')->name('cod.store');
-		Route::post('products/checkout-cod/add-details', 'DetailsController@add_details')->name('add.details');
-		Route::post('products/checkout-cod/update-details', 'DetailsController@update_details')->name('update.details');
-
-		// Pay on Bank Routes
-		Route::get('products/checkout-payonbank', 'ProductsController@checkout_payonbank')->name('checkout.payonbank');
-		Route::post('products/checkout-payonbank', 'ProductsController@payonbank_store')->name('payonbank.store');
-		Route::post('products/checkout-payonbank/add-details', 'DetailsController@add_details_bank')->name('add.details.bank');
-		Route::post('products/checkout-payonbank/update-details', 'DetailsController@update_details_bank')->name('update.details.bank');
+		// Bank Transfer Routes
+		Route::get('products/checkout', 'ProductsController@checkout')->name('checkout');
+		Route::post('products/checkout', 'ProductsController@checkout_store')->name('checkout.store');
+		Route::post('products/checkout/add-details', 'DetailsController@add_details')->name('add.details');
+		// Route::post('products/checkout/update-details', 'DetailsController@update_details')->name('update.details');
 		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
+
 		// Upload Receipts
 		Route::post('products/confirm-order', 'UploadReceiptsController@upload_receipt')->name('upload.receipt');
 

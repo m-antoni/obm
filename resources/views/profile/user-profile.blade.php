@@ -40,17 +40,20 @@
 
 									<div class="list-group-item userInformation">
 										<h4>{{auth()->user()->getFullNameAttribute()}}</h4>
-										<p>Phone: {{auth()->user()->phone}}</p>
-										<p>Email Address: {{auth()->user()->email}}</p>
-										<p>Home Address: {{auth()->user()->address}}</p>
-										<p>Credits: Php {{auth()->user()->credits}}</p>
-										<p>Refferal Key: http://onebeem.com/register/{{ auth()->user()->referral_key}} <br>
+										<div>{{auth()->user()->phone}}</div>
+										<div>{{auth()->user()->email}}</div>
+										<div>{{auth()->user()->street}}, {{auth()->user()->barangay}}, {{auth()->user()->city}}</div>
+										
+										<br>
+										<div><b>Credits:</b> Php {{auth()->user()->credits}}</div>
+										<div>Refferal Link:
+											<input type="text" value="http://onebeem.com/register/{{ auth()->user()->referral_key}}" class="form-control bg-dark text-warning">
 											<span>
 												<a href="#" class="text-danger" data-toggle="modal" data-target="#referralKey">
 													What is refferal key?
 												</a>
 											</span>
-										</p>
+										</div>
 									</div>
 								</div>
 								

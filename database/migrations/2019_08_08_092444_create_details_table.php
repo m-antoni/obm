@@ -17,8 +17,11 @@ class CreateDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('phone');
-            $table->longText('address');
-            $table->boolean('isDefault')->default(0);
+            $table->string('city');
+            $table->string('barangay');
+            $table->string('zipcode');
+            $table->longText('street');
+            $table->string('date');
             $table->timestamps();
         });
     }

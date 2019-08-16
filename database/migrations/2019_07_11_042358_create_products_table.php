@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('price');
             $table->string('old_price');
             $table->string('category');
+            $table->string('stocks');
             $table->string('image')->default('noimage.jpg');
             $table->timestamps();
         });

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Auth;
 use App\SmsGateway;
 
@@ -31,7 +30,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-
    /**
      * Attempt to log the user into the application.
      *
@@ -44,9 +42,9 @@ class LoginController extends Controller
             $this->credentials($request), $request->filled('remember')
         );
 
-        if($result){
-            $this->sendOTP();
-        }
+        // if($result){
+        //     $this->sendOTP();
+        // }
 
         return $result;
     }
@@ -56,7 +54,7 @@ class LoginController extends Controller
     {
         $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
 
-        Cache::put(['OTP' => $OTP], now()->addSeconds(20));
+        Cache::store(['OTP' => $OTP], now()->addSeconds(60));
 
         return $OTP;
     }
