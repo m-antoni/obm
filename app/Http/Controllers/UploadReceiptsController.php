@@ -12,8 +12,8 @@ class UploadReceiptsController extends Controller
     {   
     	// return dd(request()->all());
 			$validate = request()->validate([
-				'order_number' => 'required|numeric',
-				'image' => 'required|image|max:1999'
+					'order_number' => 'required|numeric',
+					'image' => 'required|image|max:1999'
 			]);
 
 			$compare = UploadReceipt::where('order_number', request()->order_number)->first();

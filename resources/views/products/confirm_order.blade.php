@@ -2,40 +2,19 @@
 
 @section('content')
 	<div class="py-5 mb-3" style="background: #eaeaea">
-			<h2 align="center" class="text-dark">ORDER CONFIRMATION</h2>
+			<h2 align="center" class="text-info">ORDER CONFIRMATION</h2>
 	</div>
 	<div class="container mb-4">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-				<div class="card my-2 border-dark">
+				<div class="card my-2">
 					<div class="card-body">
-						<h4 class="text-secondary" align="center">
-							<span class="text-info">
-								Order No:
-							</span> {{$ordernumber}}
-
-							<p class="lead mt-2" align="center">We sent an Invoice to your email</p>
+						<h4 align="center">
+							<span class="text-info">Order No:</span> {{$ordernumber}}
 						</h4>
-
-						@if($payment == 'PAY ON BANK')	
-							<ul class="list-group mt-4">
-								<li class="list-group-item border-dark">
-									<div class="mb-2"><b>Payment Procedure:</b></div>
-									<ol class="px-2">
-										<li>Deposit or Transfer Payment to our account numbers below</li>
-											<div align="center" class="py-2 text-danger"><b>Metrobank: 2657265514410</b></div>
-										<li>Upload your receipt here 
-											<a href="#" class="btn btn-sm btn-outline-dark btn-sm p-1" data-toggle="modal" data-target="#uploadReceipt" align="center">click here</a>
-										</li>
-										<li>Give us 24 hrs to process your payment</li>
-									</ol>
-								</li>
-							</ul>
-						@else
-							<hr class="my-4">
-							<h4 class="text-secondary" align="center">Php {{number_format($cart['totalPrice'])}}</h4>
-							<div align="center">Please have this amount ready</div>
-						@endif
+						<br>
+						<h5 align="center" class="text-muted">Give us 24 hrs to process your payment</h5 align="center">
+						<h5 align="center" class="text-muted"><i class="fa fa-coins"></i> Credits: {{number_format(auth()->user()->credits)}}</h5>
 					</div>
 				</div>
 
@@ -52,45 +31,6 @@
 			</div>
 		</div>
 	</div>
-
-
- {{-- Upload Receipts Modal --}}
-   <div class="modal fade" id="uploadReceipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                <div class="modal-title"><i class="fa fa-upload"></i> Upload File</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-								   <form id="uploadReceiptForm" action="{{route('upload.receipt')}}" method="POST" enctype="multipart/form-data">
-								      @csrf
-								      <div class="form-group">
-								          <label>Order Number:</label>
-								   				<input type="text" name="order_number" class="form-control" id="order_number">
-								      </div>
-
-								      <div class="form-group">
-								          <label>Upload Receipt:</label><br> 
-								   				<input type="file" name="image" id="image">
-								   				<small class="text-secondary">2MB Maximum Size</small>
-								      </div>
-								      <hr>
-								      <div class="form-group">
-								        <button type="submit" class="btn btn-dark btn-block btn-sm py-2 border-dark">
-								          <i class="fa fa-check"></i> Submit
-								        </button>
-								     </div>
-								  </form>	
-              </div>
-
-              <div class="modal-footer">
-              </div>
-          </div>
-        </div>
-    </div>
 
 @endsection
 

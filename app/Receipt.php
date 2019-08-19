@@ -4,11 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UploadReceipt extends Model
+class Receipt extends Model
 {
     protected $guarded = [];
 
-    protected $dates = [
-			'date', 
-    ];
 }

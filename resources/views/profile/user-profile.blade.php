@@ -45,9 +45,9 @@
 										<div>{{auth()->user()->street}}, {{auth()->user()->barangay}}, {{auth()->user()->city}}</div>
 										
 										<br>
-										<div><b>Credits:</b> Php {{auth()->user()->credits}}</div>
-										<div>Refferal Link:
-											<input type="text" value="http://onebeem.com/register/{{ auth()->user()->referral_key}}" class="form-control bg-dark text-warning">
+										<div><b>Credits:</b> Php {{number_format(auth()->user()->credits)}}</div>
+										<div>Refferal Code:
+											<input type="text" value="{{ auth()->user()->referral_key}}" class="form-control bg-dark text-warning">
 											<span>
 												<a href="#" class="text-danger" data-toggle="modal" data-target="#referralKey">
 													What is refferal key?

@@ -7,24 +7,25 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
-// Verify SMS OPT
-Route::get('sms', 'VerifyOTPController@test'); // testing
-Route::get('smsverify', 'VerifyOTPController@show_verify')->name('verify.sms');
-Route::post('smsverify', 'VerifyOTPController@verifyOTP')->name('verify.otp');
-Route::get('smsverify/resend', 'VerifyOTPController@resend')->name('resend');
 
 // Users Routes 
 Auth::routes();
-
 //set to send verify link must be after auth routes
 Auth::routes(['isverified' => true]);
 
+// SMS Verification Code OPT Routes
+Route::get('smsverify', 'VerifyOTPController@show_verify')->name('verify.sms');
+Route::post('smsverify', 'VerifyOTPController@verifyOTP')->name('verify.otp');
+Route::get('smsverify/resend', 'VerifyOTPController@resend')->name('resend');
+// Route::get('sms', 'VerifyOTPController@test'); // testing
+
+// Dynamic Address Fetching
 Route::post('/register/fetch', 'Auth\RegisterController@fetch')->name('dynamic.address.fetch');
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout')->middleware('auth');
 
-Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified']],function(){
+Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],function(){
 		// navigation
 		Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 		Route::get('/shop', 'ProductsController@index')->name('shop')->middleware('auth');
@@ -48,41 +49,27 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified']],functi
 		Route::get('products/checkout', 'ProductsController@checkout')->name('checkout');
 		Route::post('products/checkout', 'ProductsController@checkout_store')->name('checkout.store');
 		Route::post('products/checkout/add-details', 'DetailsController@add_details')->name('add.details');
-		// Route::post('products/checkout/update-details', 'DetailsController@update_details')->name('update.details');
 		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
 
-		// Upload Receipts
-		Route::post('products/confirm-order', 'UploadReceiptsController@upload_receipt')->name('upload.receipt');
+		// Beem Credits Routes
+		Route::get('purchase-credit','CreditsController@show_credits')->name('show.credits');
+		Route::post('purchase-credit/purchase','CreditsController@post_credits')->name('post.credits');
+		Route::get('purchase-credit/upload','CreditsController@show_receipt')->name('show.receipt');
+		Route::post('purchase-credit/upload', 'CreditsController@post_receipt')->name('post.receipt');
 
 		// Client Area
 		Route::get('client/', 'ClientsAreaController@index')->name('client');
 		Route::get('client/user-profile', 'ClientsAreaController@user_profile')->name('user.profile');
 		Route::post('client/user-profile/upload-image', 'ClientsAreaController@upload_image')->name('upload.image');
+		
+		// Chat Module Routes
+		Route::get('/chat', 'ChatController@index')->name('chat');
+		Route::get('/chat/{id}', 'ChatController@show')->name('chat.show');
+		Route::post('/chat/getchat/{id}', 'ChatController@getChat')->name('chat.fetch');
 
-		// Beem Bucks Routes
-		// Route::get('create_beem/','BeemBucksController@create')->name('create_beem');
-		// Route::post('create_beem/','BeemBucksController@store')->name('store_beem');
-		// Route::get('ewallet','BeemBucksController@ewallet')->name('ewallet');
-		// Route::post('ewallet','BeemBucksController@ewallet_store')->name('ewallet.store');
-		// Route::put('ewallet/{id}','BeemBucksController@ewallet_update')->name('ewallet.update');
-		// Route::delete('ewallet/{card}', 'BeemBucksController@card_destroy')->name('card.destroy');
+
+		Route::get('/testing', function(){
+			return view('sms');
+		});
+
 });
-
-	// Route::get('/testing/{link?}', function($link = null){
-	// 		return 'hello ' . $link;
-	// });
-
-
-
-
-// Send To Email Routes
-// Route::get('send', 'MailController@send')->name('send.email');
-
-// Paypal Routes
-// Route::get('/home/products/paypal/{product}', 'PaypalController@index')->name('paypal');
-// Route::post('/home/products/paypal/checkout', 'PaypalController@createPayment')->name('create-paypal');
-// Route::get('/home/products/paypal/confirm', 'PaypalController@confirmPayment')->name('confirm-paypal');
-
-// Route::get('/home/product/show/{id}', 'ProductsController@summary')->name('summary');
-// ProductsConstroller
-//Route::get('/home/product/{product}', 'ProductsController@single_product')->name('single.product');

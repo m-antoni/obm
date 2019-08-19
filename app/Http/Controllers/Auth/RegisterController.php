@@ -105,7 +105,8 @@ class RegisterController extends Controller
     }
 
     public function cacheTheOTP()
-    {
+    {   
+        // Generate an OTP in Cache
         $OTP = rand(100000, 999999);
 
         Cache::put(['OTP' => $OTP], now()->addSeconds(60));
@@ -115,7 +116,7 @@ class RegisterController extends Controller
 
     public function sendOTP($phone)
     {   
-        // SMS Gateway Credentials Needed
+        // Sending OTP to users phone
         $token = env('SMS_TOKEN');
         $devide_id = env('SMS_DEVICE_ID');
         $options = [];
@@ -127,6 +128,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {   
+        // This will overright the current function 
         $address = DB::table('addresses')->groupBy('city')->get();
         // dd($address);
         return view('auth.register')->with('address', $address); 

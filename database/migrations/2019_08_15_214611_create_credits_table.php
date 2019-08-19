@@ -17,9 +17,7 @@ class CreateCreditsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('credits');
-            $table->integer('transaction_number');
-            $table->longText('image');
-            $table->string('status');
+            $table->string('status')->default('PENDING');
             $table->string('date');
             $table->timestamps();
         });

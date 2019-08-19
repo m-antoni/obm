@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="userId" content="{{Auth::check() ? Auth::user()->id : 'null'}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
+
     <title>{{ config('app.name', 'One Beem') }}</title>
 
     <!-- Fonts -->
@@ -14,7 +17,6 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Roboto:700&display=swap" rel="stylesheet">
     <link href="{{ asset('/css/iziToast.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/btns.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/bttn.min.css') }}">
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
@@ -27,36 +29,27 @@
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/grayscale.min.css') }}" >
-    <link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >     
-    
-    <!-- Modal CSS STYLES -->
+    <!-- Custom CSS STYLES -->
     <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
-    <!-- Custom CSS STYLES -->
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
-
-    <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/card-js.min.js') }}"></script>
-    <script src="{{ asset('/js/animatedModal.min.js') }}"></script>
     
     @yield('style')
 
 </head>
   <body id="page-top">
       <div id="app">
-        
-            @include('partials.navbar')
-            
-            <main>
-               @yield('content')
-            </main>
-
+        @include('partials.topnavbar')
+        <main class="mb-5 pb-5">
+           @yield('content')
+        </main>
+        @include('partials.bottomnavbar')
       </div>
-      
-          <!-- Custom scripts for this template -->
+        <!-- Custom scripts for this template -->
+        
+        <script src="{{ asset('/js/app.js') }}"></script>
         <script src="{{ asset('/js/iziToast.min.js')}}"></script>
-
+            
         <!-- Adding Custom scripts  -->
         @yield('script')
         <!-- ===================== -->

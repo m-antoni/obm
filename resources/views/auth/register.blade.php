@@ -145,8 +145,7 @@
                   </div>
                 </div>
 
-                <input type="hidden" name="referral_key">      
-                <input type="hidden" name="otp">      
+                <input type="hidden" name="referral_key">    
 
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>

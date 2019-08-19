@@ -17,9 +17,10 @@ class SendInvoice extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $cart)
     {
         $this->data = $data;
+        $this->cart = $cart;
     }
 
     /**
@@ -29,6 +30,6 @@ class SendInvoice extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.products.checkout_cod');
+        return $this->markdown('emails.products.checkout');
     }
 }

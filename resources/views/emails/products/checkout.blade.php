@@ -129,11 +129,10 @@
                     <table>
                         <tr>
                             <td>
-                            		{{$data->user->getFullNameAttribute()}}<br>
-                            		{{auth()->user()->email}} <br>
-                            		{{$data->phone}} <br>
-                                {{$data->address}}<br>
-                               
+	                            	{{$data->user->getFullNameAttribute()}}<br>
+	                            	{{auth()->user()->email}} <br>
+	                            	{{$data->phone}} <br>
+	                              {{$data->address}}<br>
                             </td>
                             
                             <td>
@@ -174,23 +173,23 @@
                     Price
                 </td>
             </tr>
-     
-  			  @foreach($data->cart->items as $item)        
+     {{-- 
+  			  @foreach($cart->items as $item)        
             <tr class="item">
                 <td>
                     {{$item['item']['p_name']}}
                 </td>
                 
                 <td>
-                   Php {{ number_format($item['price'])}}
+                   Php {{$item['price']}}
                 </td>
             </tr>
-          @endforeach  
+          @endforeach   --}}
+
             <tr class="total">
                 <td></td>
-                
                 <td>
-                   Total: Php {{number_format($data->cart->totalPrice)}}
+                   {{-- Total: Php {{number_format($cart->totalPrice)}} --}}
                 </td>
             </tr>
         </table>

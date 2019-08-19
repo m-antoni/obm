@@ -53,25 +53,25 @@ class User extends Authenticatable
     /**
      * This will get the cache OTP on the cache driver
     */
-    public function cacheTheOTP()
-    {
-        $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
+    // public function cacheTheOTP()
+    // {
+    //     $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
         
-        Cache::put(['OTP' => $OTP], now()->addSeconds(20));
+    //     Cache::put(['OTP' => $OTP], now()->addSeconds(20));
 
-        return $OTP;
-    }
+    //     return $OTP;
+    // }
 
-    public function sendOTP()
-    {   
-        // SMS Gateway Credentials Needed
-        $token = env('SMS_TOKEN');
-        $devide_id = env('SMS_DEVICE_ID');
-        $options = [];
+    // public function sendOTP()
+    // {   
+    //     // SMS Gateway Credentials Needed
+    //     $token = env('SMS_TOKEN');
+    //     $devide_id = env('SMS_DEVICE_ID');
+    //     $options = [];
 
-        $smsGateway = new SmsGateway($token);
-        $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
-    }
+    //     $smsGateway = new SmsGateway($token);
+    //     $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
+    // }
 
     public function orders()
     {
@@ -96,5 +96,23 @@ class User extends Authenticatable
     public function details()
     {
         return $this->hasMany('App\Detail');
+    }
+
+    public function friendsOfMine()
+    {   
+        // return the users friends
+        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+    }
+
+    public function friendsOf()
+    {   
+        // return the users friends who send a friend request
+        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
+    }
+
+    public function friends()
+    {   
+        // merge both functions to avoid duplicate users
+        return $this->friendsOfMine->merge($this->friendsOf);
     }
 }

@@ -33,11 +33,11 @@ class VerifyOTPController extends Controller
 
     public function resend()
     {
-
+    		// Generate new OTP
     		$generate = $this->cacheTheOTP();
 
     		$phone = auth()->user()->phone;
-
+    		// send to user phone
     		$sendOTP = $this->sendOTP($phone);
 
     		return redirect()->route('verify.sms')->with('resent','A fresh verification code has been sent to your phone');
@@ -90,8 +90,4 @@ class VerifyOTPController extends Controller
 						echo 'Something went wrong!!!';
 				}
 		}
-
-
-
-
 }

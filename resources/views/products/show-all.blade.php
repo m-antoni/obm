@@ -18,7 +18,7 @@
 									</div>
 									
 		              <a href="{{ route('add.cart', $row->id) }}">
-		              		<button class="btn btn-outline-primary btn-block mt-2">
+		              		<button class="bttn bttn-pill bttn-primary btn-block mt-2 bttn-sm">
 		                  <i class="fa fa-shopping-cart"></i> 
 		                   	<small>ADD TO CART</small>
 		                  </button>

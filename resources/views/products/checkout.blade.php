@@ -126,27 +126,30 @@
                     </div>
                     
                     <div class="form-group">
-                        <select name="city" class="form-control" id="city">
-                          <option value="null">Choose City...</option>   
-                          <option>Caloocan</option>
-                          <option>Makati</option>
-                          <option>San Juan</option>
-                          <option>Pasig</option>
-                          <option>Valenzuela</option>
+                        <select name="city" class="form-control dynamic" id="city" data-dependent="barangay">
+                           <option value="">Choose City</option>
+                           @foreach($address as $row)
+                              <option value="{{$row->city}}">{{$row->city}}</option>
+                           @endforeach   
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <select name="barangay" class="form-control" id="barangay">
-                          <option value="null">Choose barangay...</option>   
-                          <option>Bagong Silang</option>
-                          <option>Sapang Putik</option>
-                          <option>Makaneneng</option>
+                        <select name="barangay" class="form-control dynamic"  id="barangay" data-dependent="zipcode">
+                          <option value="">Choose Barangay</option>
+                           @foreach($barangay as $row)
+                              <option value="{{$row->barangay}}">{{$row->barangay}}</option>
+                           @endforeach   
                         </select>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" name="zipcode" class="form-control" placeholder="zipcode" id="zipcode">
+                        <select name="zipcode" class="form-control dynamic" id="zipcode">
+                          <option value="">Choose Zipcode</option>
+                           @foreach($zipcode as $row)
+                              <option value="{{$row->zipcode}}">{{$row->zipcode}}</option>
+                           @endforeach    
+                        </select>
                     </div>
                
                     <div class="form-group">
@@ -173,8 +176,9 @@
 
 @section('script')
 
-  <script>
+<script>
     $(document).ready(function(){
+          // ADD NEW SHIPPING ADDRESS
          (function(){
           document.querySelector('#addForm').addEventListener('submit', function(e){
               e.preventDefault();
@@ -192,6 +196,8 @@
                   // hide the modal
                   $('#addModal').modal('hide'); 
                   document.querySelector('#phone').value = '';
+                  document.querySelector('#city').value = '';
+                  document.querySelector('#barangay').value = '';
                   document.querySelector('#zipcode').value = '';
                   document.querySelector('#street').value = '';
                   // document.querySelector('#isDefault').checked = false;
@@ -214,7 +220,6 @@
               });
           })
         })();
-
 
         @if(session('success'))
               iziToast.success({

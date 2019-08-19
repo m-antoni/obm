@@ -91,11 +91,7 @@
               <div class="notices">
                   <div>NOTICE:</div>
                   <div class="notice">
-                    @if($order->payment == 'COD')
-                        Your items will be delivered within 3-5 days from date of purchase.
-                    @else
-                       Please pay within 3 days. Orders will be processed and delivered within 3-5 days after confirmation of payment.
-                    @endif
+                       We will contact you when your order is ready..Thank you
                   </div>
               </div>
           </main>

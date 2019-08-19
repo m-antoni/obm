@@ -23,7 +23,7 @@
                     @endforeach
                     <li class="list-group-item mt-2">
                         <div>
-                            <p>For those who pay over the counter upload your receipts <a href="#" class="text-info" data-toggle="modal" data-target="#uploadReceipt" align="center">click here</a></p>
+                            <p>Purchase Beem Credits  <a href="{{route('show.credits')}}" class="text-info" align="center">Click here</a></p>
                         </div>
                     </li>
                 </ul>
@@ -35,7 +35,7 @@
 </div>
 
  {{-- Upload Receipts Modal --}}
-   <div class="modal fade" id="uploadReceipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  {{--  <div class="modal fade" id="uploadReceipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
               <div class="modal-header">
@@ -45,7 +45,7 @@
                 </button>
               </div>
                   <div class="modal-body">
-                       <form id="uploadReceiptForm" action="{{route('upload.receipt')}}" method="POST" enctype="multipart/form-data">
+                       <form id="uploadReceiptForm" action="{{route('post.receipt')}}" method="POST" enctype="multipart/form-data">
                           @csrf
                           <div class="form-group">
                               <label>Order Number:</label>
@@ -70,77 +70,6 @@
               </div>
           </div>
         </div>
-    </div>
+    </div> --}}
 
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function(){
-            (function(){
-                document.querySelector('#uploadReceiptForm').addEventListener('submit', function(e){
-                    e.preventDefault();
-
-                    axios.post(this.action, {
-                        content-type: 'multipart/form-data',
-                        _token : document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                         order_number : document.querySelector('#order_number').value,
-                        image : document.querySelector('#image').value,
-                    })
-                    .then((response) => {
-                        // hide the modal
-                        document.querySelector('#order_number').value = '';
-                        $('#uploadReceipt').modal('hide'); 
-                        window.location.reload(true);
-                    })
-                    .catch((error) => {
-                        let errors = error.response.data.errors;
-                        let firstItem = Object.keys(errors)[0];
-                        let firstItemDOM = document.getElementById(firstItem);
-                        let firstErrorMessage = errors[firstItem][0];
-
-                        // remove all the error message
-                        let errorMessages = document.querySelectorAll('.text-danger');
-                        errorMessages.forEach((element) => element.textContent = '');
-
-                        // show error message;
-                        firstItemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${firstErrorMessage}</div>`);
-                    });
-                });
-            })();
-        });
-    </script>
-
-
-    @if(session('success'))
-        <script>
-                iziToast.success({
-              title: 'Success',
-              message: '{{session('success')}}',
-                icon: 'ico-success',
-              // iconColor: 'rgb(0, 255, 184)',
-              // theme: 'dark',
-              // progressBarColor: 'rgb(0, 255, 184)',
-              position: 'topCenter',
-              transitionIn: 'fadeInLeft',
-              transitionOut: 'fadeOutUp'
-            });
-        </script>
-    @endif 
-
-    @if(session('error'))
-        <script>
-              iziToast.error({
-              title: 'Error',
-              message: '{{session('error')}}',
-              // icon: 'ico-warning',
-              // iconColor: 'rgb(0, 255, 184)',
-              // theme: 'dark',
-              // progressBarColor: 'rgb(0, 255, 184)',
-              position: 'topCenter',
-              transitionIn: 'fadeInLeft',
-              transitionOut: 'fadeOutUp'
-        });
-        </script>
-    @endif 
 @endsection

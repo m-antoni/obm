@@ -4,41 +4,41 @@
 
 <div class="container customHeight">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-3 col-6">
             <div align="center">
                 <a href="{{route('appliances')}}">
-                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
-                        <i class="fa fa-tv"></i> APPLIANCES
+                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
+                        <i class="fa fa-tv"></i>
                     </button>
                 </a>
             </div>
         </div>
         
-        <div class="col-md-6">
+        <div class="col-md-3 col-6">
             <div align="center">
                 <a href="{{route('kitchenware')}}">
-                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
-                        <i class="fa fa-mug-hot"></i> KITCHENWARE
+                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
+                        <i class="fa fa-mug-hot"></i>
                     </button>
                 </a>    
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-3 col-6">
             <div align="center">
                 <a href="#">
-                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
-                        <i class="fa fa-bolt"></i> ELECTRONIC
+                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
+                        <i class="fa fa-bolt"></i>
                     </button>
                 </a>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-3 col-6">
             <div align="center">
                 <a href="#">
-                    <button class="bttn bttn-lg bttn-danger bttn-fill py-2 bttn-primary m-1">
-                        <i class="fa fa-mobile"></i> GADGETS
+                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
+                        <i class="fa fa-mobile"></i>
                     </button>
                 </a>
             </div>
@@ -46,9 +46,9 @@
     </div>
 
     <div class="row justify-content-center mt-5">
-        <a href="#">
-            <button class="bttn bttn-lg bttn-primary bttn-fill py-2 bttn-primary m-1">
-                <i class="fa fa-coins"></i> TAP YOUR CREDITS
+        <a href="{{ route('show.credits') }}">
+            <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1">
+                <i class="fa fa-coins"></i>
             </button>
         </a>
     </div>

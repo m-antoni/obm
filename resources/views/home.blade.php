@@ -4,6 +4,10 @@
 @section('content')
 
 <div class="container customHeight">
+    <div class="row justify-content-center">
+        <iframe width="720" height="500" src="https://www.youtube-nocookie.com/embed/TcMBFSGVi1c?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
      <div id="userHome">
         <div class="row no-gutters">
             <div class="col-md-4 col-sm-4 col-12">

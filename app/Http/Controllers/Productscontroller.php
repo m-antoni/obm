@@ -61,7 +61,7 @@ class ProductsController extends Controller
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-
+    
         return view('products.shopping-cart', [
                 'products' => $cart->items, 
                 'totalPrice' => $cart->totalPrice
@@ -138,23 +138,32 @@ class ProductsController extends Controller
         $cart = new Cart($oldCart);
         $products = $cart;
         $date = Carbon::now();
+        $address = DB::table('addresses')->groupBy('city')->get();
+        $barangay = DB::table('addresses')->select('barangay')->get();
+        $zipcode = DB::table('addresses')->select('zipcode')->get();
         $detail = Detail::where('user_id', auth()->user()->id)->latest()->first();
 
         return view('products.checkout',[
             'products' => $products,
-            'detail' => $detail
+            'detail' => $detail,
+            'address' => $address,
+            'barangay' => $barangay,
+            'zipcode' => $zipcode,
         ]);
     }
 
     public function checkout_store(Request $request, Faker $faker)
     {   
+        // dd($request->all());
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
         $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
         $payment = 'PENDING';
+
         // $cart = serialize($cart);
         $cart = json_encode($cart);
+
         // Store data in database
         $order = Order::create([
             'user_id' => auth()->user()->id,
@@ -170,14 +179,22 @@ class ProductsController extends Controller
             'date' => now()
         ]);
 
+        // delete the user address input if any 
         $detail = Detail::where('user_id', auth()->user()->id)->delete();
 
         // Send To User Email The Order No.
         // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
 
-        // remove the session 
-        Session::forget('cart');
+        // decrement the user credits
+        $latest = Order::where('user_id', auth()->user()->id)->latest()->first();
+        $totalPrice = json_decode($latest->cart);
+        $decrement = auth()->user()->decrement('credits', $totalPrice->totalPrice);
 
+        // remove the session 
+        Session::forget('cart');    
+        
+        // dd($request->all());
         return redirect()->route('confirm.order');
+
     }
 }

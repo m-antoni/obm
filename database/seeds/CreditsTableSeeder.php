@@ -11,6 +11,6 @@ class CreditsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Credit::class, 100)->create();
+        factory(App\Credit::class, 50)->create();
     }
 }
