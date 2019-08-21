@@ -17,21 +17,59 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-tv fa-2x text-muted"></i></a>
+                    <a class="nav-link" href="#"><i class="fa fa-tv fa-2x text-muted" data-toggle="modal" data-target="#stream"></i></a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#"><i class="fa fa-download fa-2x text-muted"></i></a>   
+                     <a class="nav-link" href="{{ route('show.credits') }}"><i class="fa fa-coins fa-2x text-muted"></i></a>   
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="{{ route('chat') }}"><i class="fa fa-comments fa-2x text-muted"></i></a>   
+                     <a class="nav-link" href="#"><i class="fa fa-chess-knight fa-2x text-muted"></i></a>   
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="{{ route('client') }}"><i class="fa fa-user-circle fa-2x text-muted"></i></a>   
+                     <a class="nav-link" href="{{ route('ebooks')}}"><i class="fa fa-file-alt fa-2x text-muted"></i></a>   
                   </li>
-
+                  <li class="nav-item">
+                     <a class="nav-link" href="{{ route('chats') }}"><i class="fa fa-comments fa-2x text-muted"></i></a>   
+                  </li>
             </ul>
         </div>
     </div>
 </nav>
+
+
+<div class="modal fade" id="stream" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Choose your Channels</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                   <div class="row">
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/cnn.png') }}" alt="cnn" class="img-fluid">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/abscbn.jpg') }}" alt="abscn" class="img-fluid">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/nba.jpg') }}" alt="nba" class="img-fluid">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/gma.png') }}" alt="gma" class="img-fluid">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/hbo.png') }}" alt="hbo" class="img-fluid">
+                      </div>
+                      <div class="col-md-4">
+                          <img src="{{ asset('/img/channels/netflix.png') }}" alt="netflix" class="img-fluid">
+                      </div>
+                   </div>
+              </div>
+        </div>
+    </div>
+</div>
 
 @endauth

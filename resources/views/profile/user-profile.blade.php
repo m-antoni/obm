@@ -22,7 +22,11 @@
 										<form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
 												@csrf
 		                		<div class="form-group mt-2">
-		                			<input type="file" name="image">
+		                			{{-- <input type="file" name="image" class="form-control"> --}}
+		                			<div class="custom-file">
+													  <input type="file" name="image" class="custom-file-input" id="customFileLang" lang="es">
+													  <label class="custom-file-label" for="customFileLang">Upload Here</label>
+													</div>
 
 		                			  @error('image')
 		                            <span class="invalid-feedback" role="alert">
@@ -61,7 +65,26 @@
 
 							<div class="col-md-8">
 								<div class="list-group">
-										<h4>There are no trasaction history..</h4>
+										<div class="card">
+												<div class="card-body">
+														@if(count($users) > 0)
+															<div><input type="text" class="form-control w-50 mb-2" value="discovery friends here..."> </div>
+															<div class="row mb-2">
+																@foreach($users as $user)
+																		<div class="col-md-3">
+																					@if($user->image == null)
+																						<img src="{{ asset('/img/noimage.jpg') }}" alt="img1" class="img-fluid">
+																					@else
+																						<img src="{{ asset('storage/' . $user->image ) }}" alt="" class="img-fluid">
+																					@endif
+																					<div>{{$user->first}} {{$user->last}}</div>
+																		</div>
+																@endforeach
+															</div>
+															{{$users->links()}}
+														@endif
+												</div>
+										</div>
 								</div>
 							</div>	
 						</div>

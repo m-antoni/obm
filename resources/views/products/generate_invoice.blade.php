@@ -42,7 +42,7 @@
                   </div>
                   <div class="col invoice-details">
                       <h1 class="invoice-id">INVOICE</h1>
-                      <div class="date">Date of Invoice: {{$order->date->format('m-d-Y')}}</div>
+                      <div class="date">Date of Invoice: {{$order->date->format('m-d-Y A')}}</div>
                       <div class="date text-dark">Order No: <strong>{{$order->order_number}}</strong></div>
                       <div>Payment Method: <b>{{$order->payment}}</b></div>
 

@@ -6,8 +6,10 @@
     <div class="card">
         <div class="card-header text-center bg-dark py-3">
             {{-- <img src="img/logo.png" class="img-fluid" alt=""> --}}
-            </a><span class="splash-description text-white">
-             CHECK OUT DETAILS</span>
+            
+            <span class="splash-description text-white">
+                 CHECK OUT BEEMS
+            </span>
             {{-- <h4 class="text-white"></h4> --}}
         </div>
         <div class="card-body">

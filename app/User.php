@@ -50,28 +50,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * This will get the cache OTP on the cache driver
-    */
-    // public function cacheTheOTP()
-    // {
-    //     $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
-        
-    //     Cache::put(['OTP' => $OTP], now()->addSeconds(20));
-
-    //     return $OTP;
-    // }
-
-    // public function sendOTP()
-    // {   
-    //     // SMS Gateway Credentials Needed
-    //     $token = env('SMS_TOKEN');
-    //     $devide_id = env('SMS_DEVICE_ID');
-    //     $options = [];
-
-    //     $smsGateway = new SmsGateway($token);
-    //     $result = $smsGateway->sendMessageToNumber($this->phone, $this->cacheTheOTP(), $devide_id, $options);
-    // }
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
 
     public function orders()
     {
@@ -83,9 +65,9 @@ class User extends Authenticatable
        return $this->hasMany('App\Basket');
     }
 
-    public function cards()
+    public function credits()
     {
-        return $this->hasMany('App\Card');
+        return $this->hasMany('App\Credit');
     }
 
     public function beem()
@@ -98,21 +80,21 @@ class User extends Authenticatable
         return $this->hasMany('App\Detail');
     }
 
-    public function friendsOfMine()
-    {   
-        // return the users friends
-        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
-    }
+    // public function friendsOfMine()
+    // {   
+    //     // return the users friends
+    //     return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+    // }
 
-    public function friendsOf()
-    {   
-        // return the users friends who send a friend request
-        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
-    }
+    // public function friendsOf()
+    // {   
+    //     // return the users friends who send a friend request
+    //     return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
+    // }
 
-    public function friends()
-    {   
-        // merge both functions to avoid duplicate users
-        return $this->friendsOfMine->merge($this->friendsOf);
-    }
+    // public function friends()
+    // {   
+    //     // merge both functions to avoid duplicate users
+    //     return $this->friendsOfMine->merge($this->friendsOf);
+    // }
 }

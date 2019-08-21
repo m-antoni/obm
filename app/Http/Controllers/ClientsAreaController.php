@@ -9,12 +9,16 @@ class ClientsAreaController extends Controller
 {
     public function index()
     {
-    		return view('profile.index');
+    	return view('profile.index');
     }
 
     public function user_profile()
-    {
-    		return view('profile.user-profile');
+    {   
+        $users = User::where('id', '!=', auth()->user()->id)
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(8);
+
+    	return view('profile.user-profile', compact('users'));
     }
 
     public function upload_image()

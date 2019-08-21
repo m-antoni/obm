@@ -19,7 +19,7 @@
 													    Click for details
 													  </button>
 													  <a href="{{route('show.all', $row->category)}}">
-													  		<button type="button" class="btn btn-info text-white">
+													  		<button type="button" class="btn btn-link btn-sm">
 															  	<i class="fa fa-list"></i> SHOW ALL
 															  </button>
 													  </a>
@@ -34,7 +34,7 @@
 													</div>						
 			
 							    				<a href="{{ route('add.cart', $row->id) }}">
-		                          <button class="bttn bttn-primary bttn-block bttn-jelly mt-2">
+		                          <button class="bttn bttn-primary bttn-block bttn-simple mt-2">
 		                          <i class="fa fa-shopping-cart"></i> 
 		                           	ADD TO CART
 		                          </button>

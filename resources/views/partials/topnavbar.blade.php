@@ -39,15 +39,16 @@
                         </span> 
                     </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#"  class="nav-link" data-toggle="modal" data-target="#contact">
-                            <b>Contact</b> 
+                   </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-user-circle fa-2x"></i>
                         </a>
-                    </li>
-                     <li class="nav-item">
-                        <a href="#"  class="nav-link" data-toggle="modal" data-target="#signout">
-                            <b><i class="fa fa-power-off"></i></b> 
-                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#contact">Contact</a>
+                          <a class="dropdown-item" href="{{ route('client') }}">Client Area</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#signout">Sign-out</a>
+                        </div>
                     </li>
                 @endguest
             </ul>
@@ -86,7 +87,7 @@
         </div>
         <div class="modal-body">
             <div align="center">
-                <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
                    <i class="fas fa-power-off mr-2"></i> Sign-out
                 </a>

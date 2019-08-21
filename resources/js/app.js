@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueChatScroll from 'vue-chat-scroll';
+Vue.use(VueChatScroll);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,17 +33,4 @@ Vue.component('chat', require('./components/Chat/Chat.vue').default);
 
 const app = new Vue({
     el: '#app',
-    data: {
-    		chats:'',
-    },
-    created(){
-    	const userId = $('meta[name="userId"]').attr('content');
-    	const friendId = $('meta[name="friendId"]').attr('content');
-
-    	if(friendId != undefined){
-    		axios.post(`/home/chat/getchat/${friendId}`).then((response) => {
-    				this.chats = response.data;
-    		});
-    	}
-    }
 });

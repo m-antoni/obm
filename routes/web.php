@@ -1,9 +1,10 @@
 <?php
+
 use Illuminate\Http\Request;
 use App\Product;
 
 // Landing Page
-Route::get('/', function () {
+Route::get('/', function () {	
     return view('welcome');
 })->name('homepage');
 
@@ -45,31 +46,39 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 		Route::get('products/add-to-cart/{id}', 'ProductsController@add_to_cart')->name('add.cart');
 		Route::get('products/shopping-cart/', 'ProductsController@shopping_cart')->name('shopping.cart');
 
-		// Bank Transfer Routes
-		Route::get('products/checkout', 'ProductsController@checkout')->name('checkout');
-		Route::post('products/checkout', 'ProductsController@checkout_store')->name('checkout.store');
-		Route::post('products/checkout/add-details', 'DetailsController@add_details')->name('add.details');
-		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
-
-		// Beem Credits Routes
+		// PURCHASE BEEM CREDITS
 		Route::get('purchase-credit','CreditsController@show_credits')->name('show.credits');
 		Route::post('purchase-credit/purchase','CreditsController@post_credits')->name('post.credits');
 		Route::get('purchase-credit/upload','CreditsController@show_receipt')->name('show.receipt');
 		Route::post('purchase-credit/upload', 'CreditsController@post_receipt')->name('post.receipt');
 
+		// Beems Checkout
+		Route::get('products/checkout', 'ProductsController@checkout')->name('checkout');
+		Route::post('products/checkout', 'ProductsController@checkout_store')->name('checkout.store');
+		Route::post('products/checkout/add-details', 'DetailsController@add_details')->name('add.details');
+		Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
+
+		// Cash On Delivery
+		Route::get('products/checkout-cod', 'ProductsController@checkout_cod')->name('cod');
+		Route::post('products/checkout-cod', 'ProductsController@cod_store')->name('cod.store');
+
+
+
+
 		// Client Area
 		Route::get('client/', 'ClientsAreaController@index')->name('client');
 		Route::get('client/user-profile', 'ClientsAreaController@user_profile')->name('user.profile');
 		Route::post('client/user-profile/upload-image', 'ClientsAreaController@upload_image')->name('upload.image');
-		
-		// Chat Module Routes
-		Route::get('/chat', 'ChatController@index')->name('chat');
-		Route::get('/chat/{id}', 'ChatController@show')->name('chat.show');
-		Route::post('/chat/getchat/{id}', 'ChatController@getChat')->name('chat.fetch');
 
+		// Chat Module Routes
+		Route::get('/chats', 'ChatsController@index')->name('chats');
+		Route::get('/messages', 'ChatsController@fetchMessages')->name('fetch.messages');
+		Route::post('/messages', 'ChatsController@sendMessages')->name('send.messages');
+
+		// Ebook Route
+		Route::get('/ebooks', 'EbooksController@index')->name('ebooks');
 
 		Route::get('/testing', function(){
 			return view('sms');
 		});
-
 });

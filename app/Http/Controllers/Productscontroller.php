@@ -99,12 +99,11 @@ class ProductsController extends Controller
     {   
         $order = auth()->user()->orders->last();
 
-        $ordernumber = $order->order_number;
         $payment = $order->payment;
         $cart = json_decode($order->cart, true);
 
         // dd($payment);
-        return view('products.confirm_order', compact('ordernumber', 'payment', 'cart'));
+        return view('products.confirm_order', compact('order', 'payment', 'cart'));
     }
 
     // View List of Orders
@@ -175,7 +174,7 @@ class ProductsController extends Controller
             'street' => $request->street,
             'cart' => $cart,
             'status' => 'PENDING',
-            'payment' => 'PAY ON BANK',
+            'payment' => 'BEEMS',
             'date' => now()
         ]);
 
@@ -195,6 +194,74 @@ class ProductsController extends Controller
         
         // dd($request->all());
         return redirect()->route('confirm.order');
+    }
 
+    /*
+        Checkout Cash On Delivery Methods
+    */
+
+    public function checkout_cod()
+    {   
+         // dd(auth()->user()->phone);
+        if(!Session::has('cart')){
+            return view('products.shopping-cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $products = $cart;
+        $date = Carbon::now();
+        $address = DB::table('addresses')->groupBy('city')->get();
+        $barangay = DB::table('addresses')->select('barangay')->get();
+        $zipcode = DB::table('addresses')->select('zipcode')->get();
+        $detail = Detail::where('user_id', auth()->user()->id)->latest()->first();
+
+        return view('products.cod_checkout',[
+            'products' => $products,
+            'detail' => $detail,
+            'address' => $address,
+            'barangay' => $barangay,
+            'zipcode' => $zipcode,
+        ]);
+    }
+
+    public function cod_store(Request $request, Faker $faker)
+    {
+        // dd($request->all());
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        $order_number = $faker->ean8 . $faker->ean8; // Generate a random numbers for Order No.
+        $payment = 'PENDING';
+
+        // $cart = serialize($cart);
+        $cart = json_encode($cart);
+
+        // Store data in database
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'order_number' => $order_number,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'zipcode' => $request->zipcode,
+            'street' => $request->street,
+            'cart' => $cart,
+            'status' => 'PENDING',
+            'payment' => 'COD',
+            'date' => now()
+        ]);
+
+        // delete the user address input if any 
+        $detail = Detail::where('user_id', auth()->user()->id)->delete();
+
+        // Send To User Email The Order No.
+        // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+
+        // remove the session 
+        Session::forget('cart');    
+        
+        // dd($request->all());
+        return redirect()->route('confirm.order');
     }
 }

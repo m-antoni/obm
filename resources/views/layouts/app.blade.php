@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="userId" content="{{Auth::check() ? Auth::user()->id : 'null'}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
  
-
     <title>{{ config('app.name', 'One Beem') }}</title>
 
     <!-- Fonts -->
@@ -33,7 +31,7 @@
     <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
-    
+
     @yield('style')
 
 </head>

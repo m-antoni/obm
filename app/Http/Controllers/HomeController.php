@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Events\WebsocketDemoEvent;
 
 use Illuminate\Http\Request;
 
@@ -23,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $price = 2000;
+        // broadcast(new WebsocketDemoEvent('some data'));
 
-        return view('home', compact('price'));
+        return view('home');
     }
 
 }

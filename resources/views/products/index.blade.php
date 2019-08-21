@@ -2,57 +2,71 @@
 
 @section('content')
 
-<div class="container customHeight">
-    <div class="row justify-content-center">
-        <div class="col-md-3 col-6">
-            <div align="center">
-                <a href="{{route('appliances')}}">
-                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
-                        <i class="fa fa-tv"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
-        
-        <div class="col-md-3 col-6">
-            <div align="center">
-                <a href="{{route('kitchenware')}}">
-                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
-                        <i class="fa fa-mug-hot"></i>
-                    </button>
-                </a>    
+<div class="imageThumbnail">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/appliances.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">APPLIANCES</div>
+                    <h4 class="text-dark"><b><a href="{{ route('appliances') }}">CLICK HERE</a></b></h4>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3 col-6">
-            <div align="center">
-                <a href="#">
-                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
-                        <i class="fa fa-bolt"></i>
-                    </button>
-                </a>
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/kitchenware.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">KITCHENWARE</div>
+                     <h4 class="text-dark"><b><a href="{{ route('kitchenware') }}">CLICK HERE</a></b></h4>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-3 col-6">
-            <div align="center">
-                <a href="#">
-                    <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1 m-4">
-                        <i class="fa fa-mobile"></i>
-                    </button>
-                </a>
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/electronics.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">ELECTRONICS</div>
+                    <h4 class="text-dark"><b><a href="#">CLICK HERE</a></b></h4>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row justify-content-center mt-5">
-        <a href="{{ route('show.credits') }}">
-            <button class="bttn-primary bttn-fill bttn-lg bttn-material-circle p-1">
-                <i class="fa fa-coins"></i>
-            </button>
-        </a>
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/gadgets.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">GADGETS</div>
+                    <h4 class="text-dark"><b><a href="#">CLICK HERE</a></b></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/apparel.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">APPAREL</div>
+                    <h4 class="text-dark"><b><a href="#">CLICK HERE</a></b></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
+                <img src="/img/shop/accesories.jpg" alt="apparel" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">ACCESORIES</div>
+                    <h4 class="text-dark"><b><a href="#">CLICK HERE</a></b></h4>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <!-- Footer -->
 {{-- <section class="bg-black small text-center text-white-50 py-5">

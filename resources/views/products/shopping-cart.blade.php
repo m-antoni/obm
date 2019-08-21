@@ -1,76 +1,7 @@
-]@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
-		<style>
-			.qty .count {
-			    color: #333;
-			    display: inline-block;
-			    vertical-align: top;
-			    font-size: 25px;
-			    font-weight: 700;
-			    line-height: 30px;
-			    padding: 0 2px;
-			    min-width: 35px;
-			    text-align: center;
-			}
-			.qty .plus {
-			    cursor: pointer;
-			    display: inline-block;
-			    vertical-align: top;
-			    color: white;
-			    width: 25px;
-			    height: 25px;
-			    font: 25px/1 Arial,sans-serif;
-			    text-align: center;
-			    border-radius: 50%;
-			    }
-			.qty .minus {
-			    cursor: pointer;
-			    display: inline-block;
-			    vertical-align: top;
-			    color: white;
-			    width: 25px;
-			    height: 25px;
-			    font: 25px/1 Arial,sans-serif;
-			    text-align: center;
-			    border-radius: 50%;
-			    background-clip: padding-box;
-			}
-		/*	div {
-			    text-align: right;
-			}*/
-		/*	.minus:hover{
-			    background-color: #eaeaea !important;
-			}
-			.plus:hover{
-			    background-color: #eaeaea !important;
-			}*/
-			/*Prevent text selection*/
-			span{
-			    -webkit-user-select: none;
-			    -moz-user-select: none;
-			    -ms-user-select: none;
-			}
-			input{  
-			    border: 0;
-			    width: 2%;
-			}
-			input::-webkit-outer-spin-button,
-			input::-webkit-inner-spin-button {
-			    -webkit-appearance: none;
-			    margin: 0;
-			}
-			input:disabled{
-			    background-color:white;
-			}
-       
-			.center{
-				width:110px;
-				  margin: 10px 0px;
-				  float: right;
-			}
-
-		</style>
+	
 <div class="container customHeight pb-5">
 		@if(Session::has('cart'))
 				<div class="row justify-content-center">
@@ -106,26 +37,49 @@
 										</li>
 									</ul>
 								@endforeach
-								<li class="list-group-item mt-2">	
-									<div class="clearfix">
-										<div class="float-right">
-											<div><h5 class="text-muted"><b>Total: Php {{ number_format($totalPrice) }}</b></h5></div><hr>
-											<div><h5 class="text-primary"><b>My Credits: {{ number_format(auth()->user()->credits)}}</b></h5></div>
-											
-											@if(auth()->user()->credits < $totalPrice)
-													<div class="text-danger">your credits is not enough</div>
-													<a href="{{route('show.credits') }}">
-															<button class="bttn bttn-primary bttn-simple bttn-sm bttn-block">
-																	<i class="fa fa-coins"></i> Purchase
-															</button>
-													</a>	
-											@else
-													<a href="{{ route('checkout') }}">
-														<button class="bttn bttn-primary bttn-simple bttn-sm bttn-block">
-																<i class="fa fa-shopping-cart"></i> Checkout
-														</button>
-													</a>
-											@endif
+								<li class="list-group-item mt-2 border-primary">	
+										<div><h4 class="text-primary" align="center"><b>Total: Php {{ number_format($totalPrice) }}</b></h4></div><hr>	
+											<div class="row">
+												<div class="col-md-6">
+														@if(auth()->user()->credits < $totalPrice)
+																<div class="card">
+																		<div class="card-body">
+																				<h4>10% Discount using Beems</h4>
+																				<div class="text-danger">Your credits is not enough 	
+																						<a href="{{route('show.credits') }}">
+																								purchase here 
+																						</a>	
+																				</div>
+																		</div>
+																</div>
+														@else
+																<div class="card">
+																		<div class="card-body">
+																				<h4>10% Discount using Beems</h4>
+																				<a href="{{ route('checkout') }}">
+																					<button class="bttn bttn-fill bttn-danger bttn-sm bttn-block">
+																							<i class="fa fa-coins"></i> USE BEEMS
+																					</button>
+																				</a>
+																		</div>
+																</div>
+														
+														@endif
+												</div>
+
+												<div class="col-md-6">
+														<div class="card">
+																<div class="card-body">
+																		<h4><i class="fa fa-dolly"></i>  CASH ON DELIVERY</h4>
+																		<a href="{{ route('cod') }}">
+																			<button class="bttn bttn-fill bttn-primary bttn-sm bttn-block">
+																					CHECK OUT
+																			</button>
+																		</a>
+																</div>
+														</div>
+												</div>
+											</div>	
 										</div>
 									</div>
 								</li>			

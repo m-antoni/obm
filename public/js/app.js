@@ -1844,10 +1844,100 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['chats'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  props: ['user'],
+  data: function data() {
+    return {
+      messages: [],
+      newMessage: '',
+      users: [],
+      activeUser: false,
+      typingTimer: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.fetchMessage();
+    Echo.join('chat').here(function (user) {
+      _this.users = user;
+    }).joining(function (user) {
+      _this.users.push(user);
+    }).leaving(function (user) {
+      _this.users = _this.users.filter(function (u) {
+        return u.id != user.id;
+      });
+    }).listen('MessageSent', function (event) {
+      _this.messages.push(event.message);
+    }).listenForWhisper('typing', function (user) {
+      _this.activeUser = user;
+
+      if (_this.typingTimer) {
+        clearTimeout(_this.typingTimer);
+      }
+
+      _this.typingTimer = setTimeout(function () {
+        _this.activeUser = false;
+      }, 2000);
+    });
+  },
+  methods: {
+    fetchMessage: function fetchMessage() {
+      var _this2 = this;
+
+      axios.get('messages').then(function (response) {
+        _this2.messages = response.data;
+      });
+    },
+    sendMessage: function sendMessage() {
+      this.messages.push({
+        user: this.user,
+        message: this.newMessage
+      });
+      axios.post('messages', {
+        message: this.newMessage
+      });
+      this.newMessage = '';
+    },
+    sendTypingEvent: function sendTypingEvent() {
+      Echo.join('chat').whisper('typing', this.user);
+    }
   }
 });
 
@@ -47382,6 +47472,82 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	undefined;
+}(this, (function () { 'use strict';
+
+/**
+* @name VueJS vChatScroll (vue-chat-scroll)
+* @description Monitors an element and scrolls to the bottom if a new child is added
+* @author Theodore Messinezis <theo@theomessin.com>
+* @file v-chat-scroll  directive definition
+*/
+
+var scrollToBottom = function scrollToBottom(el, smooth) {
+  if (typeof el.scroll === "function") {
+    el.scroll({
+      top: el.scrollHeight,
+      behavior: smooth ? 'smooth' : 'instant'
+    });
+  } else {
+    el.scrollTop = el.scrollHeight;
+  }
+};
+
+var vChatScroll = {
+  bind: function bind(el, binding) {
+    var scrolled = false;
+
+    el.addEventListener('scroll', function (e) {
+      scrolled = el.scrollTop + el.clientHeight + 1 < el.scrollHeight;
+    });
+
+    new MutationObserver(function (e) {
+      var config = binding.value || {};
+      var pause = config.always === false && scrolled;
+      if (config.scrollonremoved) {
+        if (pause || e[e.length - 1].addedNodes.length != 1 && e[e.length - 1].removedNodes.length != 1) return;
+      } else {
+        if (pause || e[e.length - 1].addedNodes.length != 1) return;
+      }
+      scrollToBottom(el, config.smooth);
+    }).observe(el, { childList: true, subtree: true });
+  },
+  inserted: scrollToBottom
+};
+
+/**
+* @name VueJS vChatScroll (vue-chat-scroll)
+* @description Monitors an element and scrolls to the bottom if a new child is added
+* @author Theodore Messinezis <theo@theomessin.com>
+* @file vue-chat-scroll plugin definition
+*/
+
+var VueChatScroll = {
+  install: function install(Vue, options) {
+    Vue.directive('chat-scroll', vChatScroll);
+  }
+};
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(VueChatScroll);
+}
+
+return VueChatScroll;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Chat/Chat.vue?vue&type=template&id=38984674&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Chat/Chat.vue?vue&type=template&id=38984674& ***!
@@ -47397,7 +47563,101 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-8 col-8" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Messages")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "ul",
+            {
+              directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+              staticClass: "list-unstyled",
+              staticStyle: { height: "300px", "overflow-y": "scroll" }
+            },
+            _vm._l(_vm.messages, function(message, index) {
+              return _c("li", { key: index, staticClass: "p-2" }, [
+                _c("div", [
+                  _c("div", [
+                    _c("strong", [_vm._v(_vm._s(message.user.first))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(message.message))])
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newMessage,
+              expression: "newMessage"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "message",
+            placeholder: "Enter your message"
+          },
+          domProps: { value: _vm.newMessage },
+          on: {
+            keydown: _vm.sendTypingEvent,
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.sendMessage($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.newMessage = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm.activeUser
+        ? _c("span", { staticClass: "text-muted" }, [
+            _vm._v(_vm._s(_vm.activeUser.first) + " is typing...")
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-4 col-4" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("active users")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body p-1" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.users, function(user, index) {
+              return _c(
+                "li",
+                { key: index, staticClass: "py-1 list-unstyled" },
+                [
+                  _c("i", { staticClass: "fa fa-user-circle" }),
+                  _vm._v(" " + _vm._s(user.first) + " \r\n      \t\t")
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59546,9 +59806,13 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
+/* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59557,6 +59821,8 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default.a);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -59576,22 +59842,7 @@ Vue.component('chat', __webpack_require__(/*! ./components/Chat/Chat.vue */ "./r
  */
 
 var app = new Vue({
-  el: '#app',
-  data: {
-    chats: ''
-  },
-  created: function created() {
-    var _this = this;
-
-    var userId = $('meta[name="userId"]').attr('content');
-    var friendId = $('meta[name="friendId"]').attr('content');
-
-    if (friendId != undefined) {
-      axios.post("/home/chat/getchat/".concat(friendId)).then(function (response) {
-        _this.chats = response.data;
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),
@@ -59652,10 +59903,14 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "9acd568ad07b51342cd1",
-  cluster: "ap1",
-  encrypted: true
-});
+  key: "anyKey",
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  disableStats: true
+}); // window.Echo.channel('DemoChannel')
+// .listen('WebsocketDemoEvent', (e) => {
+//     console.log(e);
+// });
 
 /***/ }),
 

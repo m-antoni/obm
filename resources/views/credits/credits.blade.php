@@ -23,13 +23,20 @@
 						      	<div class="card my-3 w-50">
 						      			<div class="card-body">
 						      					<h4 class="text-muted"><i class="fa fa-coins"></i>  {{number_format($credits)}}</h4>
-						      				  <div class="text-muted">Current Beem Credits</div>
+						      				  <div class="text-primary"><b>Current Beem Credits</b></div>
+						      			</div>
+						      	</div>
+
+						      	<div class="card my-3 w-50">
+						      			<div class="card-body">
+						      					<h4 class="text-muted"><i class="fa fa-coins"></i>  {{$pending ? number_format($pending->credits) : 0}}</h4>
+						      				  <div class="text-danger"><b>Pending</b></div>
 						      			</div>
 						      	</div>
 										
 										<div class="text-muted">
 								      	<a href="#" data-toggle="modal" data-target="#creditsModal">
-														<button class="bttn-primary bttn-fill bttn-lg bttn-material-circle" >
+														<button class="bttn-primary bttn-jelly bttn-lg bttn-material-circle" >
 																<i class="fa fa-coins"></i> 
 														</button>
 								      	</a>
@@ -79,7 +86,7 @@
 								      @csrf
 								      <div class="form-group">
 								      	 	<label>Credits:</label>
-								         	<select id="credits" name="credits" class="form-control">
+								         	<select id="credits" name="credits" class="form-control mb-3">
 									         		<option value="">Choose here...</option>
 									         		@foreach($list as $row)
 									         			<option value="{{$row}}">{{number_format($row)}}</option>
@@ -88,7 +95,7 @@
 								      </div>
 								      <hr>
 								      <div class="form-group">
-								        <button type="submit" class="bttn bttn-fill bttn-primary btn-block btn-sm py-3">
+								        <button type="submit" class="bttn bttn-fill bttn-primary btn-block">
 								          <i class="fa fa-check"></i> Submit
 								        </button>
 								     </div>

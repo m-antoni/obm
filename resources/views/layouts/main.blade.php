@@ -23,9 +23,6 @@
 		<link href="{{ asset('/css/card-js.min.css') }}" rel="stylesheet" >		
 	
 	<!-- Scripts -->
-    <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="/js/card-js.min.js"></script>
-	
 	<style>
 	    html,
         body #app{
@@ -51,7 +48,7 @@
 		@yield('content')
 
 	</div>
-    
+    <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('js/iziToast.min.js') }}"></script>
 	 {{-- @include('partials.messages') --}}
       <!-- Adding Custom scripts  -->

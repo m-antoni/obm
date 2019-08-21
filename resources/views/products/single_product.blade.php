@@ -32,7 +32,7 @@
                       </div>            
   
                       <a href="{{ route('add.cart', $product->id) }}">
-                          <button class="bttn bttn-primary bttn-fill bttn-block mt-2 p-3">
+                          <button class="bttn bttn-primary bttn-simple bttn-block mt-2 p-3">
                           <i class="fa fa-shopping-cart"></i> 
                             ADD TO CART
                           </button>
