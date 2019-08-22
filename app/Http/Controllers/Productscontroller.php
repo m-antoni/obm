@@ -120,11 +120,10 @@ class ProductsController extends Controller
     {
         $order = Order::where('id', $id)->first();
         $cart = json_decode($order->cart, true);
-        // dd($order->cart);
 
         return view('products.generate_invoice', compact('order', 'cart'));
     }
-
+    
     // Bank Transfer
     public function checkout()
     {   
@@ -181,8 +180,12 @@ class ProductsController extends Controller
         // delete the user address input if any 
         $detail = Detail::where('user_id', auth()->user()->id)->delete();
 
-        // Send To User Email The Order No.
-        // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+         // Immediately fetch the latest order
+        $latest = auth()->user()->orders()->latest()->first();
+        $decoded = json_decode($latest->cart ,true);
+
+        // Send to email the Invoice
+        Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
 
         // decrement the user credits
         $latest = Order::where('user_id', auth()->user()->id)->latest()->first();
@@ -255,8 +258,12 @@ class ProductsController extends Controller
         // delete the user address input if any 
         $detail = Detail::where('user_id', auth()->user()->id)->delete();
 
-        // Send To User Email The Order No.
-        // Mail::to(auth()->user()->email)->send(new SendInvoice($order));
+        // Immediately fetch the latest order
+        $latest = auth()->user()->orders()->latest()->first();
+        $decoded = json_decode($latest->cart ,true);
+
+        // Send to email the Invoice
+        Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
 
         // remove the session 
         Session::forget('cart');    

@@ -38,7 +38,7 @@
                       <h2>{{$order->user->getFullNameAttribute()}}</h2>
                       <div>{{auth()->user()->email}}</div>
                       <div>{{$order->phone}}</div>
-                      <div>{{$order->street}}, {{$order->barangay}}</div>
+                      <div>{{$order->getFullAddressAttribute()}}</div>
                   </div>
                   <div class="col invoice-details">
                       <h1 class="invoice-id">INVOICE</h1>
@@ -70,7 +70,7 @@
 											@endforeach
                   </tbody>
                   <tfoot>
-                      <tr>
+                  {{--     <tr>
                           <td></td>
                           <td>TRANSACTION FEE</td>
                           <td>0.00</td>
@@ -79,15 +79,15 @@
                           <td></td>
                           <td>SHIPPING FEE</td>
                           <td>0.00</td>
-                      </tr>
+                      </tr> --}}
                       <tr>
                           <td></td>
                           <td>TOTAL</td>
-                          <td>Php {{number_format($cart['totalPrice'])}}</td>
+                          <td style="margin-top: 10px;">Php {{number_format($cart['totalPrice'])}}</td>
                       </tr>
                   </tfoot>
               </table>
-              <div class="thanks">Thank you!</div>
+              <div class="thanks" style="margin-top: 2px">Thank you!</div>
               <div class="notices">
                   <div>NOTICE:</div>
                   <div class="notice">

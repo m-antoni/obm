@@ -125,31 +125,11 @@
                 <div class="form-group">
                     <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm">
                 </div>
-
-                <div class="accordion" id="referral">
-                  <div class="card">
-                    <div class="card-header p-0" id="headingOne">
-                      <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          <i class="fa fa-arrow-down"></i> Referral Code
-                        </button>
-                      </h2>
-                    </div>
-
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#referral">
-                      <div class="card-body">
-                        <input type="text" name="referBy" class="form-control" placeholder="Enter Code">
-                        <small>This field is optional</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <input type="hidden" name="referral_key">    
-
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>
                 </div>
+
+                <input type="hidden" name="referBy" value="{{$ref}}" >
 
                 {{-- <div class="form-group">
                     <label class="custom-control custom-checkbox">

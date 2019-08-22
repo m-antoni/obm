@@ -4,7 +4,7 @@
     <!-- ============================================================== -->
     <!-- signup form  -->
     <!-- ============================================================== -->
-    <form method="POST" action="{{ route('register.referral') }}" class="splash-container">
+    <form method="POST" action="{{ route('register') }}" class="splash-container">
         @csrf
         <div class="card">
             <div class="card-header">
@@ -63,15 +63,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <select name="city" class="form-control" id="exampleFormControlSelect1">
-                      <option value="null">Choose City...</option>   
-                      <option>Caloocan</option>
-                      <option>Makati</option>
-                      <option>San Juan</option>
-                      <option>Pasig</option>
-                      <option>Valenzuela</option>
+                    <select name="city" class="form-control dynamic @error('city') is-invalid @enderror" id="city" data-dependent="barangay">
+                       <option value="">Choose City</option>
+                       @foreach($address as $row)
+                            <option value="{{$row->city}}">{{$row->city}}</option>
+                       @endforeach
                     </select>
-                 
+
                     @error('city')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -80,13 +78,10 @@
                 </div>
 
                 <div class="form-group">
-                    <select name="barangay" class="form-control" id="exampleFormControlSelect1">
-                      <option value="null">Choose barangay...</option>   
-                      <option>Bagong Silang</option>
-                      <option>Sapang Putik</option>
-                      <option>Makaneneng</option>
+                    <select name="barangay" class="form-control dynamic @error('barangay') is-invalid @enderror" id="barangay" data-dependent="zipcode">
+                        <option value="">Choose Barangay</option>
                     </select>
-                 
+
                     @error('barangay')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -95,7 +90,9 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-lg @error('zipcode') is-invalid @enderror" name="zipcode" required placeholder="zipcode">
+                    <select name="zipcode" class="form-control @error('zipcode') is-invalid @enderror" id="zipcode">
+                        <option value="">Choose zipcode</option>
+                    </select>
 
                     @error('zipcode')
                         <span class="invalid-feedback" role="alert">
@@ -113,6 +110,7 @@
                         </span>
                     @enderror
                 </div>
+                
 
                 <div class="form-group">
                     <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
@@ -123,16 +121,29 @@
                         </span>
                     @enderror
                 </div>    
-
+                
                 <div class="form-group">
                     <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm">
                 </div>
-                
-                <input type="hidden" name="referral_key">    
-
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>
                 </div>
+                
+                <input type="hidden" value="{{$ref}}" >
+                {{-- <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox"><span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span>
+                    </label>
+                </div>
+
+                <div class="form-group row pt-0">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                        <button class="btn btn-block btn-social btn-facebook " type="button">Facebook</button>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <button class="btn  btn-block btn-social btn-twitter" type="button">Twitter</button>
+                    </div>
+                </div> --}}
             </div>
             <div class="card-footer bg-white">
                 <p class="text-dark">Already member? <a href="{{ route('login') }}" class="text-secondary">Login Here.</a></p>
@@ -140,4 +151,34 @@
         </div>
     </form>
 
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function(){
+    $('.dynamic').change(function(){
+        if($(this).val() != '')
+        {
+            var select = $(this).attr("id");
+            var value = $(this).val();
+            var dependent = $(this).data('dependent');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{ route('dynamic.address.fetch') }}",
+                method: "POST",
+                data:{
+                    select:select, 
+                    value:value,
+                    _token:_token,
+                    dependent:dependent
+                },
+                success:function(result){
+                    $('#' + dependent).html(result);
+
+                }
+            });
+        }
+    });
+});
+</script>
 @endsection

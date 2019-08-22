@@ -8,17 +8,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
-
 // Users Routes 
 Auth::routes();
 //set to send verify link must be after auth routes
 Auth::routes(['isverified' => true]);
 
+Route::get('register/{ref?}','Auth\RegisterController@showRegistrationForm');
+
 // SMS Verification Code OPT Routes
 Route::get('smsverify', 'VerifyOTPController@show_verify')->name('verify.sms');
 Route::post('smsverify', 'VerifyOTPController@verifyOTP')->name('verify.otp');
 Route::get('smsverify/resend', 'VerifyOTPController@resend')->name('resend');
-// Route::get('sms', 'VerifyOTPController@test'); // testing
+Route::get('sms', 'VerifyOTPController@test'); // testing
 
 // Dynamic Address Fetching
 Route::post('/register/fetch', 'Auth\RegisterController@fetch')->name('dynamic.address.fetch');
@@ -29,6 +30,7 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],function(){
 		// navigation
 		Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+		Route::post('/', 'ClientsController@upload_image')->name('upload.image');
 		Route::get('/shop', 'ProductsController@index')->name('shop')->middleware('auth');
 
 		// Order History
@@ -62,23 +64,20 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 		Route::get('products/checkout-cod', 'ProductsController@checkout_cod')->name('cod');
 		Route::post('products/checkout-cod', 'ProductsController@cod_store')->name('cod.store');
 
-
-
-
-		// Client Area
-		Route::get('client/', 'ClientsAreaController@index')->name('client');
-		Route::get('client/user-profile', 'ClientsAreaController@user_profile')->name('user.profile');
-		Route::post('client/user-profile/upload-image', 'ClientsAreaController@upload_image')->name('upload.image');
-
 		// Chat Module Routes
-		Route::get('/chats', 'ChatsController@index')->name('chats');
-		Route::get('/messages', 'ChatsController@fetchMessages')->name('fetch.messages');
-		Route::post('/messages', 'ChatsController@sendMessages')->name('send.messages');
+		// Route::get('/chats', 'ChatsController@index')->name('chats');
+		// Route::get('/messages', 'ChatsController@fetchMessages')->name('fetch.messages');
+		// Route::post('/messages', 'ChatsController@sendMessages')->name('send.messages');
+		// Route::get('/ebooks', 'EbooksController@index')->name('ebooks');
 
-		// Ebook Route
-		Route::get('/ebooks', 'EbooksController@index')->name('ebooks');
+});
 
-		Route::get('/testing', function(){
-			return view('sms');
-		});
+Route::get('/test/{ref?}', function($ref = null){
+		dd(md5(uniqid(rand(), true)));
+		return view('test', compact('ref'));
+});
+
+Route::post('/test',function(Request $request){
+
+		return dd($request->all());
 });

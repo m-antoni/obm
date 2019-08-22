@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first','middle', 'last','email', 'phone','city','barangay',
-        'zipcode','street','password', 'referral_key','referBy'
+        'zipcode','street','password','referral_key','referBy'
     ];
 
     /**
@@ -30,6 +30,11 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return ucfirst($this->street) . ', ' .  ucfirst($this->barangay) . ', ' . ucfirst($this->city);
     }
 
     /**
@@ -79,22 +84,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Detail');
     }
-
-    // public function friendsOfMine()
-    // {   
-    //     // return the users friends
-    //     return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
-    // }
-
-    // public function friendsOf()
-    // {   
-    //     // return the users friends who send a friend request
-    //     return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
-    // }
-
-    // public function friends()
-    // {   
-    //     // merge both functions to avoid duplicate users
-    //     return $this->friendsOfMine->merge($this->friendsOf);
-    // }
 }

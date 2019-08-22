@@ -75,11 +75,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['referBy'] != null){
-            $query = User::where('referral_key', $data['referBy'] )
-                            ->increment('credits', 50);
-        }
-        
         // generate Cache
         $generatedCache = $this->cacheTheOTP();
         // $getOTP = Cache::get('OTP');
@@ -99,8 +94,8 @@ class RegisterController extends Controller
             'street' => $data['street'],
             'password' => Hash::make($data['password']),
             'otp' => Cache::get('OTP'),
-            'referral_key' => strtoupper(str_random(10)),
-            'referBy' => $data['referBy'], 
+            'referral_key' => md5(uniqid(rand(), true)),
+            'referBy' => $data['referBy']
         ]);
     }
 
@@ -126,16 +121,17 @@ class RegisterController extends Controller
         $result = $smsGateway->sendMessageToNumber($phone, $message, $devide_id, $options);
     }
 
-    public function showRegistrationForm()
+    public function showRegistrationForm($ref = null)
     {   
         // This will overright the current function 
         $address = DB::table('addresses')->groupBy('city')->get();
         // dd($address);
-        return view('auth.register')->with('address', $address); 
+        return view('auth.register', compact('address', 'ref')); 
     }
 
     public function fetch(Request $request)
-    {
+    {   
+        // Fetching the Address from Database Dynamically
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
@@ -153,4 +149,12 @@ class RegisterController extends Controller
 
         echo $output;
     } 
+
+    // public function registerWithRef($ref = null)
+    // {      
+    //      // This will overright the current function 
+    //     $address = DB::table('addresses')->groupBy('city')->get();
+        
+    //      return view('auth.register-ref', compact('ref', 'address'));
+    // }
 }

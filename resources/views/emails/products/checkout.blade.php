@@ -129,15 +129,15 @@
                     <table>
                         <tr>
                             <td>
-	                            	{{$data->user->getFullNameAttribute()}}<br>
-	                            	{{auth()->user()->email}} <br>
-	                            	{{$data->phone}} <br>
-	                              {{$data->address}}<br>
+	                            {{$latest->user->getFullNameAttribute()}}<br>
+	                            {{auth()->user()->email}} <br>
+	                            {{$latest->phone}} <br>
+	                            {{$latest->getFullAddressAttribute()}}<br>
                             </td>
                             
                             <td>
                                 <b>INVOICE</b><br>
-                              	Created: {{ $data->date->format('m-d-Y') }}
+                              	{{ $latest->date->format('m-d-Y') }}
                             </td>
                         </tr>
                     </table>
@@ -150,7 +150,7 @@
                 </td>
                 
                 <td>
-                   {{$data->payment}}
+                   {{$latest->payment}}
                 </td>
             </tr>
             
@@ -160,7 +160,7 @@
                 </td>
                 
                 <td>
-                    {{$data->order_number}}
+                    {{$latest->order_number}}
                 </td>
             </tr>
             
@@ -173,23 +173,23 @@
                     Price
                 </td>
             </tr>
-     {{-- 
-  			  @foreach($cart->items as $item)        
-            <tr class="item">
-                <td>
-                    {{$item['item']['p_name']}}
-                </td>
-                
-                <td>
-                   Php {{$item['price']}}
-                </td>
-            </tr>
-          @endforeach   --}}
+     
+      		 @foreach($decoded['items'] as $item)        
+                <tr class="item">
+                    <td>
+                        {{$item['item']['p_name']}} | Qty: {{$item['qty']}}
+                    </td>
+                    
+                    <td>
+                       Php {{$item['price']}}
+                    </td>
+                </tr>
+              @endforeach  
 
             <tr class="total">
                 <td></td>
                 <td>
-                   {{-- Total: Php {{number_format($cart->totalPrice)}} --}}
+                   Total: Php {{number_format($decoded['totalPrice'])}}
                 </td>
             </tr>
         </table>

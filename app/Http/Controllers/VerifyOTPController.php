@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use App\SmsGateway;
 use App\User;
 
@@ -17,30 +18,39 @@ class VerifyOTPController extends Controller
 
     public function verifyOTP(Request $request)
     {
-    		if($request->otp == Cache::get('OTP'))
-    		{
-    				$update = User::where('id', auth()->user()->id)
-					    				->update([
-					    					'isVerified' => true,
-					    					'otp' => $request->otp
-					    				]);
+		if($request->otp == Cache::get('OTP'))
+		{
+			$update = User::where('id', auth()->user()->id)
+    	    				->update([
+    	    					'isVerified' => true,
+    	    					'otp' => $request->otp
+    	    				]);
 
-    				return redirect()->route('home');
-    		}
+            // if the user is has referral codes                    
+            if(auth()->user()->referBy){
+                // get the referral user increment his beem
+                $increment = DB::table('users')
+                                ->where('referral_key', auth()->user()->referBy)
+                                ->increment('credits', 50);
+            }                
+                
+			return redirect()->route('home');
+		}
 
-    		return redirect()->back()->with('error', 'Verification Code is invalid');
+
+		return redirect()->back()->with('error', 'Verification Code is invalid');
     }
 
     public function resend()
     {
-    		// Generate new OTP
-    		$generate = $this->cacheTheOTP();
+		// Generate new OTP
+		$generate = $this->cacheTheOTP();
 
-    		$phone = auth()->user()->phone;
-    		// send to user phone
-    		$sendOTP = $this->sendOTP($phone);
+		$phone = auth()->user()->phone;
+		// send to user phone
+		$sendOTP = $this->sendOTP($phone);
 
-    		return redirect()->route('verify.sms')->with('resent','A fresh verification code has been sent to your phone');
+		return redirect()->route('verify.sms')->with('resent','A fresh verification code has been sent to your phone');
     }
 
      public function cacheTheOTP()
@@ -64,30 +74,30 @@ class VerifyOTPController extends Controller
         $result = $smsGateway->sendMessageToNumber($phone, $message, $devide_id, $options);
     }
 
-		public function test()
-		{
-				// dd($request->all());
-				$token = env('SMS_TOKEN');
+	public function test()
+	{
+		// dd($request->all());
+		$token = env('SMS_TOKEN');
 
-				$phoneNumber = env('SMS_SERVER');
+		$phoneNumber = env('SMS_SERVER');
 
-				$devide_id = env('SMS_DEVICE_ID');
+		$devide_id = env('SMS_DEVICE_ID');
 
-				// $message =  'CODE: ' . strtoupper(str_random(6)) ;
-				$message =  'VERIFICATION CODE: ' . rand(100000, 999999);
+		// $message =  'CODE: ' . strtoupper(str_random(6)) ;
+		$message =  'VERIFICATION CODE: ' . rand(100000, 999999);
 
-				$options = [];
+		$options = [];
 
-				$smsGateway = new SmsGateway($token);
-				$result = $smsGateway->sendMessageToNumber($phoneNumber, $message, $devide_id, $options);
+		$smsGateway = new SmsGateway($token);
+		$result = $smsGateway->sendMessageToNumber($phoneNumber, $message, $devide_id, $options);
 
-				if($result){
+		if($result){
 
-						echo 'Message Sent';
+			echo 'Message Sent';
 
-				}else{
+		}else{
 
-						echo 'Something went wrong!!!';
-				}
+			echo 'Something went wrong!!!';
 		}
+	}
 }

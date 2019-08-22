@@ -11,16 +11,19 @@ class SendInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $latest;
+
+    public $decoded;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data, $cart)
+    public function __construct($latest, $decoded)
     {
-        $this->data = $data;
-        $this->cart = $cart;
+        $this->latest = $latest;
+        $this->decoded = $decoded;
     }
 
     /**

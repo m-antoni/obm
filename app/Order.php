@@ -18,9 +18,14 @@ class Order extends Model
     //     return unserialize($value);
     // }
 
-   public function getFullNameAttribute()
+    public function getFullNameAttribute()
     {
         return ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return ucfirst($this->street) . ', ' .  ucfirst($this->barangay) . ', ' . ucfirst($this->city);
     }
 
     public function user()

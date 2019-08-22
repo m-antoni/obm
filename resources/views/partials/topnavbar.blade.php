@@ -46,7 +46,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#contact">Contact</a>
-                          <a class="dropdown-item" href="{{ route('client') }}">Client Area</a>
                           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#signout">Sign-out</a>
                         </div>
                     </li>
@@ -77,19 +76,22 @@
 
 <!-- Logout Modal-->
   <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-muted" id="exampleModalLabel"><b>Ready to leave?</b></h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
             <div align="center">
-                <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                 <h5 class="modal-title text-muted mb-4" id="exampleModalLabel"><b>Ready to leave?</b></h5>
+                <a onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
-                   <i class="fas fa-power-off mr-2"></i> Sign-out
+                   <button class="bttn bttn-danger bttn-fill" href="{{ route('logout') }}">
+                      <i class="fas fa-power-off mr-2"></i> Sign-out
+                   </button>
+                   
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

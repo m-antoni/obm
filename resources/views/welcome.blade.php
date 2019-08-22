@@ -36,10 +36,15 @@
                 <div class="content-column col-lg-6 col-md-12 col-sm-12">
                   <div class="inner-column">
                   <h2>ONE BEEM</h2>
-                        <div class="text">Everything you need in just a few clicks.</div>
-                        <div class="btns-box">
-                      <a class="theme-btn btn-style-two" href="#"><span class="txt">Download App</span></a><a class="theme-btn btn-style-three" href="{{ route('login') }}"><span class="txt">Login Here</span></a>
-                        </div>
+                      <div class="text">Everything you need in just a few clicks.</div>
+                      <div class="btns-box">
+                        <a class="theme-btn btn-style-two" href="#">
+                          <span class="txt">Download App</span>
+                        </a>
+                        <a class="theme-btn btn-style-three" href="{{ route('login') }}">
+                          <span class="txt">Login Here</span>
+                        </a>
+                      </div>
                     </div>
                 </div>
                 <!--Image Column-->
@@ -53,7 +58,6 @@
     </section>
     <!--End Banner Section-->
 
-  
 </div>
 <!--End pagewrapper-->
 

@@ -38,16 +38,15 @@
   <body id="page-top">
       <div id="app">
         @include('partials.topnavbar')
-        <main class="mb-5 pb-5">
+        <main>
            @yield('content')
+
+           {{-- @include('partials.messengerfb') --}}
         </main>
-        @include('partials.bottomnavbar')
       </div>
         <!-- Custom scripts for this template -->
-        
         <script src="{{ asset('/js/app.js') }}"></script>
-        <script src="{{ asset('/js/iziToast.min.js')}}"></script>
-            
+        <script src="{{ asset('/js/iziToast.min.js')}}"></script>   
         <!-- Adding Custom scripts  -->
         @yield('script')
         <!-- ===================== -->
