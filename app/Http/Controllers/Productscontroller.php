@@ -11,6 +11,7 @@ use App\Mail\SendInvoice;
 use App\User;
 use App\Order;
 use App\Product;
+use App\Notif;
 use App\Cart;
 use App\Detail;
 use Session;
@@ -102,6 +103,12 @@ class ProductsController extends Controller
         $payment = $order->payment;
         $cart = json_decode($order->cart, true);
 
+        // SEND NOTIF TO BACKEND
+        Notif::create([
+            'notif_title' => 'Order Transaction',
+            'notif_desc' => 'Total Price: '. $cart['totalPrice']
+        ]);
+
         // dd($payment);
         return view('products.confirm_order', compact('order', 'payment', 'cart'));
     }
@@ -172,7 +179,6 @@ class ProductsController extends Controller
             'zipcode' => $request->zipcode,
             'street' => $request->street,
             'cart' => $cart,
-            'status' => 'PENDING',
             'payment' => 'BEEMS',
             'date' => now()
         ]);
@@ -250,7 +256,6 @@ class ProductsController extends Controller
             'zipcode' => $request->zipcode,
             'street' => $request->street,
             'cart' => $cart,
-            'status' => 'PENDING',
             'payment' => 'COD',
             'date' => now()
         ]);

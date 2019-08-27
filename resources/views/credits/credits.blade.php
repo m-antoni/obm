@@ -72,11 +72,11 @@
 		</div>
 		
 	{{-- Upload Receipts Modal --}}
-  <div class="modal fade" id="creditsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="creditsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 999999;">
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
               <div class="modal-header">
-	                <div class="modal-title"><i class="fa fa-coins"></i> <b>Purchase Credits</b></div>
+	                <div class="modal-title"><i class="fa fa-coins"></i> <b>Purchase Beems</b></div>
 	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                  <span aria-hidden="true">&times;</span>
 	                </button>
@@ -85,13 +85,9 @@
 								   <form id="creditsForm" action="{{route('post.credits')}}" method="POST">
 								      @csrf
 								      <div class="form-group">
-								      	 	<label>Credits:</label>
-								         	<select id="credits" name="credits" class="form-control mb-3">
-									         		<option value="">Choose here...</option>
-									         		@foreach($list as $row)
-									         			<option value="{{$row}}">{{number_format($row)}}</option>
-									         		@endforeach
-								         	</select>
+								      		<div class="alert alert-danger">minimum of 300 purchase</div>
+								      	 	<label>Enter Amount</label>
+								         	<input type="text" id="credits" name="credits" placeholder="Enter Amount" class="form-control">
 								      </div>
 								      <hr>
 								      <div class="form-group">

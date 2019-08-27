@@ -23,8 +23,8 @@ class CreateOrdersTable extends Migration
             $table->string('zipcode');
             $table->longText('street');
             $table->longText('cart');
-            $table->longText('status');
             $table->longText('payment');
+            $table->boolean('status')->default(false);
             $table->string('date');
             $table->timestamps();
         });

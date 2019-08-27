@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use App\SmsGateway;
 use App\User;
+use App\Chatbox;
 
 class VerifyOTPController extends Controller
 {
     public function show_verify()
     {		
-    		// dd(Cache::get('OTP'));
-    		return view('auth.sms-verify');
+		// dd(Cache::get('OTP'));
+		return view('auth.sms-verify');
     }
 
     public function verifyOTP(Request $request)
@@ -26,17 +27,21 @@ class VerifyOTPController extends Controller
     	    					'otp' => $request->otp
     	    				]);
 
-            // if the user is has referral codes                    
+            // If THE USER IS REFER BY                  
             if(auth()->user()->referBy){
-                // get the referral user increment his beem
+                // UPDATE WHO REFER ADD 50 CREDITS
                 $increment = DB::table('users')
                                 ->where('referral_key', auth()->user()->referBy)
                                 ->increment('credits', 50);
-            }                
+            }
+
+            // SET A CHATBOX ID 
+            $setChatId = Chatbox::create([
+                'user_id' => auth()->user()->id
+            ]);                
                 
 			return redirect()->route('home');
 		}
-
 
 		return redirect()->back()->with('error', 'Verification Code is invalid');
     }

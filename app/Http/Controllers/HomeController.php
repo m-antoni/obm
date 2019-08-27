@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Order;
+use App\MasterDebitCard;
 
 class HomeController extends Controller
 {
@@ -23,10 +26,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        // broadcast(new WebsocketDemoEvent('some data'));
+    {   
+        $referBy = auth()->user()->referBy;
 
-        return view('home');
+        $referrals = User::where('referBy', auth()->user()->referral_key)
+                             ->orderBy('created_at', 'DESC')
+                             ->get();
+        $orders = Order::where('user_id', auth()->user()->id)
+                ->orderBy('date', 'desc')
+                ->get();    
+
+        // broadcast(new WebsocketDemoEvent('some data'));
+        return view('home', compact('referBy', 'referrals', 'orders'));
     }
 
 }

@@ -4,7 +4,7 @@
 <!-- Mirrored from expert-themes.com/html/applaap/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Aug 2019 10:42:13 GMT -->
 <head>
 <meta charset="utf-8">
-<title>AppLaap - App Landing HTML Template | Homepage Two</title>
+<title>{{ config('app.name', 'One Beem') }}</title>
 {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- CSRF Token -->

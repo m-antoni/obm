@@ -94,7 +94,7 @@ class RegisterController extends Controller
             'street' => $data['street'],
             'password' => Hash::make($data['password']),
             'otp' => Cache::get('OTP'),
-            'referral_key' => md5(uniqid(rand(), true)),
+            'referral_key' => str_random(60),
             'referBy' => $data['referBy']
         ]);
     }

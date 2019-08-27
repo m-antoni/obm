@@ -69,7 +69,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
 
                 <a href="#" class="btn btn-outline-dark btn-block mt-3" data-toggle="modal" data-target="#confirmModal">
                   <i class="fa fa-send"></i> 

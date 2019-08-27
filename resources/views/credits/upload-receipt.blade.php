@@ -10,11 +10,13 @@
 
 				@if(count($errors) > 0)
 					<div class="alert alert-danger" role="alert">
-						<ul>
-							@foreach($errors->all() as $error)
-						<li>{{ $error}}</li>
-							@endforeach
-						</ul>
+							<div class="container">
+									<ul>
+										@foreach($errors->all() as $error)
+									<li>{{ $error}}</li>
+										@endforeach
+									</ul>
+							</div>
 					</div>	
 				@endif
 
@@ -24,7 +26,7 @@
 							@csrf
 							<div class="form-group">
 									<label>Transaction Number:</label>
-										<input type="text" name="transactionNumber" class="form-control" id="transactionNumber" value="{{old('transactionNumber')}}">
+										<input type="text" name="transaction_number" class="form-control" id="transaction_number" value="{{old('transaction_number')}}">
 							</div>
 
 							<div class="form-group">

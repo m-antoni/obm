@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('referral_key');
             $table->string('referBy')->nullable();
             $table->integer('credits')->default(100);
+            $table->boolean('status')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

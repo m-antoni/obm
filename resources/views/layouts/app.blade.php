@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
- 
     <title>{{ config('app.name', 'One Beem') }}</title>
 
     <!-- Fonts -->
@@ -28,25 +28,30 @@
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom CSS STYLES -->
+     <!-- SideBar -->
+    <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/pushy.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/pushycustom.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/css/main.css') }}"> 
     @yield('style')
 
 </head>
   <body id="page-top">
-      <div id="app">
-        @include('partials.topnavbar')
-        <main>
-           @yield('content')
-
+      @include('partials.sidebar')  
+      <div id="app" class="customHeight">
+            <main>
+                 @yield('content')
+            </main>
+            {{-- <div class="site-overlay"></div> --}}
+         
            {{-- @include('partials.messengerfb') --}}
-        </main>
       </div>
-        <!-- Custom scripts for this template -->
         <script src="{{ asset('/js/app.js') }}"></script>
         <script src="{{ asset('/js/iziToast.min.js')}}"></script>   
+        <script src="{{ asset('/js/pushy.min.js')}}"></script>   
         <!-- Adding Custom scripts  -->
         @yield('script')
         <!-- ===================== -->

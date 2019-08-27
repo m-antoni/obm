@@ -70,16 +70,6 @@
 											@endforeach
                   </tbody>
                   <tfoot>
-                  {{--     <tr>
-                          <td></td>
-                          <td>TRANSACTION FEE</td>
-                          <td>0.00</td>
-                      </tr>
-                      <tr>
-                          <td></td>
-                          <td>SHIPPING FEE</td>
-                          <td>0.00</td>
-                      </tr> --}}
                       <tr>
                           <td></td>
                           <td>TOTAL</td>

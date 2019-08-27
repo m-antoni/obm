@@ -38,9 +38,15 @@ h4, h2, #productName{
   }
 
   .customHeight{
-    margin-top: 100px !important;
+    margin-top: 50px !important;
   }
 
+/* bills and payment styles*/
+#billsHeader{
+  background: #28a0f9;
+  color: #fbc74d;
+}
+ 
 /* user homepage styles*/
 .imageThumbnail .imghome {
   position: relative;
@@ -258,6 +264,60 @@ h4, h2, #productName{
     .invoice>div:last-child {
         page-break-before: always
     }
+}
+
+/* Invoice Section */
+
+
+
+/* Chat containers */
+.chat {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.chat::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.chat img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.chat img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
 }
 
 

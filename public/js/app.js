@@ -1871,72 +1871,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
-      messages: [],
+      chats: [],
       newMessage: '',
-      users: [],
-      activeUser: false,
-      typingTimer: false
+      image: "/storage/".concat(this.user.image)
     };
   },
   created: function created() {
     var _this = this;
 
-    this.fetchMessage();
-    Echo.join('chat').here(function (user) {
-      _this.users = user;
-    }).joining(function (user) {
-      _this.users.push(user);
-    }).leaving(function (user) {
-      _this.users = _this.users.filter(function (u) {
-        return u.id != user.id;
-      });
-    }).listen('MessageSent', function (event) {
-      _this.messages.push(event.message);
-    }).listenForWhisper('typing', function (user) {
-      _this.activeUser = user;
-
-      if (_this.typingTimer) {
-        clearTimeout(_this.typingTimer);
-      }
-
-      _this.typingTimer = setTimeout(function () {
-        _this.activeUser = false;
-      }, 2000);
-    });
+    setInterval(function () {
+      _this.getMessage();
+    }, 1000);
   },
   methods: {
-    fetchMessage: function fetchMessage() {
+    postMessage: function postMessage() {
       var _this2 = this;
 
-      axios.get('messages').then(function (response) {
-        _this2.messages = response.data;
-      });
-    },
-    sendMessage: function sendMessage() {
-      this.messages.push({
-        user: this.user,
+      this.chats.push({
         message: this.newMessage
       });
-      axios.post('messages', {
-        message: this.newMessage
+      axios.post("/api/home/chat", {
+        message: this.newMessage,
+        user_id: this.user.id
+      }).then(function (response) {
+        _this2.newMessage = '';
+      })["catch"](function (error) {
+        console.log(error);
       });
-      this.newMessage = '';
     },
-    sendTypingEvent: function sendTypingEvent() {
-      Echo.join('chat').whisper('typing', this.user);
+    pressEnter: function pressEnter() {
+      this.postMessage();
+    },
+    getMessage: function getMessage() {
+      var _this3 = this;
+
+      axios.get("/api/home/chat").then(function (response) {
+        _this3.chats = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -37313,103 +37290,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-8 col-8" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Messages")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "ul",
-            {
-              directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
-              staticClass: "list-unstyled",
-              staticStyle: { height: "300px", "overflow-y": "scroll" }
-            },
-            _vm._l(_vm.messages, function(message, index) {
-              return _c("li", { key: index, staticClass: "p-2" }, [
-                _c("div", [
-                  _c("div", [
-                    _c("strong", [_vm._v(_vm._s(message.user.first))])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v(_vm._s(message.message))])
-                ])
-              ])
-            }),
-            0
-          )
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newMessage,
-              expression: "newMessage"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "message",
-            placeholder: "Enter your message"
-          },
-          domProps: { value: _vm.newMessage },
-          on: {
-            keydown: _vm.sendTypingEvent,
-            keyup: function($event) {
-              if (
-                !$event.type.indexOf("key") &&
-                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-              ) {
-                return null
-              }
-              return _vm.sendMessage($event)
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.newMessage = $event.target.value
-            }
-          }
-        })
-      ]),
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-body" }, [
+      _vm._m(0),
       _vm._v(" "),
-      _vm.activeUser
-        ? _c("span", { staticClass: "text-muted" }, [
-            _vm._v(_vm._s(_vm.activeUser.first) + " is typing...")
-          ])
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-4 col-4" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("active users")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body p-1" }, [
-          _c(
-            "ul",
-            _vm._l(_vm.users, function(user, index) {
-              return _c(
-                "li",
-                { key: index, staticClass: "py-1 list-unstyled" },
-                [
-                  _c("i", { staticClass: "fa fa-user-circle" }),
-                  _vm._v(" " + _vm._s(user.first) + " \r\n      \t\t")
-                ]
-              )
+      _c(
+        "div",
+        {
+          directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+          staticStyle: { "overflow-y": "scroll", "max-height": "300px" }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.chats, function(chat, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "chat darker bg-primary text-white" },
+              [
+                _c("p", [_vm._v(_vm._s(chat.message))]),
+                _vm._v(" "),
+                _c("span", { staticClass: "time-left text-warning" }, [
+                  _vm._v(_vm._s(chat.created_at))
+                ])
+              ]
+            )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _c("form", [
+          _c("div", { staticClass: "input-group mb-3 mt-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newMessage,
+                  expression: "newMessage"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "message",
+                placeholder: "Enter your message"
+              },
+              domProps: { value: _vm.newMessage },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  $event.preventDefault()
+                  return _vm.pressEnter()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newMessage = $event.target.value
+                }
+              }
             }),
-            0
-          )
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-append" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary",
+                  attrs: { type: "button", id: "button" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.postMessage()
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-send" }), _vm._v(" Send")]
+              )
+            ])
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", [
+      _c("i", { staticClass: "fa fa-comments" }),
+      _vm._v(" Chat-box")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "chat" }, [
+      _c("img", {
+        attrs: { src: "https://picsum.photos/50/50", alt: "Avatar" }
+      }),
+      _vm._v(" "),
+      _c("p", [_vm._v("Hello. How are you today?")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "time-right" }, [_vm._v("11:00")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -49586,10 +49582,10 @@ Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default.a);
 
 Vue.component('chat', __webpack_require__(/*! ./components/Chat/Chat.vue */ "./resources/js/components/Chat/Chat.vue")["default"]);
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+* Next, we will create a fresh Vue application instance and attach it to
+* the page. Then, you may begin adding components to this application
+* or customize the JavaScript scaffolding to fit your unique needs.
+*/
 
 var app = new Vue({
   el: '#app'

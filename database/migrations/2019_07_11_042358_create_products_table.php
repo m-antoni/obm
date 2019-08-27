@@ -22,8 +22,6 @@ class CreateProductsTable extends Migration
             $table->string('category');
             $table->string('stocks');
             $table->string('image')->default('noimage.jpg');
-            $table->string('orderRate')->nullable();
-            $table->string('salesRate')->nullable();
             $table->timestamps();
         });
     }

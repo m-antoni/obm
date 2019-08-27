@@ -7,6 +7,7 @@ use Session;
 use App\User;
 use App\Credit;
 use App\Receipt;
+use App\Notif;
 
 class CreditsController extends Controller
 {
@@ -15,40 +16,39 @@ class CreditsController extends Controller
 				$credits = auth()->user()->credits;
 
 				$pending = Credit::where('user_id', auth()->user()->id)
-													->where('status', 'PENDING')
+													->where('status', false)
 													->first();
 
-				$list = [
-					100, 200, 500, 1000, 1500, 2500, 3000 ,4000, 5000, 6000, 7000, 8000, 9000, 10000, 15000, 20000,
-				];
-
-				return view('credits.credits',compact('credits', 'pending', 'list'));	
+				return view('credits.credits',compact('credits', 'pending'));	
     }
 
     public function post_credits(Request $request)
     {		
 				$validate = $request->validate([
-					'credits' => 'required|numeric',
+					'credits' => 'required|numeric|gt:300',
 				]);
-			
-				if(Credit::where('user_id', auth()->user()->id)->first()){
-			
+				
+				// ALREADY EXITS JUST UPDATE
+				if(Credit::where('user_id', auth()->user()->id)->first())
+				{
 					$update = auth()->user()->credits()
-														->where('status', 'PENDING')
-														->update([
-																'credits' => $request->credits,
-																'date' => now()
-														]);
+												->where('status', 0)
+												->update([
+														'credits' => $request->credits,
+														'date' => now()
+												]);					
+				}else{
+
+						// SAVE TO DB
+						$credits = Credit::create([
+								'user_id' => auth()->user()->id,
+								'credits' => $request->credits,
+								'date' => now()
+						]);
 				}
 
-				$create = Credit::create([
-						'user_id' => auth()->user()->id,
-						'credits' => $request->credits,
-						'status' => 'PENDING',
-						'date' => now()
-				]);
-					
-				return redirect()->route('show.credits')->with('success', 'Bank Transfer and upload your receipts to validate');
+	
+			return redirect()->route('show.credits')->with('success', 'Bank Transfer and upload your receipts to validate');
 
     }
 
@@ -61,18 +61,24 @@ class CreditsController extends Controller
     {   
 		    // return dd(request()->all());
 				$validate = request()->validate([
-					'transactionNumber' => 'required|numeric',
+					'transaction_number' => 'required|numeric',
 					'image' => 'required|image|max:1999'
 				]);
 
-				// save to database
-				$credits = Receipt::create([
-						'user_id' => auth()->user()->id,
-						'image' => request()->image->store('receipts', 'public'),
-						'transactionNumber' => request()->transactionNumber,
-						'date' => now()
-					]);
-				
+				$latest = auth()->user()->credits()
+											->latest()
+											->update([
+												'image' => request()->image->store('receipts', 'public'),
+												'transaction_number' => request()->transaction_number,
+												'date' => now()
+										]);
+
+				// SEND NOTIF TO BACKEND
+        Notif::create([
+            'notif_title' => 'Credit Request',
+            'notif_desc' => request()->transaction_number
+        ]);
+
 				return redirect()->route('show.credits')->with('success','Please wait till we validate your receipt uploaded');
     }
 

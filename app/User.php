@@ -55,9 +55,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function messages()
+    public function chatbox()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasOne('App\Chatbox');
+    }
+
+    public function referral()
+    {
+        return $this->hasMany('App\Referral');
     }
 
     public function orders()
@@ -65,23 +70,23 @@ class User extends Authenticatable
        return $this->hasMany('App\Order');
     } 
 
-    public function baskets()
-    {
-       return $this->hasMany('App\Basket');
-    }
-
     public function credits()
     {
         return $this->hasMany('App\Credit');
     }
 
-    public function beem()
-    {
-        return $this->hasOne('App\Beem');
-    }
-
     public function details()
     {
         return $this->hasMany('App\Detail');
+    }
+
+    public function bills()
+    {
+        return $this->hasMany('App\BillsPayment');
+    }
+
+    public function card()
+    {
+        return $this->hasOne('App\MasterDebitCard');
     }
 }
