@@ -12,12 +12,12 @@ ul {
 #container {
   position: relative;
   padding: 20px 40px;
- /* padding-top: 80px;*/
+  /*padding-top: 80px;*/
 }
 
 /* Menu Button */
 .menu-btn {
-  background: #000;
+  /*background: #000;*/
   color: #FFF;
   text-align: center;
   cursor: pointer;
@@ -31,7 +31,7 @@ ul {
 /* Header */
 .site-header {
   position: fixed;
-  background: #000;
+  background: #fff;
   color: #FFF;
   width: 100%;
   padding: 15px 0;
@@ -50,4 +50,34 @@ ul {
   text-align: center;
 }
 
+
+/* SIDE BACKGOUND */
+#sidebg{
+  background: url('../img/sidebg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 170px;
+}
+
+#sidebg img{
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  border-radius: 100%; 
+  height: 90px;
+  width: 90px;
+  margin-left: 20px;
+}
+
+#sidebg #info{
+  color: white;
+  margin-top: 10px;
+  position: absolute;
+  line-height: 1.3rem;
+  top: 110px;
+  bottom: 0px;
+  margin-left: 20px;
+}
 /*# sourceMappingURL=demo.css.map */

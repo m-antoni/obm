@@ -11,16 +11,18 @@
                       <h4 class="text-dark">{{Str::limit($product->p_name)}}</h4>
 
                       <h4 class="text-dark">Php{{number_format($product->price)}} | <s class="text-danger">SRP:₱{{$product->old_price}}</s></h4>
-
-                      <div class="btn-group" role="group" aria-label="Basic example">
-                        <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" data-target="#collapseDetails" aria-expanded="false" aria-controls="collapseExample">
-                          Click for details
-                        </button>
-                        <a href="{{route('show.all', $product->category)}}">
-                            <button type="button" class="btn btn-info text-white">
-                              <i class="fa fa-list"></i> SHOW ALL
-                            </button>
-                        </a>
+                      
+                      <div class="clearfix my-3">
+                          <div class="float-left">
+                              <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDetails" aria-expanded="false" aria-controls="collapseExample">
+                                Click for details
+                              </button>
+                          </div>
+                          <div class="float-right">
+                               <a href="{{route('show.all', $product->category)}}" class="btn btn-outline-dark btn-sm float-right">
+                                  <b><i class="fa fa-list"></i> SHOW ALL</b>
+                              </a>
+                          </div>
                       </div>
 
                       <div class="collapse" id="collapseDetails">
@@ -32,7 +34,7 @@
                       </div>            
   
                       <a href="{{ route('add.cart', $product->id) }}">
-                          <button class="bttn bttn-primary bttn-simple bttn-block mt-2 p-3">
+                          <button class="bttn bttn-primary bttn-block bttn-simple mt-2">
                           <i class="fa fa-shopping-cart"></i> 
                             ADD TO CART
                           </button>

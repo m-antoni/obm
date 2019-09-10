@@ -32,6 +32,11 @@ class User extends Authenticatable
         return ucfirst($this->first) . ' ' . ucfirst($this->middle) . ' ' . ucfirst($this->last);
     }
 
+    public function getNameLastAttribute()
+    {
+        return ucfirst($this->first) . ' ' . ucfirst($this->last);
+    }
+
     public function getFullAddressAttribute()
     {
         return ucfirst($this->street) . ', ' .  ucfirst($this->barangay) . ', ' . ucfirst($this->city);
@@ -70,7 +75,7 @@ class User extends Authenticatable
        return $this->hasMany('App\Order');
     } 
 
-    public function credits()
+    public function credit()
     {
         return $this->hasMany('App\Credit');
     }

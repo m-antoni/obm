@@ -43,13 +43,37 @@ class MessagesController extends Controller
          
     }
 
-    public function fetchCSR()
-    {
-        $csr = Message::where('chat_box_id', auth()->user()->chatbox->id)
-                            ->where('user_id', auth()->user()->id)
-                            ->where('csr_id', '!=', 0)
-                            ->orderBy('id', 'asc')
-                            ->get();  
-        return $csr;
-    }
+    // public function fetchCSR()
+    // {
+    //     $csr = Message::where('chat_box_id', auth()->user()->chatbox->id)
+    //                         ->where('user_id', auth()->user()->id)
+    //                         ->where('csr_id', '!=', 0)
+    //                         ->orderBy('id', 'asc')
+    //                         ->get();  
+    //     return $csr;
+    // }
 }
+
+
+
+ // function load_last_csr(){
+ //    $.ajax({
+    //      url:"{{ route('fetchCSR')}}",
+    //      method:"GET",
+    //      // data:{chat_box_id:CID},
+    //      success:function(data){
+    //          var result;
+    //          var logo = '{{ asset('/img/logocircle.png') }}';
+
+    //              $.each(data, function( index, value ) {
+    //                      result += '<div class="chat">';
+    //                      result += '<img src='+ logo +' alt="Avatar" class="right">';
+    //                    result += '<p class="message">' + value.message + '</p>';
+    //                    result += '<span class="time-left">' + new Date(value.created_at).toLocaleTimeString() + '</span>';
+    //                    result += '</div>';
+    //              });
+
+    //              $("#displayChat").html(result);
+    //      }
+ //       });
+ //  }

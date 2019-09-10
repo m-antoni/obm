@@ -2,12 +2,15 @@
 # Referral Link
 
 <br>
-<p>You have been refer by your friend </p>
-<b>{{ auth()->user()->getFullNameAttribute() }}</b>
+<p>
+	You have been refer by your friend <b>{{ auth()->user()->getFullNameAttribute() }}</b> <br>
+	This is your Referral Code: <b>{{ $key }}</b>
+</p>
+
 
 <br>
 
-@component('mail::button', ['url' => $data])
+@component('mail::button', ['url' => $link])
 Click here to verify
 @endcomponent
 

@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration
             $table->longText('payment');
             $table->boolean('status')->default(false);
             $table->string('date');
+            $table->string('deliver_date')->nullable();
+            $table->string('request_date')->nullable();
             $table->timestamps();
         });
     }

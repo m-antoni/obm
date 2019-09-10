@@ -11,15 +11,18 @@ class ReferralLink extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $link;
+    public $key;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($link, $key)
     {
-        $this->data = $data;
+        $this->link = $link;
+        $this->key = $key;
     }
 
     /**

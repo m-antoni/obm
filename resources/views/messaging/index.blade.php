@@ -42,7 +42,7 @@
 	setInterval(function(){
    		load_last_message();
    		// load_last_csr();
-  }, 1000);
+  }, 2000);
 
 	function load_last_message(){
     $.ajax({
@@ -63,12 +63,15 @@
 						  result += '<span class="time-left">' + new Date(value.created_at).toLocaleTimeString() + '</span>';
 						  result += '</div>';
 
-						}
+						}else{
+
 							result += '<div class="chat darker">';
-							result += '<img src='+ image +' alt="Avatar" class="right img-fluid">';
+							result += '<img src='+ image +' alt="Avatar" class="right" style="border-radius: 100%; height: 60px; width: 60px;">';
 						  result += '<p class="message">' + value.message + '</p>';
 						  result += '<span class="time-left">' + new Date(value.created_at).toLocaleTimeString() + '</span>';
 						  result += '</div>';
+						}
+							
 					});
 
 					$("#displayChat").html(result);
@@ -76,27 +79,7 @@
  	  });
   }
 
- function load_last_csr(){
-    $.ajax({
-		    url:"{{ route('fetchCSR')}}",
-		    method:"GET",
-		    // data:{chat_box_id:CID},
-		    success:function(data){
-		    	var result;
-		    	var logo = '{{ asset('/img/logocircle.png') }}';
 
-					$.each(data, function( index, value ) {
-							result += '<div class="chat">';
-							result += '<img src='+ logo +' alt="Avatar" class="right">';
-						  result += '<p class="message">' + value.message + '</p>';
-						  result += '<span class="time-left">' + new Date(value.created_at).toLocaleTimeString() + '</span>';
-						  result += '</div>';
-					});
-
-					$("#displayChat").html(result);
-		    }
- 	  });
-  }
 
   $('#txtMessage').on("keypress", function(e){
     if(e.keyCode == 13){

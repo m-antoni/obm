@@ -2,6 +2,20 @@
    font-family: 'Roboto', sans-serif;
 }
 
+/*  HOME ICONS STYLES */
+.homeicons .col-4 a, .homeicons .col-6 a{
+  color: black;
+  text-decoration: none;
+}
+
+.homeicons .col-4 a:hover, .homeicons .col-6 a:hover{
+  color: #2196f3;
+}
+
+.hoverLink:hover{
+  color: #2196f3;
+}
+
 .contact{
    font-family: 'Roboto', sans-serif;
    font-size: 1rem;
@@ -18,7 +32,7 @@ h4, h2, #productName{
   #singleProduct #price{
      font-family: 'Roboto', sans-serif;
   }
-  
+ 
   /*products styles*/
   #products #productName{
     font-family: 'Roboto', sans-serif;
@@ -41,12 +55,6 @@ h4, h2, #productName{
     margin-top: 50px !important;
   }
 
-/* bills and payment styles*/
-#billsHeader{
-  background: #28a0f9;
-  color: #fbc74d;
-}
- 
 /* user homepage styles*/
 .imageThumbnail .imghome {
   position: relative;
@@ -321,7 +329,6 @@ h4, h2, #productName{
 }
 
 
-
 /* Shopping cart buttons */
 
 .qty .count {
@@ -358,6 +365,39 @@ h4, h2, #productName{
     border-radius: 50%;
     background-clip: padding-box;
 }
+
+
+/* BOOTOM FIXED NAVIGATION BAR FOOTER */
+#bottom-nav {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   padding-top:10px;
+   padding-bottom: 10px;
+   height:45px;
+   width:100%;
+   background: #ffff;
+   z-index: 99999;
+}
+
+#bottom-nav .links a{
+  color: #808080;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#bottom-nav .links a:hover{
+  color: #2196f3;
+  text-decoration: none;
+}
+
+#bottom-nav .links a div{
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+
+}
+
+
 /*  div {
     text-align: right;
 }*/
@@ -367,6 +407,8 @@ h4, h2, #productName{
 .plus:hover{
     background-color: #eaeaea !important;
 }*/
+
+
 /*Prevent text selection*/
 span{
     -webkit-user-select: none;
@@ -392,8 +434,8 @@ input:disabled{
     float: right;
 }
 
-/* Shopping cart buttons */
 
+/* Shopping cart buttons */
 
 @media only screen and (max-width: 480px) {
     #summary table{

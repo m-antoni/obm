@@ -1,4 +1,3 @@
-
 <nav class="site-header push">
     <div class="float-left mx-4 menu-btn">
         <i class="fa fa-bars fa-2x"></i>
@@ -8,13 +7,14 @@
 
     <div class="float-right mx-2">
         <a class="nav-link" href="{{ route('shopping.cart') }}">
-            <div class="text-white"> 
+            <div> 
                 <i class="fa fa-shopping-cart"></i> 
                 <b>{{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}</b>
             </div>
         </a>
     </div>
 </nav>
+
 
 <nav class="pushy pushy-left" data-focus="#first-link">
     <div class="pushy-content">
@@ -23,14 +23,15 @@
                 <div class="p-2">
                      <img src="{{ asset('/img/logocircle.png') }}" alt="circle" class="img-fluid">     
                 </div>
-              
             </li>
             <li class="pushy-link"><a href="{{ route('home') }}"><i class="fa fa-home"></i> Dashboard</a></li>
-             <li class="pushy-link"><a href="{{route('chats')}}"><i class="fa fa-comments"></i> CHAT</a></li>
-            <li class="pushy-submenu">
+            <li class="pushy-link"><a href="{{route('chats')}}"><i class="fa fa-comments"></i> CHAT</a></li>
+            <li class="pushy-link"><a href="{{route('shop')}}"><i class="fa fa-shopping-cart"></i> SHOP</a></li>
+            <li class="pushy-link"><a href="{{route('shopping.cart')}}"><i class="fa fa-shopping-cart"></i>  MY CART</a></li>
+           {{--  <li class="pushy-submenu">
                 <button id="first-link"><i class="fa fa-shopping-cart"></i> SHOP</button>
                 <ul>
-                    <li class="pushy-link"><a href="{{ route('shopping.cart') }}"> MY CART</a></li>
+                    <li class="pushy-link"><a href="{{ route('shopping.cart') }}"><i class="fa fa-shopping-cart"></i> MY CART</a></li>
                     <li class="pushy-submenu">
                         <button><i class="fa fa-list"></i> Categories</button>
                         <ul>
@@ -42,11 +43,13 @@
                             <li class="pushy-link"><a href="#">Gadgets</a></li>
                         </ul>
                     </li>
-                    <li class="pushy-link"><a href="{{ route('show.credits')}}"><i class="fa fa-coins"></i> Beems</a></li>
-                    <li class="pushy-link"><a href="{{ route('list.orders') }}"><i class="fa fa-list"></i> My Orders</a></li>
                 </ul>
-            </li>
- {{--            <li class="pushy-submenu">
+            </li> --}}
+            <li class="pushy-link"><a href="{{ route('show.credits')}}"><i class="fa fa-coins"></i> Beems</a></li>
+            <li class="pushy-link"><a href="{{ route('list.orders') }}"><i class="fa fa-list"></i> My Orders</a></li>
+            <li class="pushy-link"><a href="{{route('grocery')}}"><i class="fa fa-shopping-basket"></i> GROCERY</a></li>
+            <li class="pushy-link"><a href="{{route('bills')}}"><i class="fa fa-money"></i> BILLS</a></li>
+ {{--       <li class="pushy-submenu">
                 <button>Submenu 2</button>
                 <ul>
                     <li class="pushy-link"><a href="#">Item 1</a></li>
@@ -69,12 +72,11 @@
                     <li class="pushy-link"><a href="#">ETC</a></li>
                 </ul>
             </li>
-            <li class="pushy-link"><a href="{{route('bills')}}"><i class="fa fa-money"></i> BILLS</a></li>
             <li class="pushy-link"><a href="#"><i class="fa fa-plane"></i> BOOKING</a></li>
-            <li class="pushy-link"><a href="#"><i class="fa fa-file"></i> E-BOOKS</a></li>
+            <li class="pushy-link"><a href="{{ route('ebooks') }}"><i class="fa fa-file"></i> E-BOOKS</a></li>
             <li class="pushy-link"><a href="{{ route('games') }}"><i class="fa fa-dice"></i> GAMES</a></li>
             <li class="pushy-link"><a href="#"><i class="fa fa-briefcase"></i> JOB HUNT</a></li>
-            <li class="pushy-link"><a href="#" class="text-danger" data-toggle="modal" data-target="#signout">
+            <li class="pushy-link"><a href="#" data-toggle="modal" data-target="#signout">
                 <i class="fa fa-power-off"></i> Sign-out</a>
             </li>
         </ul>
@@ -92,14 +94,14 @@
         </div>
         <div class="modal-body">
             <div align="center">
-                 <h5 class="modal-title text-danger mb-4"><b>Ready to leave?</b></h5>
+                 <h5 class="modal-title mb-4"><b>Ready to leave?</b></h5>
                 <a onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
                    <button class="btn btn-outline-dark bttn-md" href="{{ route('logout') }}">
                       <i class="fas fa-power-off mr-2"></i> Sign-out
                    </button>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('userlogout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </div>

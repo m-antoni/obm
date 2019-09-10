@@ -5,29 +5,33 @@
 /* Menu Appearance */
 .pushy {
   position: fixed;
-  width: 200px;
+  width: 250px;
   height: 100%;
   top: 0;
   z-index: 9999;
-  background: #191918;
+  /*background: #191918;*/
+  background: #fff;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   /* enables momentum scrolling in iOS overflow elements */
 }
 .pushy a {
   display: block;
-  color: #b3b3b1;
+  /*color: #b3b3b1;*/
+  color: #000;
   padding: 15px 30px;
   text-decoration: none;
 }
 .pushy a:hover {
-  color: #FFF;
+  /*color: #FFF;*/
+ color: #2196f3;
 }
 .pushy ul:first-child {
   margin-top: 10px;
 }
 .pushy.pushy-left {
   left: 0;
+  border-right: 2px #2196F3 solid !important;
 }
 .pushy.pushy-right {
   right: 0;
@@ -35,20 +39,21 @@
 
 .pushy-content {
   visibility: hidden;
+  line-height: 1;
 }
 
 /* Menu Movement */
 .pushy-left {
-  -webkit-transform: translate3d(-200px, 0, 0);
-  -ms-transform: translate3d(-200px, 0, 0);
-  transform: translate3d(-200px, 0, 0);
+  -webkit-transform: translate3d(-250px, 0, 0);
+  -ms-transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-250px, 0, 0);
 }
 
 .pushy-open-left #container,
 .pushy-open-left .push {
-  -webkit-transform: translate3d(200px, 0, 0);
-  -ms-transform: translate3d(200px, 0, 0);
-  transform: translate3d(200px, 0, 0);
+  -webkit-transform: translate3d(250px, 0, 0);
+  -ms-transform: translate3d(250px, 0, 0);
+  transform: translate3d(250px, 0, 0);
 }
 
 .pushy-right {
@@ -135,14 +140,15 @@
 }
 .pushy-submenu button {
   width: 100%;
-  color: #b3b3b1;
+  /*color: #b3b3b1;*/
+  color: #000;
   padding: 15px 30px;
   text-align: left;
   background: transparent;
   border: 0;
 }
 .pushy-submenu button:hover {
-  color: #FFF;
+    color: #2196f3;
 }
 .pushy-submenu > a,
 .pushy-submenu > button {

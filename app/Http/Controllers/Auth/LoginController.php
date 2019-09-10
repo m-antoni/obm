@@ -30,46 +30,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-   /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        $result = $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
-        );
-
-        // if($result){
-        //     $this->sendOTP();
-        // }
-
-        return $result;
-    }
-
-
-    public function cacheTheOTP()
-    {
-        $OTP =  'ONE BEEM CODE: ' . rand(100000, 999999);
-
-        Cache::store(['OTP' => $OTP], now()->addSeconds(60));
-
-        return $OTP;
-    }
-
-    public function sendOTP()
-    {   
-        // SMS Gateway Credentials Needed
-        $token = env('SMS_TOKEN');
-        $devide_id = env('SMS_DEVICE_ID');
-        $options = [];
-
-        $smsGateway = new SmsGateway($token);
-        $result = $smsGateway->sendMessageToNumber(auth()->user()->phone, $this->cacheTheOTP(), $devide_id, $options);
-    }
-
 
     /**
      * Create a new controller instance.
@@ -85,9 +45,10 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
 
-        return redirect('/');
+        return redirect('/login');
     }
 
+    /*  BANNED USER CANNOT LOG IN */
     public function credentials(Request $request){
         $credentials = $request->only($this->username(),'password');
         return array_add($credentials, 'isBan', 0);

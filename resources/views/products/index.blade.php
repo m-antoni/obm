@@ -27,6 +27,16 @@
 
         <div class="col-md-4 col-sm-4 col-12">
             <div class="imghome">
+                <img src="/img/shop/wines.jpg" alt="wines" class="image mg-fluid">
+                <div class="middle">
+                    <div class="text">WINES & LIQUORS</div>
+                    <h4 class="text-dark"><b><a href="{{ route('wines') }}">CLICK HERE</a></b></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-12">
+            <div class="imghome">
                 <img src="/img/shop/electronics.jpg" alt="apparel" class="image mg-fluid">
                 <div class="middle">
                     <div class="text">ELECTRONICS</div>
@@ -55,7 +65,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-sm-4 col-12">
+        {{-- <div class="col-md-4 col-sm-4 col-12">
             <div class="imghome">
                 <img src="/img/shop/accesories.jpg" alt="apparel" class="image mg-fluid">
                 <div class="middle">
@@ -63,7 +73,7 @@
                     <h4 class="text-dark"><b><a href="#">CLICK HERE</a></b></h4>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="py-5" style="background: #383c4a">
+    <h2 align="center" class="text-white"><i class="fa fa-tag text-white"></i> INVOICE</h2>
+</div>
 
-<div class="container">
+<div class="">
 <div id="invoice">
 	<div class="toolbar hidden-print">
-	    <div class="text-right">
-	        <button id="printInvoice" class="btn btn-danger btn-sm"><i class="fa fa-print"></i> PRINT</button>
+	    <div class="text-left">
+	        {{-- <button id="printInvoice" class="btn btn-danger btn-sm"><i class="fa fa-print"></i> PRINT</button> --}}
+          <a href="{{ route('list.orders') }}" class="btn btn-danger"> <i class="fa fa-arrow-circle-left"></i> Go Back</a>
 	    </div>
 	    <hr>
 	</div>
   <div class="invoice overflow-auto">
-      <div style="min-width: 600px">
+      <div style="min-width: 500px">
           <header>
               <div class="row">
                   <div class="col">

@@ -20,26 +20,26 @@
 										@endif
 										
 										<form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
-												@csrf
-		                		<div class="form-group mt-2">
-		                			{{-- <input type="file" name="image" class="form-control"> --}}
-		                			<div class="custom-file">
-													  <input type="file" name="image" class="custom-file-input" id="customFileLang" lang="es">
-													  <label class="custom-file-label" for="customFileLang">Upload Here</label>
-													</div>
+											@csrf
+					                		<div class="form-group mt-2">
+					                			{{-- <input type="file" name="image" class="form-control"> --}}
+					                			<div class="custom-file">
+												  <input type="file" name="image" class="custom-file-input" id="customFileLang" lang="es">
+												  <label class="custom-file-label" for="customFileLang">Upload Here</label>
+												</div>
 
-		                			  @error('image')
-		                            <span class="invalid-feedback" role="alert">
-		                                <strong>{{ $message }}</strong>
-		                            </span>
-		                        @enderror
+					                			@error('image')
+						                            <span class="invalid-feedback" role="alert">
+						                                <strong>{{ $message }}</strong>
+						                            </span>
+					                       		 @enderror
 
-		                        <button type="submit" class="btn btn-outline-dark py-1 mt-2 btn-block">
-															<i class="fa fa-image"></i> 
-																UPDATE IMAGE
-														</button>	
-		                		</div>
-                		</form>
+						                        <button type="submit" class="btn btn-outline-dark py-1 mt-2 btn-block">
+													<i class="fa fa-image"></i> 
+														UPDATE IMAGE
+												</button>	
+					                		</div>
+			                			</form>
 									</div>
 
 									<div class="list-group-item userInformation">
@@ -65,26 +65,26 @@
 
 							<div class="col-md-8">
 								<div class="list-group">
-										<div class="card">
-												<div class="card-body">
-														@if(count($users) > 0)
-															<div><input type="text" class="form-control w-50 mb-2" value="discovery friends here..."> </div>
-															<div class="row mb-2">
-																@foreach($users as $user)
-																		<div class="col-md-3">
-																					@if($user->image == null)
-																						<img src="{{ asset('/img/noimage.jpg') }}" alt="img1" class="img-fluid">
-																					@else
-																						<img src="{{ asset('storage/' . $user->image ) }}" alt="" class="img-fluid">
-																					@endif
-																					<div>{{$user->first}} {{$user->last}}</div>
-																		</div>
-																@endforeach
-															</div>
-															{{$users->links()}}
-														@endif
+									<div class="card">
+										<div class="card-body">
+											@if(count($users) > 0)
+												<div><input type="text" class="form-control w-50 mb-2" value="discovery friends here..."> </div>
+												<div class="row mb-2">
+													@foreach($users as $user)
+														<div class="col-md-3">
+															@if($user->image == null)
+																<img src="{{ asset('/img/noimage.jpg') }}" alt="img1" class="img-fluid">
+															@else
+																<img src="{{ asset('storage/' . $user->image ) }}" alt="" class="img-fluid">
+															@endif
+															<div>{{$user->first}} {{$user->last}}</div>
+														</div>
+													@endforeach
 												</div>
+												{{$users->links()}}
+											@endif
 										</div>
+									</div>
 								</div>
 							</div>	
 						</div>
@@ -93,37 +93,5 @@
 			</div>
 		</div>
 	</div>
-
-
-	{{-- Referral Modal --}}
-    <div class="modal fade" id="referralKey" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-              	<div class="modal-title">What is <b>Referral Key</b> and How This Works?</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <ul class="list-unstyled">
-                	<h5><b>Referral Key?</b></h5>
-
-                	<p>
-                		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut odit ipsam voluptate eum, voluptates molestias mollitia incidunt excepturi quasi. Maxime magni velit ipsum perspiciatis praesentium consequatur molestias laudantium numquam iusto
-                		tias mollitia incidunt excepturi quasi. Maxime magni velit ipsum perspiciatis praesentium consequatur molestias laudantium numquam.
-                	</p>
-
-                	<h5><b>How to Used it</b></h5>		
-
-                	<p>
-                		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut odit ipsam voluptate eum, voluptates molestias mollitia incidunt excepturi quasi. Maxime magni velit ipsum perspiciatis praesentium consequatur molestias laudantium numquam iusto
-                		tias mollitia incidunt excepturi quasi. Maxime magni velit ipsum perspiciatis praesentium consequatur molestias laudantium numquam.
-                	</p>
-                </ul>
-              </div>
-          </div>
-        </div>
-    </div>
 
 @endsection

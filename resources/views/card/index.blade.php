@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-	<div id="billsHeader" class="py-1 mb-3 container-fluid" style="margin-top: 68px;">
-			<h1 align="center" class="display-4"><i class="fa fa-credit-card"></i> Card Registration</h1>
+	<div class="py-5 mb-4" style="background: #383c4a">
+	    <h2 align="center" class="text-white">Card Registration</h2>
+	    <h4 align="center"><i class="fa fa-credit-card fa-2x text-white"></i></h4>
 	</div>
 
 	<div class="container">
 			<div class="row justify-content-center">
-					<div class="col-md-5">
+					<div class="col-md-6">
 							@if(count($errors) > 0)
 								<div class="alert alert-danger mt-3" role="alert">
 										<div class="container">
@@ -33,8 +34,7 @@
                   </div>
               @endif
 							
-							<div class="card mt-2">
-									<div class="card-header"><h5>Get Your Card <b>FOR FREE!</b></h5></div>
+							<div class="card mt-2 mb-3">
 									<div class="card-body">
 										  <form action="{{route('card.store')}}" method="POST" enctype="multipart/form-data">
 													@csrf
@@ -55,9 +55,11 @@
 													</div>
 													<hr>
 													<div class="form-group">
-														<button type="submit" class="bttn bttn-primary bttn-simple bttn-block">
+														<button type="submit" class="btn btn-primary btn-block">
 															<i class="fa fa-send"></i> Submit Now
 														</button>
+
+														<a href="{{ route('home') }}" class="btn btn-danger btn-block mt-2">Go back</a>
 													</div>
 											</form>
 									</div>

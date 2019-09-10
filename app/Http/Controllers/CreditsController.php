@@ -19,6 +19,7 @@ class CreditsController extends Controller
 													->where('status', false)
 													->first();
 
+
 				return view('credits.credits',compact('credits', 'pending'));	
     }
 
@@ -31,23 +32,21 @@ class CreditsController extends Controller
 				// ALREADY EXITS JUST UPDATE
 				if(Credit::where('user_id', auth()->user()->id)->first())
 				{
-					$update = auth()->user()->credits()
+					$update = auth()->user()->credit()
 												->where('status', 0)
 												->update([
 														'credits' => $request->credits,
 														'date' => now()
 												]);					
-				}else{
-
-						// SAVE TO DB
-						$credits = Credit::create([
-								'user_id' => auth()->user()->id,
-								'credits' => $request->credits,
-								'date' => now()
-						]);
 				}
 
-	
+				// SAVE TO DB
+				$credits = Credit::create([
+						'user_id' => auth()->user()->id,
+						'credits' => $request->credits,
+						'date' => now()
+				]);
+
 			return redirect()->route('show.credits')->with('success', 'Bank Transfer and upload your receipts to validate');
 
     }
@@ -62,10 +61,10 @@ class CreditsController extends Controller
 		    // return dd(request()->all());
 				$validate = request()->validate([
 					'transaction_number' => 'required|numeric',
-					'image' => 'required|image|max:1999'
+					'image' => 'required|image|max:5000'
 				]);
 
-				$latest = auth()->user()->credits()
+				$latest = auth()->user()->credit()
 											->latest()
 											->update([
 												'image' => request()->image->store('receipts', 'public'),

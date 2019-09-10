@@ -1,80 +1,68 @@
 <!DOCTYPE html>
-<html>
-
-<!-- Mirrored from expert-themes.com/html/applaap/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Aug 2019 10:42:13 GMT -->
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-<meta charset="utf-8">
-<title>{{ config('app.name', 'One Beem') }}</title>
-{{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<!-- Stylesheets -->
-<link href="{{ asset('/assets/landing/css/bootstrap.css')}}" rel="stylesheet">
-<link href="{{ asset('/assets/landing/css/style.css')}}" rel="stylesheet">
-<link href="{{ asset('/assets/landing/css/responsive.css')}}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'One Beem') }}</title>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Roboto:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/bttn.min.css') }}">
+    
+     <!-- SideBar -->
+    <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/themify-icons.css') }}">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <style>
+        body{
+          background-image: url('/img/homepage.jpg');
+          background-size: cover;
+          /*background-repeat: no-repeat;*/
+          width: 100%;
+        }
+        .container {
+          margin-top: 50px;
+          margin-bottom: 70px;
+        }
 
-<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-<link rel="icon" href="images/favicon.png" type="image/x-icon">
-<!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    </style>
 </head>
+
 <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-12 text-sm-center text-md-right">
+                 <h3 class="mt-md-5 mt-sm-0">
+                    <img class="img-fluid py-4 wow bounceInDown" data-wow-duration="2s" src="{{ asset('/img/logo2.png') }}" alt="" >
+                 </h3>
 
-<div class="page-wrapper">
-    <!-- Preloader -->
-    <div class="preloader"></div>
+                 <div id="info" class="mt-3 mb-5">
+                     <h4 class="text-white wow bounceInDown" data-wow-duration="2s">Everything you need in just few clicks.</h4>
 
-    <!--Banner Section-->
-    <section class="banner-section alternate" id="features" style="background-image:url(/assets/landing/images/background/3.png)">
-      <div class="auto-container">
-          <div class="row clearfix">
-              <!--Content Column-->
-                <div class="content-column col-lg-6 col-md-12 col-sm-12">
-                  <div class="inner-column">
-                  <h2>ONE BEEM</h2>
-                      <div class="text">Everything you need in just a few clicks.</div>
-                      <div class="btns-box">
-                        <a class="theme-btn btn-style-two" href="#">
-                          <span class="txt">Download App</span>
-                        </a>
-                        <a class="theme-btn btn-style-three" href="{{ route('login') }}">
-                          <span class="txt">Login Here</span>
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                <!--Image Column-->
-              <div class="image-column col-lg-6 col-md-12 col-sm-12">
-                  <div class="image">
-                        <img src="{{ asset('/assets/landing/images/resource/mobile-2.png') }}" alt="" />
-                    </div>
+                     <a class="btn btn-outline-light btn-lg mt-3 wow zoomIn" data-wow-delay="2s" href="{{ asset('/files/onebeem.apk')}}" download>
+                        <i class="ti ti-download"></i> <b>DOWNLOAD</b>
+                    </a>
                 </div>
             </div>
+
+            <div class="col-md-4 col-12" align="center">
+                <img  class="wow bounceInRight" data-wow-duration="3s" src="{{ asset('/img/mobile.png')}}">
+            </div>
         </div>
-    </section>
-    <!--End Banner Section-->
+    </div>
 
-</div>
-<!--End pagewrapper-->
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('/js/wow.min.js') }}"></script>
 
-<!--Scroll to top-->
-<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-double-up"></span></div>
-
-<script src="{{ asset('/assets/landing/js/jquery.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/jquery.fancybox.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/jquery.scrollTo.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/pagenav.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/owl.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/wow.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/appear.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/validate.js')}}"></script>
-<script src="{{ asset('/assets/landing/js/script.js')}}"></script>
-</body>
-
-<!-- Mirrored from expert-themes.com/html/applaap/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Aug 2019 10:42:14 GMT -->
+    <script>
+      $(document).ready(function(){
+        new WOW().init();
+      });
+    </script>
+  </body>
 </html>
+

@@ -23,6 +23,7 @@ define('LARAVEL_START', microtime(true));
 
 require __DIR__.'/../vendor/autoload.php';
 
+
 /* UNCOMMENT THIS IN PRODUCTION */
 // require __DIR__.'/../[PROJECT-NAME]/vendor/autoload.php';
 

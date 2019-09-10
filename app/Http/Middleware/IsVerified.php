@@ -20,7 +20,7 @@ class IsVerified
                 return $next($request);
             }
         }
-
+        
         // Auth::guard('web')->logout();
         return redirect()->route('verify.sms');
     }

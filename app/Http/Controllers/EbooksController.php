@@ -10,4 +10,9 @@ class EbooksController extends Controller
     {
     	return view('ebooks.index');
     }
+
+    public function pinoy()
+    {
+    	return view('ebooks.pinoy');
+    }
 }

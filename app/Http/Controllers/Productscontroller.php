@@ -37,6 +37,13 @@ class ProductsController extends Controller
         return view('products.kitchenware', compact('kitchenware'));
     }
 
+    public function wines()
+    {   
+        $wines = Product::where('category', 'wines')->simplePaginate(1);
+
+        return view('products.wines', compact('wines'));
+    }
+
     public function show_all($category)
     {
         $show = Product::where('category', $category)->paginate(7);
@@ -55,21 +62,19 @@ class ProductsController extends Controller
         Adding to Cart Implementation starts here
     */
     public function shopping_cart()
-    {
+    {   
         if(!Session::has('cart')){
             return view('products.shopping-cart', ['products' => null]);
         }
 
+        // dd(session()->get('cart'));
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-    
+        
         return view('products.shopping-cart', [
                 'products' => $cart->items, 
                 'totalPrice' => $cart->totalPrice
             ]);
-
-        // return response()->json(['products' => $cart->items, 
-        //         'totalPrice' => $cart->totalPrice]);
     }    
 
     public function add_to_cart(Request $request, $id)
@@ -84,7 +89,7 @@ class ProductsController extends Controller
 
         return redirect()->back();
     }
-
+    
     public function delete_item($id)
     {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -191,7 +196,7 @@ class ProductsController extends Controller
         $decoded = json_decode($latest->cart ,true);
 
         // Send to email the Invoice
-        Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
+        // Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
 
         // decrement the user credits
         $latest = Order::where('user_id', auth()->user()->id)->latest()->first();
@@ -268,7 +273,7 @@ class ProductsController extends Controller
         $decoded = json_decode($latest->cart ,true);
 
         // Send to email the Invoice
-        Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
+        // Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));
 
         // remove the session 
         Session::forget('cart');    
@@ -276,4 +281,5 @@ class ProductsController extends Controller
         // dd($request->all());
         return redirect()->route('confirm.order');
     }
+
 }

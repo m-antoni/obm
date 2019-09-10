@@ -7,13 +7,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Mail\ReferralLink;
+use App\Order;
+use App\Credit;
+use App\MasterDebitCard;
 use Session;
 
 class ClientsController extends Controller
 {
     public function index()
-    {
-    	return view('profile.index');
+    {   
+        $referBy = auth()->user()->referBy;
+
+        $referrals = User::where('referBy', auth()->user()->referral_key)
+                             ->orderBy('created_at', 'DESC')
+                             ->get();
+
+        $masterDebit = MasterDebitCard::where('user_id', auth()->user()->id)->first();
+
+        // get the credits status
+        $status = Credit::where('user_id', auth()->user()->id)
+                        ->where('status', false)
+                        ->first();
+
+    	return view('profile.index', compact('referBy','referrals','masterDebit','status'));
     }
 
     public function user_profile()
@@ -51,13 +67,15 @@ class ClientsController extends Controller
             'email' => 'required|email',
         ]);     
 
-        $link = request()->root() .'/register/'. auth()->user()->referral_key;
+        // $link = request()->root() .'/register/'. auth()->user()->referral_key;
+        $link = request()->root();
+        $referral_key =  auth()->user()->referral_key;
 
         // Send an email
-        Mail::to($request->email)->send(new ReferralLink($link));
+        Mail::to($request->email)->send(new ReferralLink($link, $referral_key));
 
         Session::flash('success', 'Referral link has been sent to your friend\'s email');
 
-        return redirect()->route('home');
+        return redirect()->route('user');
     }
 }

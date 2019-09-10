@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->string('category');
             $table->string('stocks');
             $table->string('image')->default('noimage.jpg');
+            $table->integer('sales_rate')->default(0);
+            $table->integer('order_rate')->default(0);
             $table->timestamps();
         });
     }

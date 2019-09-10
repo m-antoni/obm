@@ -3,11 +3,10 @@
 @section('content')
 
     <div class="splash-container pt-5">
-        <div class="card rounded-0">
+        <div class="card">
             <div class="card-header text-center">
-                <img src="img/logo.png" class="img-fluid" alt="">
-                {{-- <p class="text-dark">Please enter your user information.</p> --}}
-                {{-- <span class="splash-description">Please enter your user information.</span> --}}
+                {{-- <img src="img/logo2.png" class="img-fluid" alt=""> --}}
+                <h3 class="mb-1"><i class="fa fa-user-circle"></i> Login Form</h3>
             </div>
             <div class="card-body">
                 @if(Session::has('message'))
@@ -38,13 +37,12 @@
                             </span>
                         @enderror
                     </div>
-              {{--       <div class="form-group">
-                        <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
-                        </label>
-                    </div> --}}
+
+                    <div class="form-group my-3">
+                        <i class="fa fa-chain"></i> <a href="{{ route('forgot.password') }}">Forgot Password</a>
+                    </div>
                     
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-dark btn-lg btn-block">Sign in</button>
 
                 </form>
             </div>

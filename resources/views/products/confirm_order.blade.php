@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="py-5 mb-3" style="background: #eaeaea">
-			<h2 align="center" class="text-muted">ORDER CONFIRMATION</h2>
-	</div>
-	<div class="container mb-4">
+<div class="py-5 mb-3" style="background: #383c4a">
+    <h2 align="center" class="text-white"> ORDER CONFIRMATION</h2>
+</div>
+
+	<div class="container mb-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
 				<div class="card my-2">
@@ -26,15 +27,23 @@
 				</div>
 
 				<div class="mt-3" align="center">
-						<h5 class="text-muted"><b>Give us 24 hrs to process your order</b></h5>
+						<h5 class="text-danger my-4">
+							<b>Give us 24 hrs to process your order</b>
+						</h5>
+
 						<a href="{{route('list.orders')}}" class="btn btn-sm btn-outline-dark">
-							ORDER HISTORY
+										ORDER HISTORY
 						</a>
+						&nbsp;
+						<a href="{{route('shop')}}" class="btn btn-sm btn-outline-primary">
+							SHOP AGAIN
+						</a>
+						
 				</div>
 				
-				<div class="mt-3">
+				<div class="mt-3 py-4">
 						If you have any questions about your order, contact us on
-					 	(02) 692-3693 <span class="text-info">order@onebeem.com</span>
+					 	(02) 692-3693 <span class="text-primary">order@onebeem.com</span>
 				</div>
 			</div>
 		</div>

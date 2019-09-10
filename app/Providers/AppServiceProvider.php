@@ -7,8 +7,12 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
 
+use App\Test\TestingGateway;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,8 +22,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-        
+    {   
+        // $this->app->bind(TestingGateway::class, function($app){
+        //     return new TestingGateway('Php');
+        // });
     }
 
     /**

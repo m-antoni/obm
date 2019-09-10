@@ -32,24 +32,33 @@
     <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/pushy.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/pushycustom.css') }}">
-    
     <link rel="stylesheet" href="{{ asset('/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}"> 
     @yield('style')
 
 </head>
   <body id="page-top">
-      @include('partials.sidebar')  
+
+      @include('partials.topnav')  
+
       <div id="app" class="customHeight">
-            <main>
+
+            <main style="margin-top: 50px !important; margin-bottom: 60px;">
                  @yield('content')
             </main>
             {{-- <div class="site-overlay"></div> --}}
-         
+            
            {{-- @include('partials.messengerfb') --}}
       </div>
+
+      @include('partials.bottomnavbar')    
+
         <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="{{ asset('/js/wow.min.js') }}"></script>
+        <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('/js/iziToast.min.js')}}"></script>   
         <script src="{{ asset('/js/pushy.min.js')}}"></script>   
         <!-- Adding Custom scripts  -->

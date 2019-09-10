@@ -2,6 +2,13 @@
 
 @section('content')
 	<div class="container customHeight" id="products">
+
+		<div class="row">
+				<div class="col-md-3 col-sm-4 col-6 my-3 float-center">
+						<a href="{{ route('shop') }}" class="btn btn-sm btn-danger"><i class="fa fa-arrow-circle-left"></i> Go Back</a>
+				</div>	
+		</div>
+
 		<div class="row justify-content-center">
 			@if(count($show) > 0)
 					@foreach($show as $row)
@@ -13,27 +20,24 @@
 								</div>
 								<div class="p-1">
 									<div id="productName">{{Str::limit($row->p_name, 21)}}</div>
-									<div><span id="productPrice">₱{{number_format($row->price)}}</span>
+									<div><b>₱{{number_format($row->price)}}</b>
 										<small><s><b>SRP:₱{{$row->old_price}}</b></s></small>
 									</div>
 									
-		              <a href="{{ route('add.cart', $row->id) }}">
-		              		<button class="bttn bttn-pill bttn-primary btn-block mt-2 bttn-sm">
+		              <a href="{{ route('add.cart', $row->id) }}" class="btn btn-sm btn-outline-primary btn-block my-2">
 		                  <i class="fa fa-shopping-cart"></i> 
-		                   	<small>ADD TO CART</small>
-		                  </button>
+		                   	ADD TO CART
 		              </a>
 								</div>
 						</div>	
 					@endforeach
 			@endif
 		</div>
-
-		<div class="row">
-			<div class="col-md-3 col-sm-4 col-6 mb-4">
-					{{ $show->links() }}
-			</div>	
-		</div>
+				<div class="row">
+						<div class="col-md-3 col-sm-4 col-6 my-3 float-center">
+								{{ $show->links() }}
+						</div>	
+				</div>
 </div>
 
 @endsection
