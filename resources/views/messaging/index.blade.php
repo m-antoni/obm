@@ -2,26 +2,26 @@
 
 @section('content')
 <div class="container">
-		<div class="row justify-content-around">
-				<div class="col-md-6">
-					<div class="card mt-3">
-						<div class="card-header"><h4>Chatbox</h4></div>
-						<div id="displayChat" class="card-body" style="overflow-y: auto; height: 400px;">
-								
-						</div>
-					
-						<div class="card-footer">
-								<form>
-									<div class="input-group mb-3">
-									  <input type="text"   id="txtMessage" class="form-control" placeholder="Enter message.">
-									  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-									  <div class="input-group-append">
-									    <button id="sendMessage" class="btn btn-outline-primary" type="button" id="button-addon2"> <i class=" fa fa-send"></i> Send </button>
-									  </div>
-									</div>
-								</form>
-						</div>
+	<div class="row justify-content-around">
+		<div class="col-md-6">
+			<div class="card mt-3">
+				<div class="card-header"><h4>Chatbox</h4></div>
+				<div id="displayChat" class="card-body" style="overflow-y: auto; height: 400px;">
+						
 				</div>
+				
+				<div class="card-footer">
+						<form>
+							<div class="input-group mb-3">
+							  <input type="text"   id="txtMessage" class="form-control" placeholder="Enter message.">
+							  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+							  <div class="input-group-append">
+							    <button id="sendMessage" class="btn btn-outline-primary" type="button" id="button-addon2"> <i class=" fa fa-send"></i> Send </button>
+							  </div>
+							</div>
+						</form>
+				</div>
+			</div>
 		</div>
 </div>
 

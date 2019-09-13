@@ -1,8 +1,7 @@
 <nav class="site-header push shadow p-0 bg-white">
     <div class="float-left pt-3">
-        <h5 class="text-dark ml-3">
-            {{-- <a href="#" data-toggle="modal" data-target="#mybeems"><i class="ti ti-server"></i></a> --}}
-            <i class="ti ti-server"></i> {{ Str::limit(number_format(auth()->user()->credits), 9) }}
+        <h5 id="fetchBeems" class="text-dark ml-3">
+           
         </h5>
     </div>
 
@@ -88,7 +87,7 @@
             </li>
             <li class="pushy-link"><a href="{{ route('ebooks') }}"><i class="ti ti-book"></i> E-Books</a></li>
             <li class="pushy-link"><a href="{{ route('games') }}"><i class="ti ti-game"></i> Games</a></li>
-            <li class="pushy-link"><a href="#"><i class="ti ti-headphone"></i> Music</a></li>
+            <li class="pushy-link"><a href="{{ route('music') }}"><i class="ti ti-headphone"></i> Music</a></li>
             <li class="pushy-link"><a href="#"><i class="ti ti-briefcase"></i> Job Hunt</a></li>
             <li class="pushy-link"><a href="#"><i class="ti ti-location-pin"></i> Booking</a></li>
             <hr>

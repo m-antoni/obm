@@ -39,15 +39,18 @@
 	    }
 	</style>
 </head>
-<body>
+    <body>
 
-	<div id="app">
+    	<div id="app">
 
-		@yield('content')
+    		@yield('content')
 
-	</div>
-    <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/wow.min.js') }}"></script>
-    @yield('script')
-</body>
+    	</div>
+
+        <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="{{ asset('/js/wow.min.js') }}"></script>
+
+        @yield('script')
+
+    </body>
 </html>

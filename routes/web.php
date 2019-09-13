@@ -40,8 +40,9 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 
 
 Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],function(){
-	// navigation
+	// Navigation
 	Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+	Route::get('/fetch-beems', 'HomeController@fetchBeems')->name('fetch.beems')->middleware('auth');
 
 	// User Profile Routes
 	Route::get('/user', 'ClientsController@index')->name('user');
@@ -123,25 +124,18 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 	Route::get('/load/cignal','EloadController@cignal')->name('cignal');
 	Route::get('/load/pldt','EloadController@pldt')->name('pldt');
 	Route::get('/load/steam','EloadController@steam')->name('steam');
-	
+
 	// Games Routes
 	Route::get('/games','GamesController@index')->name('games');
 	Route::get('/games/quiz','GamesController@quiz')->name('games.quiz');
-	
+
 	// Ebooks Routes
-	Route::get('/ebooks', 'EbooksController@index')->name('ebooks');
-	Route::get('/ebooks/pinoy', 'EbooksController@pinoy')->name('pinoy');
+	Route::view('/ebooks', 'ebooks.index')->name('ebooks');
+	Route::view('/ebooks/quotes', 'ebooks.quotes')->name('quotes');
+	
+	// Music Routes
+	Route::view('/music', 'music.index')->name('music');
 });
 
 
-// Route::get('/test/{ref?}', function($ref = null){
-// 		dd(md5(uniqid(rand(), true)));
-// 		return view('test', compact('ref'));
-// });
-
-// Route::post('/test',function(Request $request){
-
-// 		return dd($request->all());
-// });
-
-
+Route::get('test', 'VerifyOTPController@test');

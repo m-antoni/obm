@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ asset('/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}"> 
+    
     @yield('style')
 
 </head>
@@ -64,6 +65,31 @@
         <!-- Adding Custom scripts  -->
         @yield('script')
         <!-- ===================== -->
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    }
+                });
+
+                setTimeout(function(){
+                    fetchBeems();
+                }, 1000)
+
+                function fetchBeems(){   
+                    $.ajax({
+                        url: '{{ route('fetch.beems')}}',
+                        type: 'GET',
+                        success: function(data){
+
+                            $('#fetchBeems').append('<i class="ti ti-server"></i> ' + data.beems);
+                        }
+                    });
+                }
+            });
+        </script>
   </body>
 </html>
 

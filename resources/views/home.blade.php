@@ -89,8 +89,10 @@
                           <div><b>Live Stream</b></div>
                       </div>
                       <div class="col-6 pb-3">
+                        <a href="{{ route('music')}}">
                           <i class="ti ti-headphone fa-2x"></i>
                           <div><b>Music</b></div>
+                        </a>
                       </div>
                       <div class="col-6 pb-3">
                           <i class="ti ti-briefcase fa-2x"></i>

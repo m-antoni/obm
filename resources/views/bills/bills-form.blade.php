@@ -93,7 +93,6 @@
 					$('#loader').show();
 				},
 				success:function(data){
-					// data = JSON.parse(data);
 					
 					var html = '';
 

@@ -2,22 +2,13 @@
 
 @section('content')
 
-<div id="jumbotron" class="jumbotron jumbotron-fluid py-5">
-    <div align="center" class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                  <img src="{{ asset('/img/logo2.png') }}" class="img-fluid text-center">
-            </div>
-        </div>
-    </div>
+<div class="py-5" style="background: #00b0ff">
+    <h2 align="center" class="text-white">PLAY GAMES</h2>
 </div>
-
-
-<h4 align="center"><i class="ti ti-game"></i> PLAY GAMES</h4>
 
 <div class="container">
     <div class="row justify-content-center text-center px-0">
-        <div class="col-md-8 col-10">
+        <div class="col-md-8 col-10 mt-4">
            <div class="row homeicons">
                 <div class="col-4 pb-4">
                     <a href="{{ route('games.quiz') }}">
@@ -26,7 +17,7 @@
                     </a>
                 </div>
 
-             {{--    <div class="col-4">
+             {{-- <div class="col-4">
                     <a href="#" data-toggle="modal" data-target="#moreicons">
                       <i class="ti ti-more-alt fa-3x"></i>
                       <div><b>More</b></div>
@@ -36,6 +27,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

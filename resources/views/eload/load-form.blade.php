@@ -62,7 +62,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-	 $.ajaxSetup({
+	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
 	    }
