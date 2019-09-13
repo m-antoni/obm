@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Credit extends Model
+class Loading extends Model
 {
-		protected $guarded = [];
-
+    protected $guarded = [];
+    
     protected $dates = [
-		'date', 
+		'date',
     ];
 
     public function user()
     {
-    		return $this->belongsTo('App\User');
-    } 
+    	return $this->belongsTo('App\User');
+    }
 }

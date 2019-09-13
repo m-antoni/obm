@@ -192,8 +192,8 @@ class ProductsController extends Controller
         $detail = Detail::where('user_id', auth()->user()->id)->delete();
 
          // Immediately fetch the latest order
-        $latest = auth()->user()->orders()->latest()->first();
-        $decoded = json_decode($latest->cart ,true);
+        // $latest = auth()->user()->orders()->latest()->first();
+        // $decoded = json_decode($latest->cart ,true);
 
         // Send to email the Invoice
         // Mail::to(auth()->user()->email)->send(new SendInvoice($latest, $decoded));

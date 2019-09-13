@@ -110,6 +110,20 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 	Route::get('/chats/fetch','MessagesController@fetchMessage')->name('fetchMessage');
 	// Route::get('/chats/csr','MessagesController@fetchCSR')->name('fetchCSR');
 	
+	// E-Loading Routes
+	Route::get('/load','EloadController@index')->name('load');
+	Route::get('/load/{eload}/form','EloadController@form')->name('load.form');
+	Route::post('/load/form/post','EloadController@post')->name('load.post');
+	Route::get('/load/globe','EloadController@globe')->name('globe');
+	Route::get('/load/smart','EloadController@smart')->name('smart');
+	Route::get('/load/sun','EloadController@sun')->name('sun');
+	Route::get('/load/tnt','EloadController@tnt')->name('tnt');
+	Route::get('/load/tm','EloadController@tm')->name('tm');
+	Route::get('/load/cherry','EloadController@cherry')->name('cherry');
+	Route::get('/load/cignal','EloadController@cignal')->name('cignal');
+	Route::get('/load/pldt','EloadController@pldt')->name('pldt');
+	Route::get('/load/steam','EloadController@steam')->name('steam');
+	
 	// Games Routes
 	Route::get('/games','GamesController@index')->name('games');
 	Route::get('/games/quiz','GamesController@quiz')->name('games.quiz');
@@ -117,7 +131,6 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 	// Ebooks Routes
 	Route::get('/ebooks', 'EbooksController@index')->name('ebooks');
 	Route::get('/ebooks/pinoy', 'EbooksController@pinoy')->name('pinoy');
-		
 });
 
 

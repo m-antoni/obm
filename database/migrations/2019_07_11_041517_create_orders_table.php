@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->string('date');
             $table->string('deliver_date')->nullable();
             $table->string('request_date')->nullable();
+            $table->boolean('carrier')->default(false);
             $table->timestamps();
         });
     }

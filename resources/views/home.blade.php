@@ -17,36 +17,36 @@
         <div class="col-md-8 col-10">
            <div class="row homeicons">
                 <div class="col-4 pb-4">
-                    <a href="#">
-                        <i class="ti ti-mobile fa-3x"></i>
+                    <a href="{{ route('load') }}">
+                        <i class="ti ti-mobile fa-2x"></i>
                         <div><b>E-load</b></div>
                     </a>
                 </div>
                 <div class="col-4 pb-4">
                     <a href="{{ route('shop') }}">
-                      <i class="ti ti-shopping-cart-full fa-3x"></i>
+                      <i class="ti ti-shopping-cart-full fa-2x"></i>
                       <div><b>Shop</b></div>
                     </a>
                 </div>
                 <div class="col-4 pb-4">
                     <a href="#">
-                      <i class="ti ti-bag fa-3x"></i>
+                      <i class="ti ti-bag fa-2x"></i>
                       <div><b>Grocery</b></div>
                     </a>
                 </div>
                 <div class="col-4 pb-4">
-                    <a href="{{ route('bills') }}"><i class="ti ti-credit-card fa-3x"></i>
+                    <a href="{{ route('bills') }}"><i class="ti ti-credit-card fa-2x"></i>
                     <div><b>Bills</b></div></a>
                 </div>
                 <div class="col-4 pb-4">
                     <a href="{{ route('ebooks') }}">
-                      <i class="ti ti-book fa-3x pb-3"></i>
+                      <i class="ti ti-book fa-2x pb-3"></i>
                       <div><b>E-Books</b></div>
                     </a>
                 </div>
                 <div class="col-4">
                     <a href="#" data-toggle="modal" data-target="#moreicons">
-                      <i class="ti ti-more-alt fa-3x"></i>
+                      <i class="ti ti-more-alt fa-2x"></i>
                       <div><b>More</b></div>
                     </a>
                 </div>

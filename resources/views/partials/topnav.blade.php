@@ -62,7 +62,7 @@
             </li> --}}
             <li class="pushy-link"><a href="{{route('grocery')}}"><i class="ti ti-bag"></i> Grocery</a></li>
             <li class="pushy-link"><a href="{{route('bills')}}"><i class="ti ti-credit-card"></i> Bills & Payment</a></li>
-            <li class="pushy-link"><a href="#"><i class="ti ti-mobile"></i> E-Load</a></li>
+            <li class="pushy-link"><a href="{{ route('load') }}"><i class="ti ti-mobile"></i> E-Load</a></li>
  {{--       <li class="pushy-submenu">
                 <button>Submenu 2</button>
                 <ul>

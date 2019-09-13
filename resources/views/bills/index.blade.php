@@ -64,9 +64,9 @@
                 <img src="{{ asset('/img/bills/7.jpg') }}" class="img-fluid"></a>
             </div>
         </div>
-    </div>
-
-    <div class="text-danger"><b>Click on the image to choose.</b></div>
+    <div align="center" class="col-md-12">
+        <b>Click on the image to choose.</b>
+    </div>   
 </div>
 
 @endsection

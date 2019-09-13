@@ -94,4 +94,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\MasterDebitCard');
     }
+
+    public function loading()
+    {
+        return $this->hasMany('App\Loading');
+    }
 }

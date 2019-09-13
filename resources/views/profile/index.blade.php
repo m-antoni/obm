@@ -127,7 +127,7 @@
                                             </div>
                                           </div>
                                      @else
-                                        <div class="imageThumbnail my-2">
+{{--                                         <div class="imageThumbnail my-2">
                                             <div class="alert alert-info alert-dismissible fade show" role="alert">
                                                   Get Your One Beem Master Debit Card 
                                                   <strong><i class="fa fa-credit-card"></i> FOR FREE!</strong> 
@@ -139,10 +139,10 @@
                                             <div class="imghome">
                                                 <div class="middle">
                                                     <div class="text"></div>
-                                                     {{-- <a href="{{ route('card.register') }}"><h4 class="text-dark"><b>CLICK HERE</b></a> --}}
+                                                     <a href="{{ route('card.register') }}"><h4 class="text-dark"><b>CLICK HERE</b></a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                      @endif 
                                 </div>
 
