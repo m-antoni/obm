@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-		<div class="imageThumbnail">
+	<div class="imageThumbnail">
 	    <div class="row no-gutters">
 	        <div class="col-md-4 col-sm-4 col-12">
 	            <div class="imghome">
@@ -64,5 +64,5 @@
 	        </div>
 
 	    </div>
-		</div>
+	</div>
 @endsection

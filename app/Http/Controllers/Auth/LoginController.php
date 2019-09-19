@@ -48,7 +48,7 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
-    /*  BANNED USER CANNOT LOG IN */
+    /*  BLOCK THE USER */
     public function credentials(Request $request){
         $credentials = $request->only($this->username(),'password');
         return array_add($credentials, 'isBan', 0);

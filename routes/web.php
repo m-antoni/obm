@@ -1,13 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Product;
-
 // Landing Page
 Route::get('/', function () {	
     return view('welcome');
 })->name('homepage');
-
 
 // Users Routes 
 Auth::routes();
@@ -78,13 +74,6 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 	Route::post('products/checkout/add-details', 'DetailsController@add_details')->name('add.details');
 	Route::get('products/confirm-order', 'ProductsController@confirm_order')->name('confirm.order');
 
-	// GROCERIES
-	Route::get('grocery', 'GroceryController@index')->name('grocery');
-	Route::get('grocery/rice', 'GroceryController@rice')->name('rice');
-	Route::get('grocery/remove/{id}', 'GroceryController@delete_item')->name('delete.grocery');
-	Route::get('grocery/add-to-cart/{id}', 'GroceryController@add_to_cart')->name('add.grocery');
-	Route::get('grocery/shopping-cart/', 'GroceryController@shopping_cart')->name('shopping.grocery');
-
 	// Cash On Delivery
 	Route::get('products/checkout-cod', 'ProductsController@checkout_cod')->name('cod');
 	Route::post('products/checkout-cod', 'ProductsController@cod_store')->name('cod.store');
@@ -136,6 +125,5 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth', 'isverified','web']],
 	// Music Routes
 	Route::view('/music', 'music.index')->name('music');
 });
-
 
 Route::get('test', 'VerifyOTPController@test');
